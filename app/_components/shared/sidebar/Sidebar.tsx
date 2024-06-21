@@ -62,7 +62,6 @@ const Sidebar: FC = () => {
                 ) : (
                     <div>
                         <div className='mt-8'>
-                            <Waves className='h-8 w-8' />
                             <div className='mt-8'>
                                 <TooltipHelper
                                     icon={<FaPodcast className='h-6 w-6' />}
