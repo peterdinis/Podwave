@@ -2,7 +2,7 @@
 
 import { FC, ReactNode } from 'react';
 import Sidebar from '../sidebar/Sidebar';
-import Navigation from '../Navigation';
+import Navigation from '../navigation/Navigation';
 
 interface IDefaultLayoutProps {
     children?: ReactNode;

@@ -16,7 +16,7 @@ const SidebarLink: FC<ISidebarLinkProps> = ({
     linkText,
 }: ISidebarLinkProps) => {
     return (
-        <div className='mt-8'>
+        <div className='mt-8 ml-2'>
             <Button variant={'ghost'} value='sm'>
                 {icon}
                 <Link href={linkHref}>{linkText}</Link>
