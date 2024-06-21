@@ -1,6 +1,7 @@
 'use client';
 
 import { FC } from 'react';
+import ProfileDropdown from '../(auth)/ProfileDropdown';
 
 const Navigation: FC = () => {
     return (
@@ -38,7 +39,7 @@ const Navigation: FC = () => {
 
                 <div className='flex items-center gap-3 sm:gap-7'>
                     <ul className='flex items-center gap-2 sm:gap-4'>
-                       TODO
+                       <ProfileDropdown />
                     </ul>
                 </div>
             </div>
