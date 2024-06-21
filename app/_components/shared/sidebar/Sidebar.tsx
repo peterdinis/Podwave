@@ -57,6 +57,7 @@ const Sidebar: FC = () => {
                                 linkHref='/podcasts/categories'
                                 linkText='Categories'
                             />
+                            
                         </div>
                     </>
                 ) : (
