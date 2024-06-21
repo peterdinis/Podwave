@@ -5,6 +5,9 @@ import classNames from 'classnames';
 import { XCircle, Menu, Settings, User, Home, Waves } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
+import { FaPodcast } from "react-icons/fa6";
+import { FaRegThumbsUp } from "react-icons/fa6";
+import { BiCategoryAlt } from "react-icons/bi";
 
 const Sidebar: FC = () => {
     const [collapsed, setSidebarCollapsed] = useState(false);
@@ -34,20 +37,25 @@ const Sidebar: FC = () => {
                         </span>
                         <div>
                             <SidebarLink
-                                icon={<Settings />}
-                                linkHref='/settings'
-                                linkText='Settings'
+                                icon={<FaPodcast className='w-6 h-6' />}
+                                linkHref='/'
+                                linkText='Home'
                             />
 
                             <SidebarLink
-                                icon={<User />}
-                                linkHref='/profile'
-                                linkText='Profile'
+                                icon={<FaPodcast className='w-6 h-6' />}
+                                linkHref='/podcasts/new'
+                                linkText='New Podcasts'
                             />
                             <SidebarLink
-                                icon={<Home />}
-                                linkHref='/'
-                                linkText='Dashboard'
+                                icon={<FaRegThumbsUp className='w-6 h-6' />}
+                                linkHref='/podcasts/top'
+                                linkText='Top podcasts'
+                            />
+                            <SidebarLink
+                                icon={<BiCategoryAlt className='w-6 h-6' />}
+                                linkHref='/podcasts/categories'
+                                linkText='Categories'
                             />
                         </div>
                     </>
