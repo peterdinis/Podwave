@@ -2,7 +2,7 @@
 
 import { FC, useState } from 'react';
 import classNames from 'classnames';
-import { XCircle, Menu, Settings, User, Home } from 'lucide-react';
+import { XCircle, Menu, Settings, User, Home, Waves } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
 
@@ -30,7 +30,7 @@ const Sidebar: FC = () => {
                 {collapsed === false ? (
                     <>
                         <span className='prose ml-6 mt-6 flex text-xl font-bold dark:text-white'>
-                            Paper Company s.r.o.
+                            <Waves className='w-8 h-8 ml-3' /> Podwave
                         </span>
                         <div>
                             <SidebarLink
@@ -54,6 +54,7 @@ const Sidebar: FC = () => {
                 ) : (
                     <div>
                         <div className='mt-8'>
+                            <Waves className='w-8 h-8' />
                             <div className='mt-8'>
                                 <TooltipHelper
                                     icon={<Settings />}
