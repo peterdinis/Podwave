@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import { XCircle, Menu, Settings, User, Home, Waves } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
-import { FaPodcast } from "react-icons/fa6";
-import { FaRegThumbsUp } from "react-icons/fa6";
-import { BiCategoryAlt } from "react-icons/bi";
+import { FaPodcast } from 'react-icons/fa6';
+import { FaRegThumbsUp } from 'react-icons/fa6';
+import { BiCategoryAlt } from 'react-icons/bi';
 
 const Sidebar: FC = () => {
     const [collapsed, setSidebarCollapsed] = useState(false);
@@ -33,27 +33,27 @@ const Sidebar: FC = () => {
                 {collapsed === false ? (
                     <>
                         <span className='prose ml-6 mt-6 flex text-xl font-bold dark:text-white'>
-                            <Waves className='w-8 h-8 ml-3' /> Podwave
+                            <Waves className='ml-3 h-8 w-8' /> Podwave
                         </span>
                         <div>
                             <SidebarLink
-                                icon={<FaPodcast className='w-6 h-6' />}
+                                icon={<FaPodcast className='h-6 w-6' />}
                                 linkHref='/'
                                 linkText='Home'
                             />
 
                             <SidebarLink
-                                icon={<FaPodcast className='w-6 h-6' />}
+                                icon={<FaPodcast className='h-6 w-6' />}
                                 linkHref='/podcasts/new'
                                 linkText='New Podcasts'
                             />
                             <SidebarLink
-                                icon={<FaRegThumbsUp className='w-6 h-6' />}
+                                icon={<FaRegThumbsUp className='h-6 w-6' />}
                                 linkHref='/podcasts/top'
                                 linkText='Top podcasts'
                             />
                             <SidebarLink
-                                icon={<BiCategoryAlt className='w-6 h-6' />}
+                                icon={<BiCategoryAlt className='h-6 w-6' />}
                                 linkHref='/podcasts/categories'
                                 linkText='Categories'
                             />
@@ -62,31 +62,30 @@ const Sidebar: FC = () => {
                 ) : (
                     <div>
                         <div className='mt-8'>
-                            <Waves className='w-8 h-8' />
                             <div className='mt-8'>
                                 <TooltipHelper
-                                    icon={<FaPodcast className='w-6 h-6' />}
+                                    icon={<FaPodcast className='h-6 w-6' />}
                                     linkH='/'
                                     tooltipText='Home'
                                 />
                             </div>
                             <div className='mt-8'>
                                 <TooltipHelper
-                                    icon={<FaPodcast className='w-6 h-6' />}
+                                    icon={<FaPodcast className='h-6 w-6' />}
                                     linkH='/podcasts/new'
                                     tooltipText='New Podcasts'
                                 />
                             </div>
                             <div className='mt-8'>
                                 <TooltipHelper
-                                    icon={<FaRegThumbsUp className='w-6 h-6' />}
+                                    icon={<FaRegThumbsUp className='h-6 w-6' />}
                                     linkH='/podcasts/top'
                                     tooltipText='Top podcasts'
                                 />
                             </div>
                             <div className='mt-8'>
                                 <TooltipHelper
-                                    icon={<BiCategoryAlt className='w-6 h-6' />}
+                                    icon={<BiCategoryAlt className='h-6 w-6' />}
                                     linkH='/podcasts/categories'
                                     tooltipText='Categories'
                                 />

@@ -16,10 +16,12 @@ const SidebarLink: FC<ISidebarLinkProps> = ({
     linkText,
 }: ISidebarLinkProps) => {
     return (
-        <div className='mt-8 ml-2'>
+        <div className='ml-2 mt-8'>
             <Button variant={'ghost'} value='sm'>
                 {icon}
-                <Link className='ml-2' href={linkHref}>{linkText}</Link>
+                <Link className='ml-2' href={linkHref}>
+                    {linkText}
+                </Link>
             </Button>
         </div>
     );
