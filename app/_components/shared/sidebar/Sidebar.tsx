@@ -65,23 +65,30 @@ const Sidebar: FC = () => {
                             <Waves className='w-8 h-8' />
                             <div className='mt-8'>
                                 <TooltipHelper
-                                    icon={<Settings />}
-                                    linkH='/settings'
-                                    tooltipText='Settings'
-                                />
-                            </div>
-                            <div className='mt-8'>
-                                <TooltipHelper
-                                    icon={<User />}
-                                    linkH='/profile'
-                                    tooltipText='Profile'
-                                />
-                            </div>
-                            <div className='mt-8'>
-                                <TooltipHelper
-                                    icon={<Home />}
+                                    icon={<FaPodcast className='w-6 h-6' />}
                                     linkH='/'
-                                    tooltipText='Dashboard'
+                                    tooltipText='Home'
+                                />
+                            </div>
+                            <div className='mt-8'>
+                                <TooltipHelper
+                                    icon={<FaPodcast className='w-6 h-6' />}
+                                    linkH='/podcasts/new'
+                                    tooltipText='New Podcasts'
+                                />
+                            </div>
+                            <div className='mt-8'>
+                                <TooltipHelper
+                                    icon={<FaRegThumbsUp className='w-6 h-6' />}
+                                    linkH='/podcasts/top'
+                                    tooltipText='Top podcasts'
+                                />
+                            </div>
+                            <div className='mt-8'>
+                                <TooltipHelper
+                                    icon={<BiCategoryAlt className='w-6 h-6' />}
+                                    linkH='/podcasts/categories'
+                                    tooltipText='Categories'
                                 />
                             </div>
                         </div>
