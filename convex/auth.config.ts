@@ -1,7 +1,7 @@
 const authConfig = {
     providers: [
         {
-            domain: process.env.CONVEX_DOMAIN as unknown as string,
+            domain: "https://merry-dory-85.clerk.accounts.dev",
             applicationID: 'convex',
         },
     ],
