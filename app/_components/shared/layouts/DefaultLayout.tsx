@@ -2,6 +2,7 @@
 
 import { FC, ReactNode } from 'react';
 import Sidebar from '../sidebar/Sidebar';
+import Navigation from '../navigation/Navigation';
 
 interface IDefaultLayoutProps {
     children?: ReactNode;
@@ -19,8 +20,7 @@ const DefaultLayout: FC<IDefaultLayoutProps> = ({
 
             {/* Dashboard Content */}
             <section className='relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden'>
-                {/* Navigation */}
-                Navigation
+                <Navigation />
                 <div className='p-4 md:p-6 2xl:p-10'>{children}</div>
             </section>
         </div>
