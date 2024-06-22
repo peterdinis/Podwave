@@ -1,16 +1,19 @@
-import { FC, useState } from 'react'
+
+import React, { useState } from 'react'
 import { Loader } from 'lucide-react'
 import { useAction, useMutation } from 'convex/react'
 import { api } from '@/convex/_generated/api'
 import { v4 as uuidv4 } from 'uuid';
 import { useToast } from "@/components/ui/use-toast"
+import { useUploadFiles } from '@/app/_hooks/useUploadFiles';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+import { Label } from '@radix-ui/react-dropdown-menu';
+import { GeneratePodcastProps } from '@/app/_types/podcastTypes';
 
 const useGeneratePodcast = ({
   setAudio, voiceType, voicePrompt, setAudioStorageId
-}: any) => {
+}: GeneratePodcastProps) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const { toast } = useToast()
 
@@ -67,7 +70,7 @@ const useGeneratePodcast = ({
   return { isGenerating, generatePodcast }
 }
 
-const GeneratePodcast = (props: any) => {
+const GeneratePodcast = (props: GeneratePodcastProps) => {
   const { isGenerating, generatePodcast } = useGeneratePodcast(props);
 
   return (
