@@ -2,7 +2,14 @@
 
 import { FC, useState } from 'react';
 import classNames from 'classnames';
-import { XCircle, Menu, Settings, User, Home, Waves } from 'lucide-react';
+import {
+    XCircle,
+    Menu,
+    User,
+    Waves,
+    Plus,
+    User2,
+} from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
 import { FaPodcast } from 'react-icons/fa6';
@@ -57,6 +64,18 @@ const Sidebar: FC = () => {
                                 linkHref='/podcasts/categories'
                                 linkText='Categories'
                             />
+
+                            <SidebarLink
+                                icon={<Plus className='h-6 w-6' />}
+                                linkHref='/podcasts/create'
+                                linkText='Create new podcast'
+                            />
+
+                            <SidebarLink
+                                icon={<User2 className='h-6 w-6' />}
+                                linkHref='/profile'
+                                linkText='My Profile'
+                            />
                         </div>
                     </>
                 ) : (
@@ -88,6 +107,20 @@ const Sidebar: FC = () => {
                                     icon={<BiCategoryAlt className='h-6 w-6' />}
                                     linkH='/podcasts/categories'
                                     tooltipText='Categories'
+                                />
+                            </div>
+                            <div className='mt-8'>
+                                <TooltipHelper
+                                    icon={<Plus className='h-6 w-6' />}
+                                    linkH='/podcasts/create'
+                                    tooltipText='Create new podcast'
+                                />
+                            </div>
+                            <div className='mt-8'>
+                                <TooltipHelper
+                                    icon={<User className='h-6 w-6' />}
+                                    linkH='/profile'
+                                    tooltipText='My Profile'
                                 />
                             </div>
                         </div>
