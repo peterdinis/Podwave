@@ -27,6 +27,9 @@ import {
 import { Loader2 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
+import { Id } from "@/convex/_generated/dataModel"
+import { api } from '@/convex/_generated/api';
+import { useMutation } from 'convex/react';
 
 const voiceCategories = ['alloy', 'shimmer', 'nova', 'echo', 'fable', 'onyx'];
 
@@ -36,10 +39,23 @@ const formSchema = z.object({
 });
 
 const CreateNewPodcastForm: FC = () => {
-    const router = useRouter();
-    const [voiceType, setVoiceType] = useState<string | null>(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const { toast } = useToast();
+    const router = useRouter()
+  const [imagePrompt, setImagePrompt] = useState('');
+  const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(null)
+  const [imageUrl, setImageUrl] = useState('');
+  
+  const [audioUrl, setAudioUrl] = useState('');
+  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(null)
+  const [audioDuration, setAudioDuration] = useState(0);
+  
+  const [voiceType, setVoiceType] = useState<string | null>(null);
+  const [voicePrompt, setVoicePrompt] = useState('');
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const createPodcast = useMutation(api.podcasts.createPodcast)
+
+  const { toast } = useToast();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -48,9 +64,42 @@ const CreateNewPodcastForm: FC = () => {
         },
     });
 
-    const onSubmit = () => {
-
-    }
+    async function onSubmit(data: z.infer<typeof formSchema>) {
+        try {
+          setIsSubmitting(true);
+          if(!audioUrl || !imageUrl || !voiceType) {
+            toast({
+              title: 'Please generate audio and image',
+            })
+            setIsSubmitting(false);
+            throw new Error('Please generate audio and image')
+          }
+    
+          const podcast = await createPodcast({
+            podcastTitle: data.podcastTitle,
+            podcastDescription: data.podcastDescription,
+            audioUrl,
+            imageUrl,
+            voiceType,
+            imagePrompt,
+            voicePrompt,
+            views: 0,
+            audioDuration,
+            audioStorageId: audioStorageId!,
+            imageStorageId: imageStorageId!,
+          })
+          toast({ title: 'Podcast created' })
+          setIsSubmitting(false);
+          router.push('/')
+        } catch (error) {
+          console.log(error);
+          toast({
+            title: 'Error',
+            variant: 'destructive',
+          })
+          setIsSubmitting(false);
+        }
+      }
 
     return (
         <section className='mt-10 flex flex-col'>
