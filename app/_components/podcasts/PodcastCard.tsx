@@ -26,7 +26,7 @@ const PodcastCard: FC = () => {
                     </CardTitle>
                 </div>
                 <Button className='mt-2 p-4' variant={'default'} size={'lg'}>
-                    <Link href='/'>Detail</Link>
+                    <Link href='/podcasts/1'>Detail</Link>
                 </Button>
             </CardContent>
         </Card>
