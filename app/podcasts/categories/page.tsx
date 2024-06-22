@@ -1,11 +1,8 @@
+import PodcastCategoriesWrapper from "@/app/_components/podcasts/PodcastCategoriesWrapper";
 import { NextPage } from "next";
 
 const PodcastsCategoriesPage: NextPage = () => {
-    return (
-        <>
-        rrr
-        </>
-    )
+    return <PodcastCategoriesWrapper />
 }
 
 export default PodcastsCategoriesPage

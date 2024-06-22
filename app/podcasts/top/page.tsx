@@ -1,11 +1,8 @@
+import TopPodcastsWrapper from "@/app/_components/podcasts/TopPodcastsWrapper";
 import { NextPage } from "next";
 
 const PodcastsTopPage: NextPage = () => {
-    return (
-        <>
-        rrr
-        </>
-    )
+    return <TopPodcastsWrapper />
 }
 
 export default PodcastsTopPage
