@@ -1,17 +1,14 @@
-'use client';
-
-import { FC } from 'react';
 import { motion } from 'framer-motion';
-import Header from '../shared/Header';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import {
     CarouselProvider,
+    ButtonBack,
     Slider,
     Slide,
-    ButtonBack,
     ButtonNext,
 } from 'pure-react-carousel';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import PodcastCard from './PodcastCard';
+import { FC } from 'react';
+import PodcastCard from '../PodcastCard';
 
 const slideAnimation = {
     hidden: { opacity: 0, x: -100 },
@@ -19,10 +16,9 @@ const slideAnimation = {
     exit: { opacity: 0, x: 100 },
 };
 
-const PodcastsLists: FC = () => {
+const ProfilePodcasts: FC = () => {
     return (
         <>
-            <Header text='Top podcasts' />
             <div className='container mx-auto'>
                 <div className='flex h-full w-full items-center justify-center px-4 py-24 sm:py-8'>
                     <CarouselProvider
@@ -53,11 +49,13 @@ const PodcastsLists: FC = () => {
                                         {[...Array(8)].map((_, index) => (
                                             <Slide index={index} key={index}>
                                                 <motion.div
-                                                    initial="hidden"
-                                                    animate="visible"
-                                                    exit="exit"
+                                                    initial='hidden'
+                                                    animate='visible'
+                                                    exit='exit'
                                                     variants={slideAnimation}
-                                                    transition={{ duration: 0.5 }}
+                                                    transition={{
+                                                        duration: 0.5,
+                                                    }}
                                                 >
                                                     <PodcastCard />
                                                 </motion.div>
@@ -106,11 +104,13 @@ const PodcastsLists: FC = () => {
                                         {[...Array(4)].map((_, index) => (
                                             <Slide index={index} key={index}>
                                                 <motion.div
-                                                    initial="hidden"
-                                                    animate="visible"
-                                                    exit="exit"
+                                                    initial='hidden'
+                                                    animate='visible'
+                                                    exit='exit'
                                                     variants={slideAnimation}
-                                                    transition={{ duration: 0.5 }}
+                                                    transition={{
+                                                        duration: 0.5,
+                                                    }}
                                                 >
                                                     <PodcastCard />
                                                 </motion.div>
@@ -159,11 +159,13 @@ const PodcastsLists: FC = () => {
                                         {[...Array(2)].map((_, index) => (
                                             <Slide index={index} key={index}>
                                                 <motion.div
-                                                    initial="hidden"
-                                                    animate="visible"
-                                                    exit="exit"
+                                                    initial='hidden'
+                                                    animate='visible'
+                                                    exit='exit'
                                                     variants={slideAnimation}
-                                                    transition={{ duration: 0.5 }}
+                                                    transition={{
+                                                        duration: 0.5,
+                                                    }}
                                                 >
                                                     <PodcastCard />
                                                 </motion.div>
@@ -188,4 +190,4 @@ const PodcastsLists: FC = () => {
     );
 };
 
-export default PodcastsLists;
+export default ProfilePodcasts;
