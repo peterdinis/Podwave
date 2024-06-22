@@ -1,5 +1,10 @@
 import { SignUp } from "@clerk/nextjs";
+import AuthWrapper from "../_components/(auth)/AuthWrapper";
 
 export default function Page() {
-  return <SignUp />;
+  return (
+    <AuthWrapper>
+        <SignUp />
+    </AuthWrapper>
+  );
 }
