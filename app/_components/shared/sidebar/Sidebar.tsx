@@ -2,23 +2,17 @@
 
 import { FC, useState } from 'react';
 import classNames from 'classnames';
-import {
-    XCircle,
-    Menu,
-    User,
-    Waves,
-    Plus,
-    User2,
-} from 'lucide-react';
+import { XCircle, Menu, User, Waves, Plus, User2 } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
 import { FaPodcast } from 'react-icons/fa6';
 import { FaRegThumbsUp } from 'react-icons/fa6';
 import { BiCategoryAlt } from 'react-icons/bi';
+import { useUser } from '@clerk/nextjs';
 
 const Sidebar: FC = () => {
     const [collapsed, setSidebarCollapsed] = useState(false);
-
+    const { user } = useUser();
     return (
         <div
             className={classNames({
@@ -52,7 +46,7 @@ const Sidebar: FC = () => {
                             <SidebarLink
                                 icon={<FaPodcast className='h-6 w-6' />}
                                 linkHref='/podcasts/new'
-                                linkText='New Podcasts'
+                                linkText='New added podcasts'
                             />
                             <SidebarLink
                                 icon={<FaRegThumbsUp className='h-6 w-6' />}
@@ -65,17 +59,21 @@ const Sidebar: FC = () => {
                                 linkText='Categories'
                             />
 
-                            <SidebarLink
-                                icon={<Plus className='h-6 w-6' />}
-                                linkHref='/podcasts/create'
-                                linkText='Create new podcast'
-                            />
+                            {user && (
+                                <>
+                                    <SidebarLink
+                                        icon={<Plus className='h-6 w-6' />}
+                                        linkHref='/podcasts/create'
+                                        linkText='Create new podcast'
+                                    />
 
-                            <SidebarLink
-                                icon={<User2 className='h-6 w-6' />}
-                                linkHref='/profile'
-                                linkText='My Profile'
-                            />
+                                    <SidebarLink
+                                        icon={<User2 className='h-6 w-6' />}
+                                        linkHref='/profile'
+                                        linkText='My Profile'
+                                    />
+                                </>
+                            )}
                         </div>
                     </>
                 ) : (
@@ -92,7 +90,7 @@ const Sidebar: FC = () => {
                                 <TooltipHelper
                                     icon={<FaPodcast className='h-6 w-6' />}
                                     linkH='/podcasts/new'
-                                    tooltipText='New Podcasts'
+                                    tooltipText='New added podcasts'
                                 />
                             </div>
                             <div className='mt-8'>
@@ -109,20 +107,24 @@ const Sidebar: FC = () => {
                                     tooltipText='Categories'
                                 />
                             </div>
-                            <div className='mt-8'>
-                                <TooltipHelper
-                                    icon={<Plus className='h-6 w-6' />}
-                                    linkH='/podcasts/create'
-                                    tooltipText='Create new podcast'
-                                />
-                            </div>
-                            <div className='mt-8'>
-                                <TooltipHelper
-                                    icon={<User className='h-6 w-6' />}
-                                    linkH='/profile'
-                                    tooltipText='My Profile'
-                                />
-                            </div>
+                            {user && (
+                                <>
+                                    <div className='mt-8'>
+                                        <TooltipHelper
+                                            icon={<Plus className='h-6 w-6' />}
+                                            linkH='/podcasts/create'
+                                            tooltipText='Create new podcast'
+                                        />
+                                    </div>
+                                    <div className='mt-8'>
+                                        <TooltipHelper
+                                            icon={<User className='h-6 w-6' />}
+                                            linkH='/profile'
+                                            tooltipText='My Profile'
+                                        />
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 )}
