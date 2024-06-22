@@ -2,7 +2,7 @@
 
 import { FC, useState } from 'react';
 import classNames from 'classnames';
-import { XCircle, Menu, Settings, User, Home, Waves } from 'lucide-react';
+import { XCircle, Menu, Settings, User, Home, Waves, Plus } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
 import { FaPodcast } from 'react-icons/fa6';
@@ -56,6 +56,12 @@ const Sidebar: FC = () => {
                                 icon={<BiCategoryAlt className='h-6 w-6' />}
                                 linkHref='/podcasts/categories'
                                 linkText='Categories'
+                            />
+
+<SidebarLink
+                                icon={<Plus className='h-6 w-6' />}
+                                linkHref='/podcasts/create'
+                                linkText='Create new podcast'
                             />
                         </div>
                     </>
