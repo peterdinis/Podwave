@@ -18,7 +18,10 @@ export const getUserById = query({
   },
 });
 
+<<<<<<< HEAD
 // this query is used to get the top user by podcast count. first the podcast is sorted by views and then the user is sorted by total podcasts, so the user with the most podcasts will be at the top.
+=======
+>>>>>>> fdd58280ce180b8ade1c5288f77529f28733d441
 export const getTopUserByPodcastCount = query({
   args: {},
   handler: async (ctx, args) => {
