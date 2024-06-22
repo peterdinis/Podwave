@@ -47,12 +47,10 @@ const Navigation: FC = () => {
                     <ul className='flex items-center gap-2 sm:gap-4'>
                         <ThemeButton />
                         {user ? (
-                            <UserButton afterSignOutUrl='/login' />
-                        ): (
-                            <Button variant={"link"} size={"lg"}>
-                                <Link href="/register">
-                              Register
-                            </Link>
+                            <UserButton afterSignOutUrl='/sign-in' />
+                        ) : (
+                            <Button variant={'default'} size={'lg'}>
+                                <Link href='/register'>Register</Link>
                             </Button>
                         )}
                     </ul>
