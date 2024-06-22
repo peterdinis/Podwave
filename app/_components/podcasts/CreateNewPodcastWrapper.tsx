@@ -1,7 +1,7 @@
 import { FC } from "react";
 import DefaultLayout from "../shared/layouts/DefaultLayout";
 import Header from "../shared/Header";
-import CreateNewPodcastForm from "./CreateNewPodcastForm";
+import CreateNewPodcastForm from "./create/CreateNewPodcastForm";
 
 const CreateNewPodcastWrapper: FC = () => {
     return (
