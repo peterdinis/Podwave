@@ -1,11 +1,14 @@
 'use client';
 
 import { FC } from 'react';
-import ProfileDropdown from '../../(auth)/ProfileDropdown';
 import ThemeButton from '../ThemeButton';
 import NavigationSearch from './NavigationSearch';
+import { UserButton, useUser } from '@clerk/nextjs';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const Navigation: FC = () => {
+    const { user } = useUser();
     return (
         <nav className='drop-shadow-1 dark:bg-boxdark sticky top-0 flex w-full bg-white dark:bg-background dark:drop-shadow-none'>
             <div className='shadow-2 flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11'>
@@ -43,7 +46,15 @@ const Navigation: FC = () => {
                 <div className='flex items-center gap-3 sm:gap-7'>
                     <ul className='flex items-center gap-2 sm:gap-4'>
                         <ThemeButton />
-                        <ProfileDropdown />
+                        {user ? (
+                            <UserButton afterSignOutUrl='/login' />
+                        ): (
+                            <Button variant={"link"} size={"lg"}>
+                                <Link href="/register">
+                              Register
+                            </Link>
+                            </Button>
+                        )}
                     </ul>
                 </div>
             </div>
