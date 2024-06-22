@@ -1,10 +1,11 @@
 import { FC } from "react";
 import DefaultLayout from "../shared/layouts/DefaultLayout";
+import Header from "../shared/Header";
 
 const CreateNewPodcastWrapper: FC = () => {
     return (
         <DefaultLayout>
-        rrr
+            <Header text="Create new podcast" />
         </DefaultLayout>
     )
 }
