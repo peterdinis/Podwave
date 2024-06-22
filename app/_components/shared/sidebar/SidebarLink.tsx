@@ -19,7 +19,7 @@ const SidebarLink: FC<ISidebarLinkProps> = ({
         <div className='ml-2 mt-8'>
             <Button variant={'ghost'} value='sm'>
                 {icon}
-                <Link className='ml-2' href={linkHref}>
+                <Link className='ml-2 text-xl' href={linkHref}>
                     {linkText}
                 </Link>
             </Button>

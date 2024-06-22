@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from './_components/shared/provider/ThemeProvider';
-import ConvexClientProvider from './_components/shared/provider/ConvextProvider';
-import { ClerkProvider } from '@clerk/nextjs';
+import ConvexClientProvider from './_components/shared/provider/ConvextClerkProvider';
+import { Toaster } from '@/components/ui/toaster';
+import ScrollToTop from './_components/shared/ScrollToTop';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
             <body className={inter.className}>
                 <ThemeProvider attribute='class'>
                     <ConvexClientProvider>
-                        <ClerkProvider>{children}</ClerkProvider>
+                        {children}
+                        <Toaster />
+                        <ScrollToTop />
                     </ConvexClientProvider>
                 </ThemeProvider>
             </body>
