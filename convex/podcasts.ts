@@ -200,7 +200,7 @@ export const deletePodcast = mutation({
         const podcast = await ctx.db.get(args.podcastId);
 
         if (!podcast) {
-            throw new ConvexError('Podcast not found');
+        throw new ConvexError('Podcast not found');
         }
 
         await ctx.storage.delete(args.imageStorageId);
