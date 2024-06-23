@@ -29,9 +29,15 @@ const ProfileDropdown: FC = () => {
                 <DropdownMenuLabel>{user?.fullName}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                    <Button onClick={() => signOut({
-                        redirectUrl: "/sign-in"
-                    })} variant={"ghost"} size={"sm"}>
+                    <Button
+                        onClick={() =>
+                            signOut({
+                                redirectUrl: '/sign-in',
+                            })
+                        }
+                        variant={'ghost'}
+                        size={'sm'}
+                    >
                         Logout
                     </Button>
                 </DropdownMenuItem>

@@ -1,8 +1,8 @@
-import PodcastDetailInfo from "@/app/_components/podcasts/detail/PodcastDetailInfo";
-import { NextPage } from "next";
+import PodcastDetailInfo from '@/app/_components/podcasts/detail/PodcastDetailInfo';
+import { NextPage } from 'next';
 
 const PodcastDetailPage: NextPage = () => {
-    return <PodcastDetailInfo />
-}
+    return <PodcastDetailInfo />;
+};
 
 export default PodcastDetailPage;
