@@ -1,5 +1,4 @@
 import { ConvexError, v } from 'convex/values';
-
 import { mutation, query } from './_generated/server';
 
 // create podcast mutation
@@ -16,6 +15,7 @@ export const createPodcast = mutation({
         voiceType: v.string(),
         views: v.number(),
         audioDuration: v.number(),
+        categoryId: v.id('categories'),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -49,11 +49,12 @@ export const createPodcast = mutation({
             views: args.views,
             authorImageUrl: user[0].imageUrl,
             audioDuration: args.audioDuration,
+            categoryId: args.categoryId,
         });
     },
 });
 
-// this mutation is required to generate the url after uploading the file to the storage.
+// Mutation to generate URL after uploading file to the storage.
 export const getUrl = mutation({
     args: {
         storageId: v.id('_storage'),
@@ -63,7 +64,7 @@ export const getUrl = mutation({
     },
 });
 
-// this query will get all the podcasts based on the voiceType of the podcast , which we are showing in the Similar Podcasts section.
+// Query to get podcasts based on voice type for Similar Podcasts section.
 export const getPodcastByVoiceType = query({
     args: {
         podcastId: v.id('podcasts'),
@@ -83,14 +84,14 @@ export const getPodcastByVoiceType = query({
     },
 });
 
-// this query will get all the podcasts.
+// Query to get all podcasts.
 export const getAllPodcasts = query({
     handler: async (ctx) => {
         return await ctx.db.query('podcasts').order('desc').collect();
     },
 });
 
-// this query will get the podcast by the podcastId.
+// Query to get a podcast by its ID.
 export const getPodcastById = query({
     args: {
         podcastId: v.id('podcasts'),
@@ -100,7 +101,7 @@ export const getPodcastById = query({
     },
 });
 
-// this query will get the podcasts based on the views of the podcast , which we are showing in the Trending Podcasts section.
+// Query to get trending podcasts based on views.
 export const getTrendingPodcasts = query({
     handler: async (ctx) => {
         const podcast = await ctx.db.query('podcasts').collect();
@@ -109,7 +110,7 @@ export const getTrendingPodcasts = query({
     },
 });
 
-// this query will get the podcast by the authorId.
+// Query to get podcasts by author ID.
 export const getPodcastByAuthorId = query({
     args: {
         authorId: v.string(),
@@ -129,7 +130,7 @@ export const getPodcastByAuthorId = query({
     },
 });
 
-// this query will get the podcast by the search query.
+// Query to get podcasts by search query.
 export const getPodcastBySearch = query({
     args: {
         search: v.string(),
@@ -170,7 +171,7 @@ export const getPodcastBySearch = query({
     },
 });
 
-// this mutation will update the views of the podcast.
+// Mutation to update the views of a podcast.
 export const updatePodcastViews = mutation({
     args: {
         podcastId: v.id('podcasts'),
@@ -188,7 +189,7 @@ export const updatePodcastViews = mutation({
     },
 });
 
-// this mutation will delete the podcast.
+// Mutation to delete a podcast.
 export const deletePodcast = mutation({
     args: {
         podcastId: v.id('podcasts'),
@@ -199,7 +200,7 @@ export const deletePodcast = mutation({
         const podcast = await ctx.db.get(args.podcastId);
 
         if (!podcast) {
-            throw new ConvexError('Podcast not found');
+        throw new ConvexError('Podcast not found');
         }
 
         await ctx.storage.delete(args.imageStorageId);
