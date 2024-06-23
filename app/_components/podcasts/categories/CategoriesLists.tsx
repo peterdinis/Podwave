@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from '@/components/ui/card-hover-effect';
-import { FC, useState } from 'react';
+import { FC, Key, useState } from 'react';
 import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
 import { cn } from '@/lib/utils';
@@ -22,6 +22,7 @@ const CategoriesLists: FC = () => {
                 data.map((item, idx) => {
                     return (
                         <div
+                            key={item._id as unknown as Key}
                             className='group relative block h-full w-full p-2'
                             onMouseEnter={() => setHoveredIndex(idx)}
                             onMouseLeave={() => setHoveredIndex(null)}
