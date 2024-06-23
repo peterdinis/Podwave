@@ -15,8 +15,8 @@ const PodcastCard: FC = () => {
                     }
                     alt='Podcast Image'
                     loading='lazy'
-                    width={700}
-                    height={700}
+                    width={200}
+                    height={400}
                 />
             </CardHeader>
             <CardContent>

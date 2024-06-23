@@ -11,7 +11,9 @@ const ProfileWrapper: FC = () => {
     return (
         <DefaultLayout>
             <Header text='My Profile' />
-            <h2 className='mt-5 p-4 font-bold prose prose-h2: text-2xl'>{user?.fullName} Welcome</h2>
+            <h2 className='prose-h2: prose mt-5 p-4 text-2xl font-bold'>
+                {user?.fullName} Welcome
+            </h2>
             <ProfilePodcasts />
         </DefaultLayout>
     );
