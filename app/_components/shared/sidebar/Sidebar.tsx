@@ -42,17 +42,6 @@ const Sidebar: FC = () => {
                                 linkHref='/'
                                 linkText='Home'
                             />
-
-                            <SidebarLink
-                                icon={<FaPodcast className='h-6 w-6' />}
-                                linkHref='/podcasts/new'
-                                linkText='New added podcasts'
-                            />
-                            <SidebarLink
-                                icon={<FaRegThumbsUp className='h-6 w-6' />}
-                                linkHref='/podcasts/top'
-                                linkText='Top podcasts'
-                            />
                             <SidebarLink
                                 icon={<BiCategoryAlt className='h-6 w-6' />}
                                 linkHref='/podcasts/categories'
@@ -84,20 +73,6 @@ const Sidebar: FC = () => {
                                     icon={<FaPodcast className='h-6 w-6' />}
                                     linkH='/'
                                     tooltipText='Home'
-                                />
-                            </div>
-                            <div className='mt-8'>
-                                <TooltipHelper
-                                    icon={<FaPodcast className='h-6 w-6' />}
-                                    linkH='/podcasts/new'
-                                    tooltipText='New added podcasts'
-                                />
-                            </div>
-                            <div className='mt-8'>
-                                <TooltipHelper
-                                    icon={<FaRegThumbsUp className='h-6 w-6' />}
-                                    linkH='/podcasts/top'
-                                    tooltipText='Top podcasts'
                                 />
                             </div>
                             <div className='mt-8'>
