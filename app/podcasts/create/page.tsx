@@ -1,8 +1,8 @@
-import CreateNewPodcastWrapper from "@/app/_components/podcasts/CreateNewPodcastWrapper";
-import { NextPage } from "next";
+import CreateNewPodcastWrapper from '@/app/_components/podcasts/CreateNewPodcastWrapper';
+import { NextPage } from 'next';
 
 const PodcastsCreatePage: NextPage = () => {
-    return <CreateNewPodcastWrapper />
-}
+    return <CreateNewPodcastWrapper />;
+};
 
-export default PodcastsCreatePage
+export default PodcastsCreatePage;

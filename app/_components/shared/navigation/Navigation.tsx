@@ -3,7 +3,7 @@
 import { FC } from 'react';
 import ThemeButton from '../ThemeButton';
 import NavigationSearch from './NavigationSearch';
-import {  useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import ProfileDropdown from '../../(auth)/ProfileDropdown';
@@ -11,7 +11,7 @@ import ProfileDropdown from '../../(auth)/ProfileDropdown';
 const Navigation: FC = () => {
     const { user } = useUser();
     return (
-        <nav className='drop-shadow dark:bg-boxdark sticky top-0 flex w-full bg-white dark:bg-background dark:drop-shadow-none'>
+        <nav className='dark:bg-boxdark sticky top-0 flex w-full bg-white drop-shadow dark:bg-background dark:drop-shadow-none'>
             <div className='shadow-2 flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11'>
                 <div className='hidden sm:block'>
                     <div>
@@ -51,7 +51,9 @@ const Navigation: FC = () => {
                             <ProfileDropdown />
                         ) : (
                             <Button variant={'ghost'} size={'lg'}>
-                                <Link className='text-lg' href='/register'>Register</Link>
+                                <Link className='text-lg' href='/register'>
+                                    Register
+                                </Link>
                             </Button>
                         )}
                     </ul>
