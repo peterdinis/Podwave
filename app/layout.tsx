@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Archivo} from 'next/font/google';
 import './globals.css';
 import ThemeProvider from './_components/shared/provider/ThemeProvider';
 import ConvexClientProvider from './_components/shared/provider/ConvextClerkProvider';
@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from './_components/shared/ScrollToTop';
 import "pure-react-carousel/dist/react-carousel.es.css";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Archivo({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
     title: 'Podwave',
