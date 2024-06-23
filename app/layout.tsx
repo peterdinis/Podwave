@@ -6,7 +6,7 @@ import ConvexClientProvider from './_components/shared/provider/ConvexClerkProvi
 import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from './_components/shared/ScrollToTop';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-import SuspenseWrapper from './_components/shared/SuspenseWrapper';
+import SuspenseWrapper from './_components/shared/provider/SuspenseWrapper';
 
 const inter = Archivo({ subsets: ['latin'] });
 
