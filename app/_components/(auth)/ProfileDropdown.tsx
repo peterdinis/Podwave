@@ -11,10 +11,12 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { User } from 'lucide-react';
 import { useUser, useClerk } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 const ProfileDropdown: FC = () => {
     const { user } = useUser();
     const { signOut } = useClerk();
+    const { toast } = useToast();
 
     return (
         <DropdownMenu>
@@ -30,11 +32,16 @@ const ProfileDropdown: FC = () => {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                     <Button
-                        onClick={() =>
+                        onClick={() => {
                             signOut({
                                 redirectUrl: '/sign-in',
-                            })
-                        }
+                            });
+                            toast({
+                                title: 'Successfully logged out',
+                                duration: 2000,
+                                className: 'bg-green-600 text-white font-bold',
+                            });
+                        }}
                         variant={'ghost'}
                         size={'sm'}
                     >
