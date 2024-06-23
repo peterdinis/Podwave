@@ -3,9 +3,10 @@
 import { FC } from 'react';
 import ThemeButton from '../ThemeButton';
 import NavigationSearch from './NavigationSearch';
-import { UserButton, useUser } from '@clerk/nextjs';
+import {  useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import ProfileDropdown from '../../(auth)/ProfileDropdown';
 
 const Navigation: FC = () => {
     const { user } = useUser();
@@ -47,10 +48,10 @@ const Navigation: FC = () => {
                     <ul className='flex items-center gap-2 sm:gap-4'>
                         <ThemeButton />
                         {user ? (
-                            <UserButton afterSignOutUrl='/sign-in' />
+                            <ProfileDropdown />
                         ) : (
-                            <Button variant={'default'} size={'lg'}>
-                                <Link href='/register'>Register</Link>
+                            <Button variant={'ghost'} size={'lg'}>
+                                <Link className='text-lg' href='/register'>Register</Link>
                             </Button>
                         )}
                     </ul>
