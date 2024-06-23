@@ -2,9 +2,8 @@ import { useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Loader } from 'lucide-react';
 import Image from 'next/image';
-import { useAction, useMutation } from 'convex/react';
+import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import { v4 as uuidv4 } from 'uuid';
 import { useUploadFiles } from '@/app/_hooks/useUploadFiles';
 import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
@@ -140,7 +139,7 @@ const GenerateThumbnail = ({ setImage, setImageStorageId, image, imagePrompt, se
             </div>
           )}
           <div className="flex flex-col items-center gap-1">
-           <h2 className="text-12 font-bold text-orange-500">
+           <h2 className="text-12 font-bold text-primary">
             Click to upload
             </h2>
             <p className="text-12 font-normal text-gray-500">SVG, PNG, JPG, or GIF (max. 1080x1080px)</p> 
