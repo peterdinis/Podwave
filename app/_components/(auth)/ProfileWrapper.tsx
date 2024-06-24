@@ -4,15 +4,80 @@ import { FC } from 'react';
 import DefaultLayout from '../shared/layouts/DefaultLayout';
 import Header from '../shared/Header';
 import { useUser } from '@clerk/nextjs';
+import { Label } from '@/components/ui/label';
+import {
+    AccordionItem,
+    Accordion,
+    AccordionContent,
+    AccordionTrigger,
+} from '@/components/ui/accordion';
+import { format } from 'date-fns';
 
 const ProfileWrapper: FC = () => {
     const { user } = useUser();
     return (
         <DefaultLayout>
             <Header text={user?.fullName as unknown as string} />
-            <h2 className='prose-p: prose mt-5 p-3 text-xl font-bold dark:text-white'>
-                My favorite podcasts
-            </h2>
+            <Accordion className='mt-5' type='single' collapsible>
+                <AccordionItem value='item-1'>
+                    <AccordionTrigger>Account information</AccordionTrigger>
+                    <AccordionContent>
+                        <Label className='text-lg'>
+                            FullName: {user?.fullName}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Last Sign In:{' '}
+                            {user?.lastSignInAt
+                                ? format(
+                                      new Date(user.lastSignInAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Update account:{' '}
+                            {user?.updatedAt
+                                ? format(
+                                      new Date(user.updatedAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value='item-2'>
+                    <AccordionTrigger>Favorite podcasts</AccordionTrigger>
+                    <AccordionContent>
+                        <Label className='text-lg'>
+                            FullName: {user?.fullName}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Last Sign In:{' '}
+                            {user?.lastSignInAt
+                                ? format(
+                                      new Date(user.lastSignInAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Update account:{' '}
+                            {user?.updatedAt
+                                ? format(
+                                      new Date(user.updatedAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </DefaultLayout>
     );
 };
