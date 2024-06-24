@@ -21,8 +21,8 @@ const slideAnimation = {
 
 const PodcastsLists: FC = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const totalSlides = 12; // Total number of slides
-    const visibleSlidesLg = 4;
+    const totalSlides = 10;
+    const visibleSlidesLg = 12;
     const visibleSlidesMd = 2;
     const visibleSlidesSm = 1;
 
@@ -43,11 +43,11 @@ const PodcastsLists: FC = () => {
                 <div className='flex h-full w-full items-center justify-center px-4 py-24 sm:py-8'>
                     <CarouselProvider
                         className='carousel hidden lg:block'
-                        naturalSlideWidth={100}
+                        naturalSlideWidth={200}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
                         visibleSlides={visibleSlidesLg}
-                        step={1}
+                        step={0}
                         infinite={false}
                         currentSlide={currentSlide}
                         naturalSlideHeight={0}
