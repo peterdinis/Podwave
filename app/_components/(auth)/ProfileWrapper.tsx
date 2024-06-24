@@ -4,12 +4,14 @@ import { FC } from 'react';
 import DefaultLayout from '../shared/layouts/DefaultLayout';
 import Header from '../shared/Header';
 import { useUser } from '@clerk/nextjs';
-import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
-import { AccordionItem, Accordion, AccordionContent, AccordionTrigger } from '@/components/ui/accordion';
-import { Input } from '@/components/ui/input';
-
-
+import {
+    AccordionItem,
+    Accordion,
+    AccordionContent,
+    AccordionTrigger,
+} from '@/components/ui/accordion';
+import { format } from 'date-fns';
 
 const ProfileWrapper: FC = () => {
     const { user } = useUser();
@@ -17,40 +19,65 @@ const ProfileWrapper: FC = () => {
         <DefaultLayout>
             <Header text={user?.fullName as unknown as string} />
             <Accordion className='mt-5' type='single' collapsible>
-            <AccordionItem value='item-1'>
-                <AccordionTrigger>Account information</AccordionTrigger>
-                <AccordionContent>
-                   <Label className='text-xl'>FullName:</Label>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value='item-2'>
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                <AccordionContent>
-                    <Switch id='airplane-mode' />
-                    <Label htmlFor='airplane-mode' className='text-white'>
-                        Airplane Mode
-                    </Label>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value='item-3'>
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                <AccordionContent>
-                    <Switch id='airplane-mode' />
-                    <Label htmlFor='airplane-mode' className='text-white'>
-                        Airplane Mode
-                    </Label>
-                </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value='item-4'>
-                <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                <AccordionContent>
-                    <Switch id='airplane-mode' />
-                    <Label htmlFor='airplane-mode' className='text-white'>
-                        Airplane Mode
-                    </Label>
-                </AccordionContent>
-            </AccordionItem>
-        </Accordion>
+                <AccordionItem value='item-1'>
+                    <AccordionTrigger>Account information</AccordionTrigger>
+                    <AccordionContent>
+                        <Label className='text-lg'>
+                            FullName: {user?.fullName}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Last Sign In:{' '}
+                            {user?.lastSignInAt
+                                ? format(
+                                      new Date(user.lastSignInAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Update account:{' '}
+                            {user?.updatedAt
+                                ? format(
+                                      new Date(user.updatedAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value='item-2'>
+                    <AccordionTrigger>Favorite podcasts</AccordionTrigger>
+                    <AccordionContent>
+                        <Label className='text-lg'>
+                            FullName: {user?.fullName}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Last Sign In:{' '}
+                            {user?.lastSignInAt
+                                ? format(
+                                      new Date(user.lastSignInAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                        <Label className='text-lg mt-3'>
+                            Update account:{' '}
+                            {user?.updatedAt
+                                ? format(
+                                      new Date(user.updatedAt).toString(),
+                                      'yyyy-MM-dd',
+                                  )
+                                : 'N/A'}
+                        </Label>
+                        <br />
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
         </DefaultLayout>
     );
 };
