@@ -7,7 +7,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { User } from 'lucide-react';
 import { useUser, useClerk } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
@@ -22,6 +22,7 @@ const ProfileDropdown: FC = () => {
         <DropdownMenu>
             <DropdownMenuTrigger>
                 <Avatar>
+                    <AvatarImage src={user?.imageUrl} />
                     <AvatarFallback>
                         <User />
                     </AvatarFallback>
