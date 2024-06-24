@@ -16,7 +16,7 @@ const PodcastReview: FC = () => {
         <>
             <Dialog>
                 <DialogTrigger>
-                    <Button className='mt-5' variant={"default"}>
+                    <Button className='mt-5' variant={'default'}>
                         Add podcast review
                     </Button>
                 </DialogTrigger>

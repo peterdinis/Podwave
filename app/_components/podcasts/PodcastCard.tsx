@@ -9,14 +9,14 @@ const PodcastCard: FC = () => {
         <Card>
             <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                 <Image
-                    className='rounded-xl'
+                    className='rounded-xl w-full'
                     src={
-                        'https://image-placeholder.com/images/actual-size/1024x768.png'
+                        'https://image-placeholder.com/images/actual-size/1600x1200.png'
                     }
                     alt='Podcast Image'
                     loading='lazy'
-                    width={700}
-                    height={700}
+                    width={400}
+                    height={500}
                 />
             </CardHeader>
             <CardContent>

@@ -6,7 +6,6 @@ import { XCircle, Menu, User, Waves, Plus, User2 } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
 import { FaPodcast } from 'react-icons/fa6';
-import { FaRegThumbsUp } from 'react-icons/fa6';
 import { BiCategoryAlt } from 'react-icons/bi';
 import { useUser } from '@clerk/nextjs';
 

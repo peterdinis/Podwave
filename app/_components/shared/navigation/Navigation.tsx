@@ -3,14 +3,15 @@
 import { FC } from 'react';
 import ThemeButton from '../ThemeButton';
 import NavigationSearch from './NavigationSearch';
-import { UserButton, useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import ProfileDropdown from '../../(auth)/ProfileDropdown';
 
 const Navigation: FC = () => {
     const { user } = useUser();
     return (
-        <nav className='drop-shadow dark:bg-boxdark sticky top-0 flex w-full bg-white dark:bg-background dark:drop-shadow-none'>
+        <nav className='dark:bg-boxdark sticky top-0 flex w-full bg-white drop-shadow dark:bg-background dark:drop-shadow-none'>
             <div className='shadow-2 flex flex-grow items-center justify-between px-4 py-4 md:px-6 2xl:px-11'>
                 <div className='hidden sm:block'>
                     <div>
@@ -47,10 +48,12 @@ const Navigation: FC = () => {
                     <ul className='flex items-center gap-2 sm:gap-4'>
                         <ThemeButton />
                         {user ? (
-                            <UserButton afterSignOutUrl='/sign-in' />
+                            <ProfileDropdown />
                         ) : (
-                            <Button variant={'default'} size={'lg'}>
-                                <Link href='/register'>Register</Link>
+                            <Button variant={'ghost'} size={'lg'}>
+                                <Link className='text-lg' href='/register'>
+                                    Register
+                                </Link>
                             </Button>
                         )}
                     </ul>
