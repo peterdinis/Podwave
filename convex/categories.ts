@@ -60,7 +60,8 @@ export const updateCategory = mutation({
 
         return await ctx.db.patch(args.categoryId, {
             categoryName: args.categoryName ?? category.categoryName,
-            categoryDescription: args.categoryDescription ?? category.categoryDescription,
+            categoryDescription:
+                args.categoryDescription ?? category.categoryDescription,
         });
     },
 });
@@ -84,7 +85,9 @@ export const deleteCategory = mutation({
             .collect();
 
         if (associatedPodcasts.length > 0) {
-            throw new ConvexError('Cannot delete category with associated podcasts');
+            throw new ConvexError(
+                'Cannot delete category with associated podcasts',
+            );
         }
 
         return await ctx.db.delete(args.categoryId);
