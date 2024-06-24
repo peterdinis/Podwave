@@ -1,191 +1,477 @@
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
-    CarouselProvider,
-    ButtonBack,
-    Slider,
-    Slide,
-    ButtonNext,
-} from 'pure-react-carousel';
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+    CardFooter,
+} from '@/components/ui/card';
+import {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+    ListFilter,
+    PlusCircle,
+    Badge,
+    MoreHorizontal,
+    File,
+} from 'lucide-react';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
+import Image from 'next/image';
 import { FC } from 'react';
-import PodcastCard from '../PodcastCard';
-
-const slideAnimation = {
-    hidden: { opacity: 0, x: -100 },
-    visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 100 },
-};
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const ProfilePodcasts: FC = () => {
     return (
         <>
-            <div className='container mx-auto'>
-                <div className='flex h-full w-full items-center justify-center px-4 py-24 sm:py-8'>
-                    <CarouselProvider
-                        className='hidden lg:block'
-                        naturalSlideWidth={100}
-                        isIntrinsicHeight={true}
-                        totalSlides={12}
-                        visibleSlides={4}
-                        step={1}
-                        infinite={true}
-                        naturalSlideHeight={0}
-                    >
-                        <div className='relative flex w-full items-center justify-center'>
-                            <ButtonBack
-                                role='button'
-                                aria-label='slide backward'
-                                className='absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='prev'
+            <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
+                <Tabs defaultValue='all'>
+                    <div className='flex items-center'>
+                        <TabsList>
+                            <TabsTrigger value='all'>All</TabsTrigger>
+                            <TabsTrigger value='active'>Active</TabsTrigger>
+                            <TabsTrigger value='draft'>Draft</TabsTrigger>
+                            <TabsTrigger
+                                value='archived'
+                                className='hidden sm:flex'
                             >
-                                <ArrowLeft />
-                            </ButtonBack>
-                            <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
-                                <Slider>
-                                    <div
-                                        id='slider'
-                                        className='flex h-full items-center justify-start gap-14 transition duration-700 ease-out md:gap-6 lg:gap-8'
-                                    >
-                                        {[...Array(8)].map((_, index) => (
-                                            <Slide index={index} key={index}>
-                                                <motion.div
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    exit='exit'
-                                                    variants={slideAnimation}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <PodcastCard />
-                                                </motion.div>
-                                            </Slide>
-                                        ))}
-                                    </div>
-                                </Slider>
-                            </div>
-                            <ButtonNext
-                                role='button'
-                                aria-label='slide forward'
-                                className='absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='next'
-                            >
-                                <ArrowRight />
-                            </ButtonNext>
+                                Archived
+                            </TabsTrigger>
+                        </TabsList>
+                        <div className='ml-auto flex items-center gap-2'>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button size='sm' className='h-8 gap-1'>
+                                        <ListFilter className='h-3.5 w-3.5' />
+                                        <span className='sr-only sm:not-sr-only sm:whitespace-nowrap'>
+                                            Filter
+                                        </span>
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align='end'>
+                                    <DropdownMenuLabel>
+                                        Filter by
+                                    </DropdownMenuLabel>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuCheckboxItem checked>
+                                        Active
+                                    </DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem>
+                                        Draft
+                                    </DropdownMenuCheckboxItem>
+                                    <DropdownMenuCheckboxItem>
+                                        Archived
+                                    </DropdownMenuCheckboxItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                            <Button size='sm' className='h-8 gap-1'>
+                                <File className='h-3.5 w-3.5' />
+                                <span className='sr-only sm:not-sr-only sm:whitespace-nowrap'>
+                                    Export
+                                </span>
+                            </Button>
+                            <Button size='sm' className='h-8 gap-1'>
+                                <PlusCircle className='h-3.5 w-3.5' />
+                                <span className='sr-only sm:not-sr-only sm:whitespace-nowrap'>
+                                    Add Product
+                                </span>
+                            </Button>
                         </div>
-                    </CarouselProvider>
-
-                    {/* Carousel for tablet and medium size devices */}
-                    <CarouselProvider
-                        naturalSlideHeight={100}
-                        className='hidden md:block lg:hidden'
-                        naturalSlideWidth={100}
-                        isIntrinsicHeight={true}
-                        totalSlides={12}
-                        visibleSlides={2}
-                        step={1}
-                        infinite={true}
-                    >
-                        <div className='relative flex w-full items-center justify-center'>
-                            <ButtonBack
-                                role='button'
-                                aria-label='slide backward'
-                                className='absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='prev'
-                            >
-                                <ArrowLeft />
-                            </ButtonBack>
-                            <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
-                                <Slider>
-                                    <div
-                                        id='slider'
-                                        className='flex h-full items-center justify-start gap-14 transition duration-700 ease-out md:gap-6 lg:gap-8'
-                                    >
-                                        {[...Array(4)].map((_, index) => (
-                                            <Slide index={index} key={index}>
-                                                <motion.div
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    exit='exit'
-                                                    variants={slideAnimation}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <PodcastCard />
-                                                </motion.div>
-                                            </Slide>
-                                        ))}
-                                    </div>
-                                </Slider>
-                            </div>
-                            <ButtonNext
-                                role='button'
-                                aria-label='slide forward'
-                                className='absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='next'
-                            >
-                                <ArrowRight />
-                            </ButtonNext>
-                        </div>
-                    </CarouselProvider>
-
-                    {/* Carousel for mobile and Small size Devices */}
-                    <CarouselProvider
-                        className='block md:hidden'
-                        naturalSlideWidth={100}
-                        isIntrinsicHeight={true}
-                        totalSlides={12}
-                        visibleSlides={1}
-                        step={1}
-                        infinite={true}
-                        naturalSlideHeight={0}
-                    >
-                        <div className='relative flex w-full items-center justify-center'>
-                            <ButtonBack
-                                role='button'
-                                aria-label='slide backward'
-                                className='absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='prev'
-                            >
-                                <ArrowLeft />
-                            </ButtonBack>
-                            <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
-                                <Slider>
-                                    <div
-                                        id='slider'
-                                        className='flex h-full w-full items-center justify-start transition duration-700 ease-out md:gap-6 lg:gap-8'
-                                    >
-                                        {[...Array(2)].map((_, index) => (
-                                            <Slide index={index} key={index}>
-                                                <motion.div
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    exit='exit'
-                                                    variants={slideAnimation}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <PodcastCard />
-                                                </motion.div>
-                                            </Slide>
-                                        ))}
-                                    </div>
-                                </Slider>
-                            </div>
-                            <ButtonNext
-                                role='button'
-                                aria-label='slide forward'
-                                className='absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='next'
-                            >
-                                <ArrowRight />
-                            </ButtonNext>
-                        </div>
-                    </CarouselProvider>
-                </div>
-            </div>
+                    </div>
+                    <TabsContent value='all'>
+                        <Card x-chunk='dashboard-06-chunk-0'>
+                            <CardHeader>
+                                <CardTitle>Products</CardTitle>
+                                <CardDescription>
+                                    Manage your products and view their sales
+                                    performance.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className='hidden w-[100px] sm:table-cell'>
+                                                <span className='sr-only'>
+                                                    Image
+                                                </span>
+                                            </TableHead>
+                                            <TableHead>Name</TableHead>
+                                            <TableHead>Status</TableHead>
+                                            <TableHead className='hidden md:table-cell'>
+                                                Price
+                                            </TableHead>
+                                            <TableHead className='hidden md:table-cell'>
+                                                Total Sales
+                                            </TableHead>
+                                            <TableHead className='hidden md:table-cell'>
+                                                Created at
+                                            </TableHead>
+                                            <TableHead>
+                                                <span className='sr-only'>
+                                                    Actions
+                                                </span>
+                                            </TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='/placeholder.svg'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                Laser Lemonade Machine
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge>Draft</Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                $499.99
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                25
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                2023-07-12 10:42 AM
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuLabel>
+                                                            Actions
+                                                        </DropdownMenuLabel>
+                                                        <DropdownMenuItem>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='/placeholder.svg'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                Hypernova Headphones
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge>Active</Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                $129.99
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                100
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                2023-10-18 03:21 PM
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuLabel>
+                                                            Actions
+                                                        </DropdownMenuLabel>
+                                                        <DropdownMenuItem>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='/placeholder.svg'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                AeroGlow Desk Lamp
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge>Active</Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                $39.99
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                50
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                2023-11-29 08:15 AM
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuLabel>
+                                                            Actions
+                                                        </DropdownMenuLabel>
+                                                        <DropdownMenuItem>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='/placeholder.svg'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                TechTonic Energy Drink
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge>Draft</Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                $2.99
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                0
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                2023-12-25 11:59 PM
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuLabel>
+                                                            Actions
+                                                        </DropdownMenuLabel>
+                                                        <DropdownMenuItem>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='/placeholder.svg'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                Gamer Gear Pro Controller
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge>Active</Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                $59.99
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                75
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                2024-01-01 12:00 AM
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuLabel>
+                                                            Actions
+                                                        </DropdownMenuLabel>
+                                                        <DropdownMenuItem>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='https://image-placeholder.com/images/actual-size/75x100.png'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                Luminous VR Headset
+                                            </TableCell>
+                                            <TableCell>
+                                                <Badge>Active</Badge>
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                $199.99
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                30
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                2024-02-14 02:14 PM
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuLabel>
+                                                            Actions
+                                                        </DropdownMenuLabel>
+                                                        <DropdownMenuItem>
+                                                            Edit
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem>
+                                                            Delete
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </CardContent>
+                            <CardFooter>
+                                <div className='text-xs text-muted-foreground'>
+                                    Showing <strong>1-10</strong> of{' '}
+                                    <strong>32</strong> products
+                                </div>
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+                </Tabs>
+            </main>
         </>
     );
 };

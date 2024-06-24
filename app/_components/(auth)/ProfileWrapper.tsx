@@ -12,6 +12,7 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import { format } from 'date-fns';
+import ProfilePodcasts from '../podcasts/profile/ProfilePodcasts';
 
 const ProfileWrapper: FC = () => {
     const { user } = useUser();
@@ -51,30 +52,7 @@ const ProfileWrapper: FC = () => {
                 <AccordionItem value='item-2'>
                     <AccordionTrigger>Favorite podcasts</AccordionTrigger>
                     <AccordionContent>
-                        <Label className='text-lg'>
-                            FullName: {user?.fullName}
-                        </Label>
-                        <br />
-                        <Label className='text-lg mt-3'>
-                            Last Sign In:{' '}
-                            {user?.lastSignInAt
-                                ? format(
-                                      new Date(user.lastSignInAt).toString(),
-                                      'yyyy-MM-dd',
-                                  )
-                                : 'N/A'}
-                        </Label>
-                        <br />
-                        <Label className='text-lg mt-3'>
-                            Update account:{' '}
-                            {user?.updatedAt
-                                ? format(
-                                      new Date(user.updatedAt).toString(),
-                                      'yyyy-MM-dd',
-                                  )
-                                : 'N/A'}
-                        </Label>
-                        <br />
+                        <ProfilePodcasts />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
