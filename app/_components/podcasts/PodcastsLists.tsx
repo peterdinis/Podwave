@@ -42,7 +42,7 @@ const PodcastsLists: FC = () => {
             <div className='container mx-auto'>
                 <div className='flex h-full w-full items-center justify-center px-4 py-24 sm:py-8'>
                     <CarouselProvider
-                        className='carousel hidden lg:block'
+                        className='carousel hidden lg:block z-10'
                         naturalSlideWidth={200}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
@@ -56,7 +56,7 @@ const PodcastsLists: FC = () => {
                             <ButtonBack
                                 role='button'
                                 aria-label='slide backward'
-                                className={`absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+                                className={`absolute left-0 z-20 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
                                 id='prev'
                                 disabled={currentSlide === 0}
                                 onClick={handleBackClick}
@@ -97,7 +97,7 @@ const PodcastsLists: FC = () => {
                             <ButtonNext
                                 role='button'
                                 aria-label='slide forward'
-                                className={`absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === totalSlides - visibleSlidesLg ? 'cursor-not-allowed opacity-50' : ''}`}
+                                className={`absolute right-0 z-20 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === totalSlides - visibleSlidesLg ? 'cursor-not-allowed opacity-50' : ''}`}
                                 id='next'
                                 disabled={
                                     currentSlide ===
@@ -113,7 +113,7 @@ const PodcastsLists: FC = () => {
                     {/* Carousel for tablet and medium size devices */}
                     <CarouselProvider
                         naturalSlideHeight={100}
-                        className='carousel hidden md:block lg:hidden'
+                        className='carousel hidden md:block lg:hidden z-10'
                         naturalSlideWidth={100}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
@@ -126,7 +126,7 @@ const PodcastsLists: FC = () => {
                             <ButtonBack
                                 role='button'
                                 aria-label='slide backward'
-                                className={`absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+                                className={`absolute left-0 z-20 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
                                 id='prev'
                                 disabled={currentSlide === 0}
                                 onClick={handleBackClick}
@@ -156,7 +156,7 @@ const PodcastsLists: FC = () => {
                                                             duration: 0.5,
                                                         }}
                                                     >
-                                                        <PodcastCard />
+                                                        <PodcastCard/>
                                                     </motion.div>
                                                 </Slide>
                                             ),
@@ -167,7 +167,7 @@ const PodcastsLists: FC = () => {
                             <ButtonNext
                                 role='button'
                                 aria-label='slide forward'
-                                className={`absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === totalSlides - visibleSlidesMd ? 'cursor-not-allowed opacity-50' : ''}`}
+                                className={`absolute right-0 z-20 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === totalSlides - visibleSlidesMd ? 'cursor-not-allowed opacity-50' : ''}`}
                                 id='next'
                                 disabled={
                                     currentSlide ===
@@ -182,7 +182,7 @@ const PodcastsLists: FC = () => {
 
                     {/* Carousel for mobile and Small size Devices */}
                     <CarouselProvider
-                        className='carousel block md:hidden'
+                        className='carousel block md:hidden z-10'
                         naturalSlideWidth={100}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
@@ -196,7 +196,7 @@ const PodcastsLists: FC = () => {
                             <ButtonBack
                                 role='button'
                                 aria-label='slide backward'
-                                className={`absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+                                className={`absolute left-0 z-20 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
                                 id='prev'
                                 disabled={currentSlide === 0}
                                 onClick={handleBackClick}
@@ -237,7 +237,7 @@ const PodcastsLists: FC = () => {
                             <ButtonNext
                                 role='button'
                                 aria-label='slide forward'
-                                className={`absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === totalSlides - visibleSlidesSm ? 'cursor-not-allowed opacity-50' : ''}`}
+                                className={`absolute right-0 z-20 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 ${currentSlide === totalSlides - visibleSlidesSm ? 'cursor-not-allowed opacity-50' : ''}`}
                                 id='next'
                                 disabled={
                                     currentSlide ===
@@ -251,6 +251,7 @@ const PodcastsLists: FC = () => {
                     </CarouselProvider>
                 </div>
             </div>
+            
         </>
     );
 };
