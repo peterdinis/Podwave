@@ -1,192 +1,128 @@
-import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import {
-    CarouselProvider,
-    ButtonBack,
-    Slider,
-    Slide,
-    ButtonNext,
-} from 'pure-react-carousel';
-import { FC } from 'react';
-import PodcastCard from '../PodcastCard';
+"use client"
 
-const slideAnimation = {
-    hidden: { opacity: 0, x: -100 },
-    visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 100 },
-};
+import { Button } from '@/components/ui/button';
+import {
+    Card,
+    CardContent,
+    CardFooter,
+} from '@/components/ui/card';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import {
+    MoreHorizontal,
+} from 'lucide-react';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
+import Image from 'next/image';
+import { FC } from 'react';
+import { Tabs, TabsContent } from '@/components/ui/tabs';
+import ProfilePodcastsPagination from './ProfilePodcastsPagination';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { useToast } from '@/components/ui/use-toast';
+import {format} from "date-fns";
 
 const ProfilePodcasts: FC = () => {
+
+    const {toast} = useToast();
+
+    const removePodcast = () => {
+        toast({
+            title: "Podcast was removed",
+            duration: 2000,
+            className: "bg-green-500 text-white font-bold"
+        })
+    }
+
     return (
-        <>
-            <div className='container mx-auto'>
-                <div className='flex h-full w-full items-center justify-center px-4 py-24 sm:py-8'>
-                    <CarouselProvider
-                        className='hidden lg:block'
-                        naturalSlideWidth={100}
-                        isIntrinsicHeight={true}
-                        totalSlides={12}
-                        visibleSlides={4}
-                        step={1}
-                        infinite={true}
-                        naturalSlideHeight={0}
-                    >
-                        <div className='relative flex w-full items-center justify-center'>
-                            <ButtonBack
-                                role='button'
-                                aria-label='slide backward'
-                                className='absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='prev'
-                            >
-                                <ArrowLeft />
-                            </ButtonBack>
-                            <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
-                                <Slider>
-                                    <div
-                                        id='slider'
-                                        className='flex h-full items-center justify-start gap-14 transition duration-700 ease-out md:gap-6 lg:gap-8'
-                                    >
-                                        {[...Array(8)].map((_, index) => (
-                                            <Slide index={index} key={index}>
-                                                <motion.div
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    exit='exit'
-                                                    variants={slideAnimation}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <PodcastCard />
-                                                </motion.div>
-                                            </Slide>
-                                        ))}
-                                    </div>
-                                </Slider>
-                            </div>
-                            <ButtonNext
-                                role='button'
-                                aria-label='slide forward'
-                                className='absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='next'
-                            >
-                                <ArrowRight />
-                            </ButtonNext>
-                        </div>
-                    </CarouselProvider>
-
-                    {/* Carousel for tablet and medium size devices */}
-                    <CarouselProvider
-                        naturalSlideHeight={100}
-                        className='hidden md:block lg:hidden'
-                        naturalSlideWidth={100}
-                        isIntrinsicHeight={true}
-                        totalSlides={12}
-                        visibleSlides={2}
-                        step={1}
-                        infinite={true}
-                    >
-                        <div className='relative flex w-full items-center justify-center'>
-                            <ButtonBack
-                                role='button'
-                                aria-label='slide backward'
-                                className='absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='prev'
-                            >
-                                <ArrowLeft />
-                            </ButtonBack>
-                            <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
-                                <Slider>
-                                    <div
-                                        id='slider'
-                                        className='flex h-full items-center justify-start gap-14 transition duration-700 ease-out md:gap-6 lg:gap-8'
-                                    >
-                                        {[...Array(4)].map((_, index) => (
-                                            <Slide index={index} key={index}>
-                                                <motion.div
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    exit='exit'
-                                                    variants={slideAnimation}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <PodcastCard />
-                                                </motion.div>
-                                            </Slide>
-                                        ))}
-                                    </div>
-                                </Slider>
-                            </div>
-                            <ButtonNext
-                                role='button'
-                                aria-label='slide forward'
-                                className='absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='next'
-                            >
-                                <ArrowRight />
-                            </ButtonNext>
-                        </div>
-                    </CarouselProvider>
-
-                    {/* Carousel for mobile and Small size Devices */}
-                    <CarouselProvider
-                        className='block md:hidden'
-                        naturalSlideWidth={100}
-                        isIntrinsicHeight={true}
-                        totalSlides={12}
-                        visibleSlides={1}
-                        step={1}
-                        infinite={true}
-                        naturalSlideHeight={0}
-                    >
-                        <div className='relative flex w-full items-center justify-center'>
-                            <ButtonBack
-                                role='button'
-                                aria-label='slide backward'
-                                className='absolute left-0 z-30 ml-8 cursor-pointer focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='prev'
-                            >
-                                <ArrowLeft />
-                            </ButtonBack>
-                            <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
-                                <Slider>
-                                    <div
-                                        id='slider'
-                                        className='flex h-full w-full items-center justify-start transition duration-700 ease-out md:gap-6 lg:gap-8'
-                                    >
-                                        {[...Array(2)].map((_, index) => (
-                                            <Slide index={index} key={index}>
-                                                <motion.div
-                                                    initial='hidden'
-                                                    animate='visible'
-                                                    exit='exit'
-                                                    variants={slideAnimation}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                    }}
-                                                >
-                                                    <PodcastCard />
-                                                </motion.div>
-                                            </Slide>
-                                        ))}
-                                    </div>
-                                </Slider>
-                            </div>
-                            <ButtonNext
-                                role='button'
-                                aria-label='slide forward'
-                                className='absolute right-0 z-30 mr-8 focus:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2'
-                                id='next'
-                            >
-                                <ArrowRight />
-                            </ButtonNext>
-                        </div>
-                    </CarouselProvider>
-                </div>
-            </div>
-        </>
+        <ScrollArea>
+            <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
+                <Tabs defaultValue='all'>
+                    <TabsContent value='all'>
+                        <Card x-chunk='dashboard-06-chunk-0'>
+                            <CardContent>
+                                <Table>
+                                    <TableHeader>
+                                        <TableRow>
+                                            <TableHead className='hidden w-[100px] sm:table-cell'>
+                                                Image
+                                            </TableHead>
+                                            <TableHead>Name</TableHead>
+                                            <TableHead>Description</TableHead>
+                                            <TableHead className='hidden md:table-cell'>
+                                                Added
+                                            </TableHead>
+                                            <TableHead>
+                                                Actions
+                                            </TableHead>
+                                        </TableRow>
+                                    </TableHeader>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell className='hidden sm:table-cell'>
+                                                <Image
+                                                    alt='Product image'
+                                                    className='aspect-square rounded-md object-cover'
+                                                    height='64'
+                                                    src='https://image-placeholder.com/images/actual-size/75x75.png'
+                                                    width='64'
+                                                />
+                                            </TableCell>
+                                            <TableCell className='font-medium'>
+                                                Laser Lemonade Machine
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                25
+                                            </TableCell>
+                                            <TableCell className='hidden md:table-cell'>
+                                                {format(new Date(), 'yyyy-MM-dd')}
+                                            </TableCell>
+                                            <TableCell>
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger
+                                                        asChild
+                                                    >
+                                                        <Button
+                                                            aria-haspopup='true'
+                                                            size='icon'
+                                                            variant='ghost'
+                                                        >
+                                                            <MoreHorizontal className='h-4 w-4' />
+                                                            <span className='sr-only'>
+                                                                Toggle menu
+                                                            </span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align='end'>
+                                                        <DropdownMenuItem>
+                                                            <Button onClick={removePodcast} className='text-red-600 hover:text-red-800 bg-transparent' variant={"link"}>
+                                                                Remove from favorites
+                                                            </Button>
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        </TableRow>
+                                    </TableBody>
+                                </Table>
+                            </CardContent>
+                            <CardFooter>
+                                <ProfilePodcastsPagination />
+                            </CardFooter>
+                        </Card>
+                    </TabsContent>
+                </Tabs>
+            </main>
+        </ScrollArea>
     );
 };
 

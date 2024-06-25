@@ -7,7 +7,7 @@ import { FC } from 'react';
 const PodcastCard: FC = () => {
     return (
         <Card>
-            <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
+            <CardHeader className='z-10 flex flex-row items-center justify-between space-y-0 pb-2'>
                 <Image
                     className='rounded-xl w-full'
                     src={
