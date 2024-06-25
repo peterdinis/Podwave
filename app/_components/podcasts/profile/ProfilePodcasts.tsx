@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -8,7 +10,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
@@ -27,8 +28,21 @@ import { FC } from 'react';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import ProfilePodcastsPagination from './ProfilePodcastsPagination';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { useToast } from '@/components/ui/use-toast';
+import {format} from "date-fns";
 
 const ProfilePodcasts: FC = () => {
+
+    const {toast} = useToast();
+
+    const removePodcast = () => {
+        toast({
+            title: "Podcast was removed",
+            duration: 2000,
+            className: "bg-green-500 text-white font-bold"
+        })
+    }
+
     return (
         <ScrollArea>
             <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
@@ -70,7 +84,7 @@ const ProfilePodcasts: FC = () => {
                                                 25
                                             </TableCell>
                                             <TableCell className='hidden md:table-cell'>
-                                                2023-07-12 10:42 AM
+                                                {format(new Date(), 'yyyy-MM-dd')}
                                             </TableCell>
                                             <TableCell>
                                                 <DropdownMenu>
@@ -89,14 +103,10 @@ const ProfilePodcasts: FC = () => {
                                                         </Button>
                                                     </DropdownMenuTrigger>
                                                     <DropdownMenuContent align='end'>
-                                                        <DropdownMenuLabel>
-                                                            Actions
-                                                        </DropdownMenuLabel>
                                                         <DropdownMenuItem>
-                                                            Edit
-                                                        </DropdownMenuItem>
-                                                        <DropdownMenuItem>
-                                                            Delete
+                                                            <Button onClick={removePodcast} className='text-red-600 hover:text-red-800 bg-transparent' variant={"link"}>
+                                                                Remove from favorites
+                                                            </Button>
                                                         </DropdownMenuItem>
                                                     </DropdownMenuContent>
                                                 </DropdownMenu>
