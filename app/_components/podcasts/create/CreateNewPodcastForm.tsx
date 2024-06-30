@@ -131,23 +131,23 @@ const CreatePodcastForm: FC = () => {
                             name='podcastTitle'
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-2.5'>
-                                    <FormLabel className='text-16 font-bold text-white'>
+                                    <FormLabel className='text-16 font-bold text-zinc-800 dark:text-white'>
                                         Title
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            className='input-class focus-visible:ring-offset-orange-1'
+                                            className='input-class focus-visible:ring-offset-primary'
                                             placeholder='JSM Pro Podcast'
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage className='text-white-1' />
+                                    <FormMessage className='text-zinc-800 dark:text-white' />
                                 </FormItem>
                             )}
                         />
 
                         <div className='flex flex-col gap-2.5'>
-                            <Label className='text-16 font-bold text-white'>
+                            <Label className='text-16 font-bold text-zinc-800 dark:text-white'>
                                 Select AI Voice
                             </Label>
 
@@ -156,7 +156,7 @@ const CreatePodcastForm: FC = () => {
                             >
                                 <SelectTrigger
                                     className={cn(
-                                        'text-16 w-full border-none bg-black text-gray-500 focus-visible:ring-offset-orange-500',
+                                        'text-16 w-full border-none bg-zinc-200 dark:bg-zinc-800 text-gray-500 focus-visible:ring-offset-primary',
                                     )}
                                 >
                                     <SelectValue
@@ -164,12 +164,12 @@ const CreatePodcastForm: FC = () => {
                                         className='placeholder:text-gray-500'
                                     />
                                 </SelectTrigger>
-                                <SelectContent className='text-16 text-white-1 focus:ring-orange-1 border-none bg-black font-bold'>
+                                <SelectContent className='text-16 text-white- focus:ring-primary border-none bg-zinc-200 dark:bg-zinc-800 font-bold'>
                                     {voiceCategories.map((category) => (
                                         <SelectItem
                                             key={category}
                                             value={category}
-                                            className='focus:bg-orange-1 capitalize'
+                                            className='focus:bg-primary capitalize'
                                         >
                                             {category}
                                         </SelectItem>
@@ -190,17 +190,17 @@ const CreatePodcastForm: FC = () => {
                             name='podcastDescription'
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-2.5'>
-                                    <FormLabel className='text-16 text-white-1 font-bold'>
+                                    <FormLabel className='text-16 text-white font-bold'>
                                         Description
                                     </FormLabel>
                                     <FormControl>
                                         <Textarea
-                                            className='input-class focus-visible:ring-offset-orange-1'
+                                            className='input-class focus-visible:ring-offset-primary'
                                             placeholder='Write a short podcast description'
                                             {...field}
                                         />
                                     </FormControl>
-                                    <FormMessage className='text-white-1' />
+                                    <FormMessage className='text-zinc-800 dark:text-white' />
                                 </FormItem>
                             )}
                         />
@@ -210,27 +210,27 @@ const CreatePodcastForm: FC = () => {
                             name='categoryId'
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-2.5'>
-                                    <FormLabel className='text-16 text-white-1 font-bold'>
+                                    <FormLabel className='text-16 text-zinc-800 dark:text-white font-bold'>
                                         Category
                                     </FormLabel>
                                     <FormControl>
                                         <Select onValueChange={field.onChange}>
                                             <SelectTrigger
                                                 className={cn(
-                                                    'text-16 text-gray-1 focus-visible:ring-offset-orange-1 w-full border-none bg-black',
+                                                    'text-16 text-gray-500 focus-visible:ring-offset-primary w-full border-none bg-zinc-200 dark:bg-zinc-800',
                                                 )}
                                             >
                                                 <SelectValue
                                                     placeholder='Select Category'
-                                                    className='placeholder:text-gray-1'
+                                                    className='placeholder:text-gray-500'
                                                 />
                                             </SelectTrigger>
-                                            <SelectContent className='text-16 text-white-1 focus:ring-orange-1 border-none bg-black font-bold'>
+                                            <SelectContent className='text-16 text-white focus:ring-primary border-none bg-zinc-200 dark:bg-zinc-800 font-bold'>
                                                 {categories.map((category) => (
                                                     <SelectItem
                                                         key={category._id}
                                                         value={category._id}
-                                                        className='focus:bg-orange-1 capitalize'
+                                                        className='focus:bg-primary capitalize'
                                                     >
                                                         {category.categoryName}
                                                     </SelectItem>
@@ -238,7 +238,7 @@ const CreatePodcastForm: FC = () => {
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
-                                    <FormMessage className='text-white-1' />
+                                    <FormMessage className='text-zinc-800 dark:text-white' />
                                 </FormItem>
                             )}
                         />
@@ -266,7 +266,7 @@ const CreatePodcastForm: FC = () => {
                         <div className='mt-10 w-full'>
                             <Button
                                 type='submit'
-                                className='text-16 bg-orange-1 text-white-1 w-full py-4 font-extrabold transition-all duration-500 hover:bg-black'
+                                className='text-16 bg-primary text-white w-full py-4 font-extrabold transition-all duration-500'
                             >
                                 {isSubmitting ? (
                                     <>
