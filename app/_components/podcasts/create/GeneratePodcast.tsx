@@ -22,7 +22,7 @@ const useGeneratePodcast = ({
     const generateUploadUrl = useMutation(api.files.generateUploadUrl);
     const { startUpload } = useUploadFiles(generateUploadUrl);
 
-    // const getPodcastAudio = useAction(api.openai.generateAudioAction)
+    const getPodcastAudio = useAction(api.openai.generateAudioAction)
 
     const getAudioUrl = useMutation(api.podcasts.getUrl);
 
@@ -38,35 +38,36 @@ const useGeneratePodcast = ({
         }
 
         try {
-            /* const response = await getPodcastAudio({
-        voice: voiceType,
-        input: voicePrompt
-      }) */
-
-            /* const blob = new Blob([response], { type: 'audio/mpeg' });
-      const fileName = `podcast-${uuidv4()}.mp3`;
-      const file = new File([blob], fileName, { type: 'audio/mpeg' });
-
-      const uploaded = await startUpload([file]);
-      const storageId = (uploaded[0].response as any).storageId;
-
-      setAudioStorageId(storageId);
-
-      const audioUrl = await getAudioUrl({ storageId });
-      setAudio(audioUrl!);
-      setIsGenerating(false); */
-            toast({
-                title: 'Podcast generated successfully',
-            });
-        } catch (error) {
-            console.log('Error generating podcast', error);
-            toast({
-                title: 'Error creating a podcast',
-                variant: 'destructive',
-            });
+            const response = await getPodcastAudio({
+              voice: voiceType,
+              input: voicePrompt
+            })
+      
+            const blob = new Blob([response], { type: 'audio/mpeg' });
+            const fileName = `podcast-${uuidv4()}.mp3`;
+            const file = new File([blob], fileName, { type: 'audio/mpeg' });
+      
+            const uploaded = await startUpload([file]);
+            const storageId = (uploaded[0].response as any).storageId;
+      
+            setAudioStorageId(storageId);
+      
+            const audioUrl = await getAudioUrl({ storageId });
+            setAudio(audioUrl!);
             setIsGenerating(false);
+            toast({
+              title: "Podcast generated successfully",
+            })
+          } catch (error) {
+            console.log('Error generating podcast', error)
+            toast({
+              title: "Error creating a podcast",
+              variant: 'destructive',
+            })
+            setIsGenerating(false);
+          }
+          
         }
-    };
 
     return { isGenerating, generatePodcast };
 };
@@ -77,11 +78,11 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
     return (
         <div>
             <div className='flex flex-col gap-2.5'>
-                <Label className='text-16 text-white-1 font-bold'>
+                <Label className='text-16 text-zinc-800 dark:text-white font-bold'>
                     AI Prompt to generate Podcast
                 </Label>
                 <Textarea
-                    className='input-class focus-visible:ring-offset-orange-1 font-light'
+                    className='input-class focus-visible:ring-offset-primary font-light'
                     placeholder='Provide text to generate audio'
                     rows={5}
                     value={props.voicePrompt}
@@ -91,7 +92,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
             <div className='mt-5 w-full max-w-[200px]'>
                 <Button
                     type='submit'
-                    className='text-16 bg-orange-1 text-white-1 py-4 font-bold'
+                    className='text-16 bg-primary text-white py-4 font-bold'
                     onClick={generatePodcast}
                 >
                     {isGenerating ? (
