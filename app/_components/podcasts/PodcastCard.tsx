@@ -1,9 +1,9 @@
+import { FC } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
 import { Id } from '@/convex/_generated/dataModel';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
 
 interface Podcast {
     audioDuration: number;
@@ -27,29 +27,27 @@ interface Podcast {
 }
 
 interface PodcastCardProps {
-    podcast: any;
+    podcast: Podcast | any;
 }
 
-const PodcastCard: FC<PodcastCardProps> = ({ podcast }: any) => {
+const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
     return (
         <Card>
-            <CardHeader className='z-10 flex flex-row items-center justify-between space-y-0 pb-2'>
+            <CardHeader className='flex flex-col items-center'>
                 <Image
                     className='rounded-xl w-full'
                     src={podcast.imageUrl}
                     alt='Podcast Image'
                     loading='lazy'
-                    width={400}
-                    height={500}
+                    width={1200}
+                    height={1200}
                 />
+                <CardTitle className='mt-4 text-2xl font-bold text-center dark:text-white'>
+                    {podcast.podcastTitle}
+                </CardTitle>
             </CardHeader>
-            <CardContent>
-                <div className='text-2xl font-bold'>
-                    <CardTitle className='prose-h1: prose mt-5 p-2 dark:text-white'>
-                        {podcast.podcastTitle}
-                    </CardTitle>
-                </div>
-                <Button className='mt-2 p-4' variant={'default'} size={'lg'}>
+            <CardContent className='text-center'>
+                <Button className='mt-2' variant={'default'} size={'sm'}>
                     <Link href={`/podcasts/${podcast._id}`}>Detail</Link>
                 </Button>
             </CardContent>

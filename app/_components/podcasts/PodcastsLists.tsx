@@ -3,11 +3,7 @@
 import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import Header from '../shared/Header';
-import {
-    CarouselProvider,
-    Slider,
-    Slide,
-} from 'pure-react-carousel';
+import { CarouselProvider, Slider, Slide } from 'pure-react-carousel';
 import PodcastCard from './PodcastCard';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -19,9 +15,9 @@ const slideAnimation = {
 };
 
 const PodcastsLists: FC = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentSlide, ] = useState(0);
     const totalSlides = 10;
-    const visibleSlidesLg = 12;
+    const visibleSlidesLg = 4;
     const visibleSlidesMd = 2;
     const visibleSlidesSm = 1;
 
@@ -35,6 +31,7 @@ const PodcastsLists: FC = () => {
                     {/* Large screens carousel */}
                     <CarouselProvider
                         className='carousel hidden lg:block z-10'
+                        naturalSlideHeight={100}
                         naturalSlideWidth={200}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
@@ -42,14 +39,13 @@ const PodcastsLists: FC = () => {
                         step={0}
                         infinite={false}
                         currentSlide={currentSlide}
-                        naturalSlideHeight={0}
                     >
                         <div className='relative flex w-full items-center justify-center'>
                             <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
                                 <Slider>
                                     <div
                                         id='slider'
-                                        className='flex h-full items-center justify-start gap-14 transition duration-700 ease-out md:gap-6 lg:gap-8'
+                                        className='flex h-full items-center justify-start gap-8 transition duration-700 ease-out'
                                     >
                                         {data && data.map((podcast, index) => (
                                             <Slide
@@ -81,22 +77,22 @@ const PodcastsLists: FC = () => {
 
                     {/* Tablet screens carousel */}
                     <CarouselProvider
-                        naturalSlideHeight={100}
                         className='carousel hidden md:block lg:hidden z-10'
                         naturalSlideWidth={100}
+                        naturalSlideHeight={100}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
                         visibleSlides={visibleSlidesMd}
                         step={1}
                         infinite={false}
                         currentSlide={currentSlide}
-                    >
+                                           >
                         <div className='relative flex w-full items-center justify-center'>
                             <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
                                 <Slider>
                                     <div
                                         id='slider'
-                                        className='flex h-full items-center justify-start gap-14 transition duration-700 ease-out md:gap-6 lg:gap-8'
+                                        className='flex h-full items-center justify-start gap-6 transition duration-700 ease-out'
                                     >
                                         {data && data.map((podcast, index) => (
                                             <Slide
@@ -130,20 +126,20 @@ const PodcastsLists: FC = () => {
                     <CarouselProvider
                         className='carousel block md:hidden z-10'
                         naturalSlideWidth={100}
+                        naturalSlideHeight={100}
                         isIntrinsicHeight={true}
                         totalSlides={totalSlides}
                         visibleSlides={visibleSlidesSm}
                         step={1}
                         infinite={false}
                         currentSlide={currentSlide}
-                        naturalSlideHeight={0}
                     >
                         <div className='relative flex w-full items-center justify-center'>
                             <div className='mx-auto h-full w-full overflow-x-hidden overflow-y-hidden'>
                                 <Slider>
                                     <div
                                         id='slider'
-                                        className='flex h-full w-full items-center justify-start transition duration-700 ease-out md:gap-6 lg:gap-8'
+                                        className='flex h-full w-full items-center justify-start transition duration-700 ease-out'
                                     >
                                         {data && data.map((podcast, index) => (
                                             <Slide
