@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import ScrollToTop from './_components/shared/ScrollToTop';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import SuspenseWrapper from './_components/shared/provider/SuspenseWrapper';
+import AudioProvider from './_components/shared/provider/AudioProvider';
 
 const inter = Archivo({ subsets: ['latin'] });
 
@@ -26,7 +27,9 @@ export default function RootLayout({
                 <ThemeProvider attribute='class'>
                     <ConvexClientProvider>
                         <SuspenseWrapper>
+                            <AudioProvider>
                             {children}
+                            </AudioProvider>
                             <Toaster />
                             <ScrollToTop />
                         </SuspenseWrapper>
