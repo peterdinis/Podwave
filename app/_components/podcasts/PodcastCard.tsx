@@ -31,23 +31,24 @@ interface PodcastCardProps {
 }
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
+    console.log(podcast);
     return (
         <Card>
             <CardHeader className='flex flex-col items-center'>
                 <Image
                     className='rounded-xl w-full'
-                    src={podcast.imageUrl}
+                    src={podcast.imageUrl!}
                     alt='Podcast Image'
                     loading='lazy'
-                    width={1200}
-                    height={1200}
+                    width={800}
+                    height={800}
                 />
                 <CardTitle className='mt-4 text-2xl font-bold text-center dark:text-white'>
                     {podcast.podcastTitle}
                 </CardTitle>
             </CardHeader>
             <CardContent className='text-center'>
-                <Button className='mt-2' variant={'default'} size={'sm'}>
+                <Button className='mt-2' variant={'default'} size={'lg'}>
                     <Link href={`/podcasts/${podcast._id}`}>Detail</Link>
                 </Button>
             </CardContent>
