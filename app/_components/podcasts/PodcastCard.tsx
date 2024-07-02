@@ -10,7 +10,6 @@ interface PodcastCardProps {
 }
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
-    console.log(podcast);
     return (
         <Card>
             <CardHeader className='flex flex-col items-center'>
