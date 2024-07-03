@@ -25,58 +25,63 @@ const PodcastDetailInfo: FC = () => {
 
     const handlePlay = () => {
         setAudio({
-          title: data?.podcastTitle!,
-          audioUrl: data?.audioUrl!,
-          imageUrl: data?.imageUrl!,
-          author: data?.author!,
-          podcastId: data?._id!,
+            title: data?.podcastTitle!,
+            audioUrl: data?.audioUrl!,
+            imageUrl: data?.imageUrl!,
+            author: data?.author!,
+            podcastId: data?._id!,
         });
-      };
+    };
     return (
         <DefaultLayout>
             <Header text='Podcast Detail' />
             <PodcastReview />
             <hr className='mt-2' />
-            <div className="mt-6 flex w-full justify-between max-md:justify-center">
-      <div className="flex flex-col gap-8 max-md:items-center md:flex-row">
-        <Image
-          src={data?.imageUrl as unknown as StaticImport}
-          width={250}
-          height={250}
-          alt="Podcast image"
-          className="aspect-square rounded-lg"
-        />
-        <div className="flex w-full flex-col gap-5 max-md:items-center md:gap-9">
-          <article className="flex flex-col gap-2 max-md:items-center">
-            <h1 className="text-32 font-extrabold tracking-[-0.32px] text-white-1">
-              {data?.podcastTitle}
-            </h1>
-            <figure
-              className="flex cursor-pointer items-center gap-2"
-              onClick={() => {
-                router.push(`/profile/${data?.authorId}`);
-              }}
-            >
-              <Image
-                src={data?.authorImageUrl as unknown as StaticImport}
-                width={30}
-                height={30}
-                alt="Caster icon"
-                className="size-[30px] rounded-full object-cover"
-              />
-              <h2 className="text-16 font-normal text-white-3">{data?.author}</h2>
-            </figure>
-          </article>
+            <div className='mt-6 flex w-full justify-between max-md:justify-center'>
+                <div className='flex flex-col gap-8 max-md:items-center md:flex-row'>
+                    <Image
+                        src={data?.imageUrl as unknown as StaticImport}
+                        width={250}
+                        height={250}
+                        alt='Podcast image'
+                        className='aspect-square rounded-lg'
+                    />
+                    <div className='flex w-full flex-col gap-5 max-md:items-center md:gap-9'>
+                        <article className='flex flex-col gap-2 max-md:items-center'>
+                            <h1 className='text-32 text-white-1 font-extrabold tracking-[-0.32px]'>
+                                {data?.podcastTitle}
+                            </h1>
+                            <figure
+                                className='flex cursor-pointer items-center gap-2'
+                                onClick={() => {
+                                    router.push(`/profile/${data?.authorId}`);
+                                }}
+                            >
+                                <Image
+                                    src={
+                                        data?.authorImageUrl as unknown as StaticImport
+                                    }
+                                    width={30}
+                                    height={30}
+                                    alt='Caster icon'
+                                    className='size-[30px] rounded-full object-cover'
+                                />
+                                <h2 className='text-16 text-white-3 font-normal'>
+                                    {data?.author}
+                                </h2>
+                            </figure>
+                        </article>
 
-          <Button
-            onClick={handlePlay}
-            className="text-16 w-full max-w-[250px] bg-orange-1 font-extrabold"
-          >
-            <Play className='h-10 w-10' />Play podcast
-          </Button>
-        </div>
-      </div>
-    </div>
+                        <Button
+                            onClick={handlePlay}
+                            className='text-16 bg-orange-1 w-full max-w-[250px] font-extrabold'
+                        >
+                            <Play className='h-10 w-10' />
+                            Play podcast
+                        </Button>
+                    </div>
+                </div>
+            </div>
         </DefaultLayout>
     );
 };

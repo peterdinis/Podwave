@@ -33,7 +33,7 @@ import { useMutation, useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useRouter } from 'next/navigation';
 import GeneratePodcast from './GeneratePodcast';
-import GenerateThumbnail from './GenerateThumbnail'
+import GenerateThumbnail from './GenerateThumbnail';
 
 const voiceCategories = ['alloy', 'shimmer', 'nova', 'echo', 'fable', 'onyx'];
 
@@ -50,7 +50,7 @@ const CreatePodcastForm: FC = () => {
         null,
     );
     const [imageUrl, setImageUrl] = useState('');
-    
+
     const [audioUrl, setAudioUrl] = useState('');
     const [audioStorageId, setAudioStorageId] = useState<Id<'_storage'> | null>(
         null,
@@ -156,7 +156,7 @@ const CreatePodcastForm: FC = () => {
                             >
                                 <SelectTrigger
                                     className={cn(
-                                        'text-16 w-full border-none bg-zinc-200 dark:bg-zinc-800 text-gray-500 focus-visible:ring-offset-primary',
+                                        'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800',
                                     )}
                                 >
                                     <SelectValue
@@ -164,12 +164,12 @@ const CreatePodcastForm: FC = () => {
                                         className='placeholder:text-gray-500'
                                     />
                                 </SelectTrigger>
-                                <SelectContent className='text-16 text-white- focus:ring-primary border-none bg-zinc-200 dark:bg-zinc-800 font-bold'>
+                                <SelectContent className='text-16 text-white- border-none bg-zinc-200 font-bold focus:ring-primary dark:bg-zinc-800'>
                                     {voiceCategories.map((category) => (
                                         <SelectItem
                                             key={category}
                                             value={category}
-                                            className='focus:bg-primary capitalize'
+                                            className='capitalize focus:bg-primary'
                                         >
                                             {category}
                                         </SelectItem>
@@ -190,7 +190,7 @@ const CreatePodcastForm: FC = () => {
                             name='podcastDescription'
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-2.5'>
-                                    <FormLabel className='text-16 text-zinc-800 dark:text-white font-bold'>
+                                    <FormLabel className='text-16 font-bold text-zinc-800 dark:text-white'>
                                         Description
                                     </FormLabel>
                                     <FormControl>
@@ -210,14 +210,14 @@ const CreatePodcastForm: FC = () => {
                             name='categoryId'
                             render={({ field }) => (
                                 <FormItem className='flex flex-col gap-2.5'>
-                                    <FormLabel className='text-16 text-zinc-800 dark:text-white font-bold'>
+                                    <FormLabel className='text-16 font-bold text-zinc-800 dark:text-white'>
                                         Category
                                     </FormLabel>
                                     <FormControl>
                                         <Select onValueChange={field.onChange}>
                                             <SelectTrigger
                                                 className={cn(
-                                                    'text-16 text-gray-500 focus-visible:ring-offset-primary w-full border-none bg-zinc-200 dark:bg-zinc-800',
+                                                    'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800',
                                                 )}
                                             >
                                                 <SelectValue
@@ -225,12 +225,12 @@ const CreatePodcastForm: FC = () => {
                                                     className='placeholder:text-gray-500'
                                                 />
                                             </SelectTrigger>
-                                            <SelectContent className='text-16 text-white focus:ring-primary border-none bg-zinc-200 dark:bg-zinc-800 font-bold'>
+                                            <SelectContent className='text-16 border-none bg-zinc-200 font-bold text-white focus:ring-primary dark:bg-zinc-800'>
                                                 {categories.map((category) => (
                                                     <SelectItem
                                                         key={category._id}
                                                         value={category._id}
-                                                        className='focus:bg-primary capitalize'
+                                                        className='capitalize focus:bg-primary'
                                                     >
                                                         {category.categoryName}
                                                     </SelectItem>
@@ -266,7 +266,7 @@ const CreatePodcastForm: FC = () => {
                         <div className='mt-10 w-full'>
                             <Button
                                 type='submit'
-                                className='text-16 bg-primary text-white w-full py-4 font-extrabold transition-all duration-500'
+                                className='text-16 w-full bg-primary py-4 font-extrabold text-white transition-all duration-500'
                             >
                                 {isSubmitting ? (
                                     <>

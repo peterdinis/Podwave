@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 export interface AudioProps {
     title: string;
@@ -6,9 +6,9 @@ export interface AudioProps {
     author: string;
     imageUrl: string;
     podcastId: string;
-  }
-  
-  export interface AudioContextType {
+}
+
+export interface AudioContextType {
     audio: AudioProps | undefined;
     setAudio: Dispatch<SetStateAction<AudioProps | undefined>>;
-  }
+}

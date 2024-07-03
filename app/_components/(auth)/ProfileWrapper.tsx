@@ -27,7 +27,7 @@ const ProfileWrapper: FC = () => {
                             FullName: {user?.fullName}
                         </Label>
                         <br />
-                        <Label className='text-lg mt-3'>
+                        <Label className='mt-3 text-lg'>
                             Last Sign In:{' '}
                             {user?.lastSignInAt
                                 ? format(
@@ -37,7 +37,7 @@ const ProfileWrapper: FC = () => {
                                 : 'N/A'}
                         </Label>
                         <br />
-                        <Label className='text-lg mt-3'>
+                        <Label className='mt-3 text-lg'>
                             Update account:{' '}
                             {user?.updatedAt
                                 ? format(

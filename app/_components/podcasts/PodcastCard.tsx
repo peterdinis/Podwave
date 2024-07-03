@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { PodcastType } from '@/app/_types/podcastTypes';
 
 interface PodcastCardProps {
-    podcast: PodcastType
+    podcast: PodcastType;
 }
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
@@ -14,14 +14,14 @@ const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
         <Card>
             <CardHeader className='flex flex-col items-center'>
                 <Image
-                    className='rounded-xl w-full'
+                    className='w-full rounded-xl'
                     src={podcast.imageUrl!}
                     alt='Podcast Image'
                     loading='lazy'
                     width={800}
                     height={800}
                 />
-                <CardTitle className='mt-4 text-2xl font-bold text-center dark:text-white'>
+                <CardTitle className='mt-4 text-center text-2xl font-bold dark:text-white'>
                     {podcast.podcastTitle}
                 </CardTitle>
             </CardHeader>

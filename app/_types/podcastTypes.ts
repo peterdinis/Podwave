@@ -29,7 +29,7 @@ interface Podcast {
     voicePrompt: string;
     voiceType: string;
     _creationTime: number;
-    _id: Id<"podcasts">
+    _id: Id<'podcasts'>;
 }
 
 export type PodcastType = Partial<Podcast>;
