@@ -1,17 +1,18 @@
-import { PodcastCardProps } from '@/types'
+"use client"
+
+import { PodcastType } from '@/app/_types/podcastTypes'
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { FC } from 'react'
 
-const PodcastCard = ({
-  imgUrl, title, description, podcastId
-}: PodcastCardProps) => {
+const PodcastDetailCard: FC<PodcastType> = ({
+  imageUrl, podcastTitle, _id, podcastDescription
+}: PodcastType) => {
   const router = useRouter()
 
   const handleViews = () => {
-    // increase views
-
-    router.push(`/podcasts/${podcastId}`, {
+    router.push(`/podcasts/${_id}`, {
       scroll: true
     })
   }
@@ -20,19 +21,19 @@ const PodcastCard = ({
     <div className="cursor-pointer" onClick={handleViews}>
       <figure className="flex flex-col gap-2">
         <Image 
-          src={imgUrl}
+          src={imageUrl as unknown as StaticImport}
           width={174}
           height={174}
-          alt={title}
+          alt={podcastTitle as unknown as string}
           className="aspect-square h-fit w-full rounded-xl 2xl:size-[200px]"
         />
         <div className="flex flex-col">
-          <h1 className="text-16 truncate font-bold text-white-1">{title}</h1>
-          <h2 className="text-12 truncate font-normal capitalize text-white-4">{description}</h2>
+          <h1 className="text-16 truncate font-bold text-white-1">{podcastTitle}</h1>
+          <h2 className="text-12 truncate font-normal capitalize text-white-4">{podcastDescription}</h2>
         </div>
       </figure>
     </div>
   )
 }
 
-export default PodcastCard
+export default PodcastDetailCard;

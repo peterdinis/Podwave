@@ -9,6 +9,7 @@ import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { FC } from 'react';
 import EmptyState from '../../shared/EmptyState';
+import PodcastDetailCard from './PodcastDetailCard';
 
 const PodcastDetailWrapper: FC = () => {
     const { id } = useParams();
@@ -87,12 +88,12 @@ const PodcastDetailWrapper: FC = () => {
                                 podcastDescription,
                                 imageUrl,
                             }) => (
-                                <PodcastCard
+                                <PodcastDetailCard
                                     key={_id}
-                                    imgUrl={imageUrl as string}
-                                    title={podcastTitle}
-                                    description={podcastDescription}
-                                    podcastId={_id}
+                                    imageUrl={imageUrl as string}
+                                    podcastTitle={podcastTitle}
+                                    podcastDescription={podcastDescription}
+                                    _id={_id}
                                 />
                             ),
                         )}
