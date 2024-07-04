@@ -27,9 +27,7 @@ export default function RootLayout({
                 <ThemeProvider attribute='class'>
                     <ConvexClientProvider>
                         <SuspenseWrapper>
-                            <AudioProvider>
-                            {children}
-                            </AudioProvider>
+                            <AudioProvider>{children}</AudioProvider>
                             <Toaster />
                             <ScrollToTop />
                         </SuspenseWrapper>

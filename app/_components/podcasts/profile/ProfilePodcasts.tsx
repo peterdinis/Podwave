@@ -1,20 +1,14 @@
-"use client"
+'use client';
 
 import { Button } from '@/components/ui/button';
-import {
-    Card,
-    CardContent,
-    CardFooter,
-} from '@/components/ui/card';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-    MoreHorizontal,
-} from 'lucide-react';
+import { MoreHorizontal } from 'lucide-react';
 import {
     Table,
     TableBody,
@@ -29,19 +23,18 @@ import { Tabs, TabsContent } from '@/components/ui/tabs';
 import ProfilePodcastsPagination from './ProfilePodcastsPagination';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useToast } from '@/components/ui/use-toast';
-import {format} from "date-fns";
+import { format } from 'date-fns';
 
 const ProfilePodcasts: FC = () => {
-
-    const {toast} = useToast();
+    const { toast } = useToast();
 
     const removePodcast = () => {
         toast({
-            title: "Podcast was removed",
+            title: 'Podcast was removed',
             duration: 2000,
-            className: "bg-green-500 text-white font-bold"
-        })
-    }
+            className: 'bg-green-500 text-white font-bold',
+        });
+    };
 
     return (
         <ScrollArea>
@@ -61,9 +54,7 @@ const ProfilePodcasts: FC = () => {
                                             <TableHead className='hidden md:table-cell'>
                                                 Added
                                             </TableHead>
-                                            <TableHead>
-                                                Actions
-                                            </TableHead>
+                                            <TableHead>Actions</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -84,7 +75,10 @@ const ProfilePodcasts: FC = () => {
                                                 25
                                             </TableCell>
                                             <TableCell className='hidden md:table-cell'>
-                                                {format(new Date(), 'yyyy-MM-dd')}
+                                                {format(
+                                                    new Date(),
+                                                    'yyyy-MM-dd',
+                                                )}
                                             </TableCell>
                                             <TableCell>
                                                 <DropdownMenu>
@@ -104,8 +98,15 @@ const ProfilePodcasts: FC = () => {
                                                     </DropdownMenuTrigger>
                                                     <DropdownMenuContent align='end'>
                                                         <DropdownMenuItem>
-                                                            <Button onClick={removePodcast} className='text-red-600 hover:text-red-800 bg-transparent' variant={"link"}>
-                                                                Remove from favorites
+                                                            <Button
+                                                                onClick={
+                                                                    removePodcast
+                                                                }
+                                                                className='bg-transparent text-red-600 hover:text-red-800'
+                                                                variant={'link'}
+                                                            >
+                                                                Remove from
+                                                                favorites
                                                             </Button>
                                                         </DropdownMenuItem>
                                                     </DropdownMenuContent>
