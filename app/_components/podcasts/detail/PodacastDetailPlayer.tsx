@@ -9,6 +9,7 @@ import { useAudio } from "../../shared/provider/AudioProvider";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PodcastType } from "@/app/_types/podcastTypes";
+import { Id } from "@/convex/_generated/dataModel";
 
 const PodcastDetailPlayer = ({
   audioUrl,
@@ -29,8 +30,25 @@ const PodcastDetailPlayer = ({
   const deletePodcast = useMutation(api.podcasts.deletePodcast);
 
   const handleDelete = async () => {
+    if (!podcastId || !imageStorageId || !audioStorageId) {
+      toast({
+        title: "Error deleting podcast",
+        description: "Missing podcast or storage ID",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const updatedPodcastId = podcastId as Id<"podcasts">;
+    const updatedImageStorageId = imageStorageId as Id<"_storage">;
+    const updatedAudioStorageId = audioStorageId as Id<"_storage">;
+
     try {
-      await deletePodcast({ podcastId, imageStorageId, audioStorageId });
+      await deletePodcast({ 
+        podcastId: updatedPodcastId, 
+        imageStorageId: updatedImageStorageId, 
+        audioStorageId: updatedAudioStorageId 
+      });
       toast({
         title: "Podcast deleted",
       });
@@ -46,11 +64,11 @@ const PodcastDetailPlayer = ({
 
   const handlePlay = () => {
     setAudio({
-      title: podcastTitle!,
-      audioUrl,
-      imageUrl,
-      author,
-      podcastId,
+      title: podcastTitle ?? "",
+      audioUrl: audioUrl ?? "",
+      imageUrl: imageUrl ?? "",
+      author: author ?? "",
+      podcastId: podcastId as unknown as Id<"podcasts">,
     });
   };
 
@@ -97,7 +115,7 @@ const PodcastDetailPlayer = ({
               width={20}
               height={20}
               alt="random play"
-            />{" "}
+            />
             &nbsp; Play podcast
           </Button>
         </div>
