@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { FC } from 'react';
 import EmptyState from '../../shared/EmptyState';
 import PodcastDetailCard from './PodcastDetailCard';
+import PodcastDetailPlayer from './PodacastDetailPlayer';
 
 const PodcastDetailWrapper: FC = () => {
     const { id } = useParams();
@@ -48,8 +49,8 @@ const PodcastDetailWrapper: FC = () => {
 
             <PodcastDetailPlayer
                 isOwner={isOwner}
-                podcastId={podcast._id}
-                {...podcast}
+                podcastId={data._id}
+                {...data}
             />
 
             <p className='text-white-2 text-16 pb-8 pt-[45px] font-medium max-md:text-center'>

@@ -13,6 +13,7 @@ export interface GeneratePodcastProps {
 }
 
 interface Podcast {
+    isOwner: boolean | string;
     audioDuration: number;
     audioStorageId: string;
     audioUrl: string;
@@ -30,6 +31,7 @@ interface Podcast {
     voicePrompt: string;
     voiceType: string;
     _creationTime: number;
+    podcastId: Id<'podcasts'>;
     _id: Id<'podcasts'>;
 }
 
