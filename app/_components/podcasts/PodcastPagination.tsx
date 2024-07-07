@@ -9,21 +9,26 @@ import {
     PaginationPrevious,
 } from '@/components/ui/pagination';
 
-const PodcastPagination: FC = () => {
+interface PodcastPaginationProps {
+    onNextPage: () => void;
+    hasNextPage: boolean;
+}
+
+const PodcastPagination: FC<PodcastPaginationProps> = ({ onNextPage, hasNextPage }) => {
     return (
         <Pagination>
             <PaginationContent>
                 <PaginationItem>
-                    <PaginationPrevious href='#' />
+                    <PaginationPrevious href='#' onClick={onNextPage} disabled={!hasNextPage} />
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationLink href='#'>1</PaginationLink>
+                    <PaginationLink href='#' onClick={onNextPage} disabled={!hasNextPage}>Next</PaginationLink>
                 </PaginationItem>
                 <PaginationItem>
                     <PaginationEllipsis />
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationNext href='#' />
+                    <PaginationNext href='#' onClick={onNextPage} disabled={!hasNextPage} />
                 </PaginationItem>
             </PaginationContent>
         </Pagination>
