@@ -1,11 +1,7 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 const AboutWrapper: FC = () => {
-    return (
-        <>
-        eoeoeoeo
-        </>
-    )
-}
+    return <>eoeoeoeo</>;
+};
 
 export default AboutWrapper;

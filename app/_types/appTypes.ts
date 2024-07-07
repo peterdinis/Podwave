@@ -3,4 +3,4 @@ export interface EmptyStateProps {
     search?: boolean;
     buttonText?: string;
     buttonLink?: string;
-  }
+}
