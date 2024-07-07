@@ -45,7 +45,7 @@ const Navigation: FC = () => {
 
                 <NavigationSearch />
                 <div className='flex items-center gap-3 sm:gap-7'>
-                    <ul className='flex items-center gap-2 sm:gap-4'>
+                    <ul className='flex items-center gap-2 sm:ml-6 sm:gap-4'>
                         <ThemeButton />
                         {user ? (
                             <ProfileDropdown />
