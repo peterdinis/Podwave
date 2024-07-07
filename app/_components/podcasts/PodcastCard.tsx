@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PodcastType } from '@/app/_types/podcastTypes';
@@ -25,6 +25,9 @@ const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
                     {podcast.podcastTitle}
                 </CardTitle>
             </CardHeader>
+            <CardDescription className='mt-6 p-3 prose prose-p: font-bold text-lg break-all'>
+                {podcast.podcastDescription}
+            </CardDescription>
             <CardContent className='text-center'>
                 <Button className='mt-2' variant={'default'} size={'lg'}>
                     <Link href={`/podcasts/${podcast._id}`}>Detail</Link>
