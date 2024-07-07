@@ -2,7 +2,7 @@
 
 import { FC, useState } from 'react';
 import classNames from 'classnames';
-import { XCircle, Menu, User, Waves, Plus, User2 } from 'lucide-react';
+import { XCircle, Menu, User, Waves, Plus, User2, Info } from 'lucide-react';
 import SidebarLink from './SidebarLink';
 import TooltipHelper from '../TooltipHelper';
 import { FaPodcast } from 'react-icons/fa6';
@@ -47,6 +47,12 @@ const Sidebar: FC = () => {
                                 linkText='Categories'
                             />
 
+                            <SidebarLink
+                                icon={<Info className='h-6 w-6' />}
+                                linkHref='/about'
+                                linkText='About Podware'
+                            />
+
                             {user && (
                                 <>
                                     <SidebarLink
@@ -79,6 +85,13 @@ const Sidebar: FC = () => {
                                     icon={<BiCategoryAlt className='h-6 w-6' />}
                                     linkH='/podcasts/categories'
                                     tooltipText='Categories'
+                                />
+                            </div>
+                            <div className='mt-8'>
+                                <TooltipHelper
+                                    icon={<Info className='h-6 w-6' />}
+                                    linkH='/about'
+                                    tooltipText='About Podware'
                                 />
                             </div>
                             {user && (
