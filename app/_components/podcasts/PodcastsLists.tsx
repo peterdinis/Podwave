@@ -6,6 +6,7 @@ import PodcastCard from './PodcastCard';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import PodcastPagination from './PodcastPagination';
+import { Loader2 } from 'lucide-react';
 
 const PodcastsLists: FC = () => {
     const [cursor, setCursor] = useState<string | undefined>(undefined);
@@ -34,7 +35,7 @@ const PodcastsLists: FC = () => {
     };
 
     if (!data) {
-        return <div>Loading...</div>;
+        return <Loader2 className="animate-spin w-8 h-8" />
     }
 
     return (
