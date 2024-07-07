@@ -5,6 +5,7 @@ import Header from '../shared/Header';
 import PodcastCard from './PodcastCard';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import PodcastPagination from './PodcastPagination';
 
 const PodcastsLists: FC = () => {
     const data = useQuery(api.podcasts.getAllPodcasts);
@@ -21,6 +22,10 @@ const PodcastsLists: FC = () => {
                             </div>
                         );
                     })}
+            </div>
+
+            <div className='mt-4 p-3'>
+                <PodcastPagination />
             </div>
         </>
     );
