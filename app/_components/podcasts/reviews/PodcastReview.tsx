@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useState } from 'react';
+import { FC, useState, FormEvent } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,11 +21,10 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     const {toast} = useToast();
     const {user} = useUser();
 
-    const handleReviewSubmit = async (e: React.FormEvent) => {
+    const handleReviewSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         try {
-            // Volanie funkcie na vytvorenie recenzie
             await createReview("string" as any, {
                 podcastId: podcastId as unknown as Id<"podcasts">,
                 userId: user?.id as unknown as Id<"users">,
@@ -39,6 +38,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                 duration: 2000
             })
         } catch (error: any) {
+            console.log("Errror", error);
             toast({
                 title: "Failed to created review",
                 className: "bg-red-600 text-white font-bold",
@@ -71,7 +71,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
 
                         <Label className='mt-3 ml-2 text-lg font-bold'>Hodnotenie</Label>
                         <select
-                            className='mt-2 p-2'
+                            className='mt-2 p-2 ml-4'
                             value={rating}
                             onChange={(e) => setRating(parseInt(e.target.value))}
                             required
@@ -83,7 +83,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                             <option value={4}>4</option>
                             <option value={5}>5</option>
                         </select>
-
+                        <br />
                         <Button className='mt-4' variant={'secondary'} type='submit'>
                             Pridať recenziu
                         </Button>
