@@ -5,17 +5,19 @@ import { Id } from '@/convex/_generated/dataModel';
 import { useUser } from '@clerk/nextjs';
 import { useQuery } from 'convex/react';
 import { Loader2 } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams} from 'next/navigation';
 import Image from 'next/image';
 import { FC } from 'react';
 import EmptyState from '../../shared/EmptyState';
 import PodcastDetailCard from './PodcastDetailCard';
 import PodcastDetailPlayer from './PodacastDetailPlayer';
+import DefaultLayout from '../../shared/layouts/DefaultLayout';
+import PodcastReview from '../reviews/PodcastReview';
+import Header from '../../shared/Header';
 
 const PodcastDetailWrapper: FC = () => {
     const { id } = useParams();
     const { user } = useUser();
-    const router = useRouter();
     const data = useQuery(api.podcasts.getPodcastById, {
         podcastId: id[0] as unknown as Id<'podcasts'>,
     });
@@ -29,7 +31,10 @@ const PodcastDetailWrapper: FC = () => {
     if (!similarPodcasts || !data)
         return <Loader2 className='h-8 w-8 animate-spin' />;
     return (
-        <section className='flex w-full flex-col'>
+       <DefaultLayout>
+        <Header text='Podcast Info' />
+        <PodcastReview />
+         <section className='flex w-full flex-col'>
             <header className='mt-9 flex items-center justify-between'>
                 <h1 className='text-20 text-white-1 font-bold'>
                     Currenty Playing
@@ -110,6 +115,7 @@ const PodcastDetailWrapper: FC = () => {
                 )}
             </section>
         </section>
+       </DefaultLayout>
     );
 };
 
