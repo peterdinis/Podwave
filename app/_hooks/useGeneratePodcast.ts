@@ -1,11 +1,11 @@
-"use client"
+'use client';
 
-import { useToast } from "@/components/ui/use-toast";
-import { api } from "@/convex/_generated/api";
-import { useMutation, useAction } from "convex/react";
-import { useState } from "react";
-import { GeneratePodcastProps } from "../_types/podcastTypes";
-import { useUploadFiles } from "./useUploadFiles";
+import { useToast } from '@/components/ui/use-toast';
+import { api } from '@/convex/_generated/api';
+import { useMutation, useAction } from 'convex/react';
+import { useState } from 'react';
+import { GeneratePodcastProps } from '../_types/podcastTypes';
+import { useUploadFiles } from './useUploadFiles';
 import { v4 as uuidv4 } from 'uuid';
 
 export const useGeneratePodcast = ({

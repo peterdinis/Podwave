@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState} from 'react';
+import { FC, useState } from 'react';
 import Header from '../shared/Header';
 import PodcastCard from './PodcastCard';
 import { useQuery } from 'convex/react';
@@ -49,11 +49,11 @@ const PodcastsLists: FC = () => {
             </div>
 
             <div className='mt-4 p-3'>
-                <PodcastPagination 
-                    onNextPage={handleNextPage} 
-                    onPreviousPage={handlePreviousPage} 
-                    hasNextPage={!!data.nextCursor} 
-                    hasPreviousPage={prevCursors.length > 0} 
+                <PodcastPagination
+                    onNextPage={handleNextPage}
+                    onPreviousPage={handlePreviousPage}
+                    hasNextPage={!!data.nextCursor}
+                    hasPreviousPage={prevCursors.length > 0}
                     currentPage={currentPage}
                 />
             </div>
