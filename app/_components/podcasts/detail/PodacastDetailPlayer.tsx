@@ -87,7 +87,7 @@ const PodcastDetailPlayer = ({
         />
         <div className='flex w-full flex-col gap-5 max-md:items-center md:gap-9'>
           <article className='flex flex-col gap-2 max-md:items-center'>
-            <h1 className='text-32 text-white-1 font-extrabold tracking-[-0.32px]'>
+            <h1 className='text-primary font-extrabold tracking-[-0.32px]'>
               {podcastTitle}
             </h1>
             <figure
@@ -103,7 +103,7 @@ const PodcastDetailPlayer = ({
                 alt='Caster icon'
                 className='size-[30px] rounded-full object-cover'
               />
-              <h2 className='text-16 text-white-3 font-normal'>
+              <h2 className='text-16 text-black font-normal'>
                 {author}
               </h2>
             </figure>
