@@ -1,6 +1,5 @@
 import { ConvexError, v } from 'convex/values';
-import { mutation } from './_generated/server'; 
-
+import { mutation } from './_generated/server';
 
 export const createReview = mutation({
     args: {
@@ -26,7 +25,7 @@ export const createReview = mutation({
         if (!podcast) {
             throw new ConvexError('Podcast neexistuje');
         }
-        
+
         return await ctx.db.insert('reviews', {
             podcastId: args.podcastId,
             userId: args.userId,

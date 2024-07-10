@@ -84,10 +84,34 @@ export const getPodcastByVoiceType = query({
     },
 });
 
-// Query to get all podcasts.
 export const getAllPodcasts = query({
-    handler: async (ctx) => {
-        return await ctx.db.query('podcasts').order('desc').collect();
+    args: {
+        cursor: v.optional(v.string()), // Optional cursor parameter
+        limit: v.number(), // Number of items to fetch per page
+    },
+    handler: async (ctx, args) => {
+        const allPodcasts = await ctx.db
+            .query('podcasts')
+            .order('desc')
+            .collect();
+
+        const startIndex = args.cursor
+            ? allPodcasts.findIndex(
+                  (podcast) => podcast._id.toString() === args.cursor,
+              ) + 1
+            : 0;
+
+        const paginatedPodcasts = allPodcasts.slice(
+            startIndex,
+            startIndex + args.limit,
+        );
+        const lastItem = paginatedPodcasts[paginatedPodcasts.length - 1];
+        const nextCursor = lastItem ? lastItem._id.toString() : null; // Set the cursor for the next page
+
+        return {
+            podcasts: paginatedPodcasts,
+            nextCursor,
+        };
     },
 });
 
