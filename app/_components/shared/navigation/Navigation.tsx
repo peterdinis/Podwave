@@ -51,7 +51,7 @@ const Navigation: FC = () => {
                             <ProfileDropdown />
                         ) : (
                             <Button variant={'ghost'} size={'lg'}>
-                                <Link className='text-lg' href='/register'>
+                                <Link className='text-lg' href='/sign-up'>
                                     Register
                                 </Link>
                             </Button>

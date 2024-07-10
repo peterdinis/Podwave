@@ -16,6 +16,7 @@ import { useToast } from '@/components/ui/use-toast';
 import { useUser } from '@clerk/nextjs';
 import { format } from 'date-fns';
 import { Id } from '@/convex/_generated/dataModel';
+import Header from '../../shared/Header';
 
 interface PodcastReviewProps {
     podcastId: string;
@@ -63,7 +64,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>
-                        <h2>Pridať recenziu</h2>
+                        <Header text='Pridať recenziu' />
                     </DialogTitle>
                     <form onSubmit={handleReviewSubmit} className='mt-4'>
                         <Label className='ml-2 text-lg font-bold'>

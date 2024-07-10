@@ -6,23 +6,23 @@ const AboutWrapper: FC = () => {
     return (
         <DefaultLayout>
             <Header text='About Podware application' />
-            <div className='mt-4 rounded-lg bg-gray-100 p-4 shadow-md'>
-                <p className='p-2 text-lg dark:text-gray-800'>
+            <div className='mt-4 rounded-lg bg-gray-100 p-4 shadow-xl dark:bg-zinc-800'>
+                <p className='p-2 text-lg leading-7 text-gray-600 dark:text-blue-50 [&:not(:first-child)]:mt-6'>
                     Podware is a cutting-edge application designed for creating
                     and listening to podcasts. It empowers creators with
                     intuitive tools to record, edit, and publish podcasts
                     effortlessly.
                 </p>
-                <p className='mt-2 text-lg text-gray-600 dark:text-gray-800'>
+                <p className='mt-2 text-lg leading-7 text-gray-600 dark:text-blue-50 [&:not(:first-child)]:mt-6'>
                     Built with Tailwind CSS for responsive and sleek designs,
                     and leveraging Shadcn UI for consistent user interface
                     components across the application.
                 </p>
                 <div className='mt-4'>
-                    <h2 className='mb-2 text-xl font-semibold dark:text-black'>
+                    <h1 className='mb-2 text-xl font-semibold dark:text-blue-200'>
                         Create Your Own Podcasts with AI Assistance
-                    </h2>
-                    <p className='text-lg dark:text-gray-800'>
+                    </h1>
+                    <p className='text-lg text-gray-600 dark:text-blue-50'>
                         Podware integrates advanced AI capabilities to assist
                         creators in generating high-quality podcasts. Whether
                         you're scripting, editing, or enhancing audio, our AI
@@ -31,10 +31,10 @@ const AboutWrapper: FC = () => {
                     </p>
                 </div>
                 <div className='mt-4'>
-                    <h2 className='mb-2 text-xl font-semibold dark:text-black'>
+                    <h1 className='mb-2 text-xl font-semibold dark:text-blue-200'>
                         Discover and Review Podcasts
-                    </h2>
-                    <p className='text-lg dark:text-gray-800'>
+                    </h1>
+                    <p className='text-lg text-gray-600 dark:text-blue-50'>
                         Explore a vast library of podcasts within Podware.
                         Listen to your favorite shows, discover new content, and
                         leave reviews to share your thoughts with the community.
