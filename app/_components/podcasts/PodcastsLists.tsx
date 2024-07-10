@@ -1,17 +1,18 @@
 'use client';
 
-import { FC, useState} from 'react';
+import { FC, useState } from 'react';
 import Header from '../shared/Header';
 import PodcastCard from './PodcastCard';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import PodcastPagination from './PodcastPagination';
+import { limit } from '@/app/_constants/appConstants';
+import { Loader2 } from 'lucide-react';
 
 const PodcastsLists: FC = () => {
     const [cursor, setCursor] = useState<string | undefined>(undefined);
     const [prevCursors, setPrevCursors] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const limit = 10; // Define how many items per page
 
     const data = useQuery(api.podcasts.getAllPodcasts, { cursor, limit });
 
@@ -34,7 +35,7 @@ const PodcastsLists: FC = () => {
     };
 
     if (!data) {
-        return <div>Loading...</div>;
+        return <Loader2 className="animate-spin w-8 h-8" />
     }
 
     return (
@@ -49,11 +50,11 @@ const PodcastsLists: FC = () => {
             </div>
 
             <div className='mt-4 p-3'>
-                <PodcastPagination 
-                    onNextPage={handleNextPage} 
-                    onPreviousPage={handlePreviousPage} 
-                    hasNextPage={!!data.nextCursor} 
-                    hasPreviousPage={prevCursors.length > 0} 
+                <PodcastPagination
+                    onNextPage={handleNextPage}
+                    onPreviousPage={handlePreviousPage}
+                    hasNextPage={!!data.nextCursor}
+                    hasPreviousPage={prevCursors.length > 0}
                     currentPage={currentPage}
                 />
             </div>

@@ -3,7 +3,6 @@ import {
     Pagination,
     PaginationContent,
     PaginationItem,
-    PaginationLink,
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination';
@@ -16,18 +15,32 @@ interface PodcastPaginationProps {
     currentPage: number;
 }
 
-const PodcastPagination: FC<PodcastPaginationProps> = ({ onNextPage, onPreviousPage, hasNextPage, hasPreviousPage, currentPage }) => {
+const PodcastPagination: FC<PodcastPaginationProps> = ({
+    onNextPage,
+    onPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+    currentPage,
+}) => {
     return (
         <Pagination>
             <PaginationContent>
                 <PaginationItem>
-                    <PaginationPrevious href='#' onClick={onPreviousPage} disabled={!hasPreviousPage} />
+                    <PaginationPrevious
+                        href='#'
+                        onClick={onPreviousPage}
+                        disabled={!hasPreviousPage}
+                    />
                 </PaginationItem>
                 <PaginationItem>
                     <span>{currentPage}</span>
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationNext href='#' onClick={onNextPage} disabled={!hasNextPage} />
+                    <PaginationNext
+                        href='#'
+                        onClick={onNextPage}
+                        disabled={!hasNextPage}
+                    />
                 </PaginationItem>
             </PaginationContent>
         </Pagination>

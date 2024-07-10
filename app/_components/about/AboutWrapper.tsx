@@ -6,14 +6,14 @@ const AboutWrapper: FC = () => {
     return (
         <DefaultLayout>
             <Header text='About Podware application' />
-            <div className='mt-4 rounded-lg bg-gray-100 shadow-xl p-4 dark:bg-zinc-800'>
-                <p className='p-2 text-lg text-gray-600 dark:text-blue-50 leading-7 [&:not(:first-child)]:mt-6'>
+            <div className='mt-4 rounded-lg bg-gray-100 p-4 shadow-xl dark:bg-zinc-800'>
+                <p className='p-2 text-lg leading-7 text-gray-600 dark:text-blue-50 [&:not(:first-child)]:mt-6'>
                     Podware is a cutting-edge application designed for creating
                     and listening to podcasts. It empowers creators with
                     intuitive tools to record, edit, and publish podcasts
                     effortlessly.
                 </p>
-                <p className='mt-2 text-lg text-gray-600 dark:text-blue-50 leading-7 [&:not(:first-child)]:mt-6'>
+                <p className='mt-2 text-lg leading-7 text-gray-600 dark:text-blue-50 [&:not(:first-child)]:mt-6'>
                     Built with Tailwind CSS for responsive and sleek designs,
                     and leveraging Shadcn UI for consistent user interface
                     components across the application.
