@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 "use client";
 import { useMutation } from "convex/react";
 import Image from "next/image";
@@ -11,19 +10,6 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PodcastType } from "@/app/_types/podcastTypes";
 import { Id } from "@/convex/_generated/dataModel";
-=======
-'use client';
-import { useMutation } from 'convex/react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { api } from '@/convex/_generated/api';
-import { useToast } from '@/components/ui/use-toast';
-import { useAudio } from '../../shared/provider/AudioProvider';
-import { Loader2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { PodcastType } from '@/app/_types/podcastTypes';
->>>>>>> main
 
 const PodcastDetailPlayer = ({
     audioUrl,
@@ -43,7 +29,6 @@ const PodcastDetailPlayer = ({
     const [isDeleting, setIsDeleting] = useState(false);
     const deletePodcast = useMutation(api.podcasts.deletePodcast);
 
-<<<<<<< HEAD
   const handleDelete = async () => {
     if (!podcastId || !imageStorageId || !audioStorageId) {
       toast({
@@ -86,33 +71,6 @@ const PodcastDetailPlayer = ({
       podcastId: podcastId as unknown as Id<"podcasts">,
     });
   };
-=======
-    const handleDelete = async () => {
-        try {
-            await deletePodcast({ podcastId, imageStorageId, audioStorageId });
-            toast({
-                title: 'Podcast deleted',
-            });
-            router.push('/');
-        } catch (error) {
-            console.error('Error deleting podcast', error);
-            toast({
-                title: 'Error deleting podcast',
-                variant: 'destructive',
-            });
-        }
-    };
-
-    const handlePlay = () => {
-        setAudio({
-            title: podcastTitle!,
-            audioUrl,
-            imageUrl,
-            author,
-            podcastId,
-        });
-    };
->>>>>>> main
 
     if (!imageUrl || !authorImageUrl)
         return <Loader2 className='h-8 w-8 animate-spin' />;
@@ -151,7 +109,6 @@ const PodcastDetailPlayer = ({
                         </figure>
                     </article>
 
-<<<<<<< HEAD
           <Button
             onClick={handlePlay}
             className="text-16 w-full max-w-[250px] bg-primary font-extrabold text-white"
@@ -188,21 +145,6 @@ const PodcastDetailPlayer = ({
                 alt="Delete icon"
               />
               <h2 className="text-16 font-normal text-white">Delete</h2>
-=======
-                    <Button
-                        onClick={handlePlay}
-                        className='text-16 w-full max-w-[250px] bg-primary font-extrabold text-white'
-                    >
-                        <Image
-                            src='/icons/Play.svg'
-                            width={20}
-                            height={20}
-                            alt='random play'
-                        />{' '}
-                        &nbsp; Play podcast
-                    </Button>
-                </div>
->>>>>>> main
             </div>
             {isOwner && (
                 <div className='relative mt-2'>
