@@ -1,46 +1,52 @@
 "use client"
 
-import { FC, useState, ChangeEvent } from 'react';
-import { usePathname } from 'next/navigation'
+import { useState } from 'react';
 import { Input } from '@/components/ui/input';
+import {
+    Dialog,
+    DialogContent,
+    DialogClose,
+    DialogTitle,
+    DialogDescription,
+} from '@/components/ui/dialog';
+import Header from '../Header';
 
-const NavigationSearch: FC = () => {
-    const pathname = usePathname()
-    const [searchQuery, setSearchQuery] = useState<string>('');
+const NavigationSearch = () => {
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(event.target.value);
-        if (pathname === '/') {
-            console.log('Vyhľadávam v podcasts: ', event.target.value);
-        } else if (pathname === '/categories') {
-            console.log('Vyhľadávam v kategóriách: ', event.target.value);
-        }
+    const openDialog = () => {
+        setIsDialogOpen(true);
+    };
+
+    const closeDialog = () => {
+        setIsDialogOpen(false);
     };
 
     return (
-        <Input
-         className=' w-full
-                sm:w-10/12
-                md:w-8/12
-                lg:w-6/12
-                xl:w-4/12
-                rounded-full
-                bg-gray-100
-                py-2
-                pl-4
-                text-xs
-                font-bold
-                uppercase
-                leading-tight
-                text-gray-700
-                focus:outline-none
-                focus:shadow-outline
-                lg:text-sm'
-            type='text'
-            placeholder='Search'
-            value={searchQuery}
-            onChange={handleSearch}
-        />
+        <>
+            <Input
+                className='focus:shadow-outline w-full rounded-full bg-gray-100 py-2 pl-4 text-xs font-bold uppercase leading-tight text-gray-700 focus:outline-none sm:w-10/12 md:w-8/12 lg:w-6/12 lg:text-sm xl:w-4/12'
+                type='text'
+                placeholder='Search'
+                onClick={openDialog}
+            />
+            {isDialogOpen && (
+                <Dialog open={isDialogOpen}>
+                    <DialogContent>
+                        <DialogClose onClick={closeDialog} />
+                        <DialogTitle>
+                            <Header text='Search for podcast or category' />
+                        </DialogTitle>
+                        <DialogDescription className='mt-5'>
+                            <Input type='text' placeholder='Search' />
+                        </DialogDescription>
+                        <DialogDescription className='mt-10'>
+                            TODO: Map for items here
+                        </DialogDescription>
+                    </DialogContent>
+                </Dialog>
+            )}
+        </>
     );
 };
 
