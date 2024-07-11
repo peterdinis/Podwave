@@ -33,7 +33,7 @@ const PodcastDetailWrapper: FC = () => {
     return (
         <DefaultLayout>
             <Header text='Podcast Info' />
-            <PodcastReview />
+            <PodcastReview podcastId={id[0] as unknown as Id<'podcasts'>} />
             <section className='flex w-full flex-col'>
                 <header className='mt-9 flex items-center justify-between'>
                     <h1 className='text-20 text-white-1 font-bold'>
