@@ -1,5 +1,6 @@
 'use client';
 
+import { ITooltipHelperProps } from '@/app/_types/appTypes';
 import { Button } from '@/components/ui/button';
 import {
     Tooltip,
@@ -8,13 +9,7 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 import Link from 'next/link';
-import { FC, ReactNode } from 'react';
-
-interface ITooltipHelperProps {
-    icon: ReactNode;
-    linkH: string;
-    tooltipText: string;
-}
+import { FC} from 'react';
 
 const TooltipHelper: FC<ITooltipHelperProps> = ({
     icon,
