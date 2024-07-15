@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { FC, useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
@@ -14,30 +14,43 @@ import { Button } from '@/components/ui/button';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { NavigationPodcast } from '@/app/_types/podcastTypes';
-import { Loader2 } from 'lucide-react';
+import { Ghost, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { NavigationCategory } from '@/app/_types/categoryTypes';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [podcasts, setPodcasts] = useState<NavigationPodcast[]>([]);
+    const [categories, setCategories] = useState<NavigationCategory[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
-    const queryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
+    const router = useRouter();
+    const podcastQueryResult = useQuery(api.podcasts.getPodcastBySearch, {
+        search: searchQuery,
+    });
+    const categoryQueryResult = useQuery(api.categories.getCategoryBySearch, {
+        search: searchQuery,
+    });
 
     useEffect(() => {
-        if (queryResult instanceof Error) {
-            setError(queryResult.message);
+        setIsLoading(true);
+        if (
+            podcastQueryResult instanceof Error ||
+            categoryQueryResult instanceof Error
+        ) {
             setIsLoading(false);
-        } else if (queryResult && searchQuery) {
-            setPodcasts(queryResult);
+        } else if (podcastQueryResult && categoryQueryResult && searchQuery) {
+            setPodcasts(podcastQueryResult);
+            setCategories(categoryQueryResult);
             setIsLoading(false);
             setError(null);
         } else {
             setPodcasts([]);
+            setCategories([]);
             setIsLoading(false);
         }
-    }, [queryResult, searchQuery]);
+    }, [podcastQueryResult, categoryQueryResult, searchQuery]);
 
     const openDialog = () => {
         setIsDialogOpen(true);
@@ -47,6 +60,7 @@ const NavigationSearch: FC = () => {
         setIsDialogOpen(false);
         setSearchQuery('');
         setPodcasts([]);
+        setCategories([]);
     };
 
     return (
@@ -73,16 +87,76 @@ const NavigationSearch: FC = () => {
                             />
                         </DialogDescription>
                         <DialogDescription className='mt-10'>
-                            {isLoading && <Loader2 className='animate-spin w-5 h-5' />}
-                            {error && <p className='font-bold text-red-600 mt-3 prose prose-p:'>Error: {error}</p>}
+                            {isLoading && (
+                                <Loader2 className='h-5 w-5 animate-spin' />
+                            )}
+                            {error && (
+                                <p className='prose-p: prose mt-3 font-bold text-red-600'>
+                                    Error: {error}
+                                </p>
+                            )}
+                            {!isLoading &&
+                                !error &&
+                                podcasts.length === 0 &&
+                                categories.length === 0 && (
+                                    <p className='prose-p: prose mt-3 font-bold dark:text-blue-50'>
+                                        <Ghost className='h-6 w-6 animate-bounce' />
+                                        No podcasts or categories found.
+                                    </p>
+                                )}
                             {podcasts.length > 0 && (
-                                <ul>
-                                    {podcasts.map((podcast) => (
-                                        <li key={podcast._id}>
-                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{podcast.podcastTitle}<Button className='float-right' size={"sm"}>Detail</Button></span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div>
+                                    <h2 className='text-lg font-bold'>
+                                        Podcasts
+                                    </h2>
+                                    <ul>
+                                        {podcasts.map((podcast) => (
+                                            <li key={podcast._id}>
+                                                <span className='prose:span prose mt-5 font-bold dark:text-blue-50'>
+                                                    {podcast.podcastTitle}
+                                                    <Button
+                                                        onClick={() => {
+                                                            router.push(
+                                                                `/podcasts/${podcast._id}`,
+                                                            );
+                                                        }}
+                                                        className='float-right'
+                                                        size={'sm'}
+                                                    >
+                                                        Detail
+                                                    </Button>
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                            {categories.length > 0 && (
+                                <div className='mt-5'>
+                                    <h2 className='text-lg font-bold'>
+                                        Categories
+                                    </h2>
+                                    <ul>
+                                        {categories.map((category) => (
+                                            <li key={category._id}>
+                                                <span className='prose:span prose mt-5 font-bold dark:text-blue-50'>
+                                                    {category.categoryName}
+                                                    <Button
+                                                        onClick={() => {
+                                                            router.push(
+                                                                `/categories/${category._id}`,
+                                                            );
+                                                        }}
+                                                        className='float-right'
+                                                        size={'sm'}
+                                                    >
+                                                        Detail
+                                                    </Button>
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             )}
                         </DialogDescription>
                     </DialogContent>
