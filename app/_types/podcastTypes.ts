@@ -1,5 +1,5 @@
 import { Id } from '@/convex/_generated/dataModel';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, Key, SetStateAction } from 'react';
 
 export interface GeneratePodcastProps {
     voiceType: string;
@@ -51,4 +51,9 @@ export interface PodcastCardProps {
 
 export interface PodcastReviewProps {
     podcastId: string;
+}
+
+export interface NavigationPodcast {
+    _id: Key;
+    podcastTitle: string;
 }
