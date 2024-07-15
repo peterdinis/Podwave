@@ -3,12 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { FC, ReactNode } from 'react';
 import Link from 'next/link';
-
-interface ISidebarLinkProps {
-    icon: ReactNode;
-    linkHref: string;
-    linkText: string;
-}
+import { ISidebarLinkProps } from '@/app/_types/appTypes';
 
 const SidebarLink: FC<ISidebarLinkProps> = ({
     icon,

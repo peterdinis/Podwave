@@ -9,23 +9,19 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PodcastType } from '@/app/_types/podcastTypes';
-
-interface PodcastCardProps {
-    podcast: PodcastType;
-}
+import { PodcastCardProps} from '@/app/_types/podcastTypes';
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
     return (
-        <Card>
+        <Card className='w-60'>
             <CardHeader className='flex flex-col items-center'>
                 <Image
                     className='w-full rounded-xl'
                     src={podcast.imageUrl!}
                     alt='Podcast Image'
                     loading='lazy'
-                    width={800}
-                    height={800}
+                    width={400}
+                    height={400}
                 />
                 <CardTitle className='mt-4 text-center text-2xl font-bold dark:text-white'>
                     {podcast.podcastTitle}

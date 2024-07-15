@@ -6,14 +6,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from '@/components/ui/pagination';
-
-interface PodcastPaginationProps {
-    onNextPage: () => void;
-    onPreviousPage: () => void;
-    hasNextPage: boolean;
-    hasPreviousPage: boolean;
-    currentPage: number;
-}
+import { PodcastPaginationProps } from '@/app/_types/podcastTypes';
 
 const PodcastPagination: FC<PodcastPaginationProps> = ({
     onNextPage,

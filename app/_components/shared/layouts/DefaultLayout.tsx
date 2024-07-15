@@ -3,10 +3,7 @@
 import { FC, ReactNode } from 'react';
 import Sidebar from '../sidebar/Sidebar';
 import Navigation from '../navigation/Navigation';
-
-interface IDefaultLayoutProps {
-    children?: ReactNode;
-}
+import { IDefaultLayoutProps } from '@/app/_types/appTypes';
 
 const DefaultLayout: FC<IDefaultLayoutProps> = ({
     children,
