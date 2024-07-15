@@ -15,29 +15,34 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { NavigationPodcast } from '@/app/_types/podcastTypes';
 import { Ghost, Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [podcasts, setPodcasts] = useState<NavigationPodcast[]>([]);
+    const [categories, setCategories] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const router = useRouter();
+    const podcastQueryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
+    const categoryQueryResult = useQuery(api.categories.getCategoryBySearch, { search: searchQuery });
 
-    const queryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
-
-    useEffect(() => {
-        if (queryResult instanceof Error) {
-            setError(queryResult.message);
+     useEffect(() => {
+        setIsLoading(true);
+        if (podcastQueryResult instanceof Error || categoryQueryResult instanceof Error) {
             setIsLoading(false);
-        } else if (queryResult && searchQuery) {
-            setPodcasts(queryResult);
+        } else if (podcastQueryResult && categoryQueryResult && searchQuery) {
+            setPodcasts(podcastQueryResult);
+            setCategories(categoryQueryResult);
             setIsLoading(false);
             setError(null);
         } else {
             setPodcasts([]);
+            setCategories([]);
             setIsLoading(false);
         }
-    }, [queryResult, searchQuery]);
+    }, [podcastQueryResult, categoryQueryResult, searchQuery]);
 
     const openDialog = () => {
         setIsDialogOpen(true);
@@ -47,6 +52,7 @@ const NavigationSearch: FC = () => {
         setIsDialogOpen(false);
         setSearchQuery('');
         setPodcasts([]);
+        setCategories([]);
     };
 
     return (
@@ -90,6 +96,23 @@ const NavigationSearch: FC = () => {
                                 searchQuery && !isLoading && !error && (
                                     <p className='font-bold mt-3 prose prose-p: dark:text-blue-50'><Ghost className='animate-bounce w-8 h-8' />No podcasts found.</p>
                                 )
+                            )}
+
+{categories.length > 0 && (
+                                <div className='mt-5'>
+                                    <h2 className='font-bold text-lg'>Categories</h2>
+                                    <ul>
+                                        {categories.map((category: any) => (
+                                            <li key={category._id}>
+                                                <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{category.categoryName}
+                                                    <Button onClick={() => {
+                                                        router.push(`/categories/${category._id}`)
+                                                    }} className='float-right' size={"sm"}>Detail</Button>
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             )}
                         </DialogDescription>
                     </DialogContent>
