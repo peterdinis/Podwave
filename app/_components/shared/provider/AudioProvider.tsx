@@ -2,7 +2,7 @@
 
 import { AudioContextType, AudioProps } from '@/app/_types/audioTypes';
 import { usePathname } from 'next/navigation';
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
@@ -11,7 +11,7 @@ const AudioProvider = ({ children }: { children: React.ReactNode }) => {
     const pathname = usePathname();
 
     useEffect(() => {
-        if (pathname === '/create-podcast') setAudio(undefined);
+        if (pathname === '/podcasts/create') setAudio(undefined);
     }, [pathname]);
 
     return (
