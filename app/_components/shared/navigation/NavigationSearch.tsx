@@ -14,12 +14,13 @@ import { Button } from '@/components/ui/button';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { NavigationPodcast } from '@/app/_types/podcastTypes';
+import { Loader2 } from 'lucide-react';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [podcasts, setPodcasts] = useState<NavigationPodcast[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const queryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
@@ -28,14 +29,15 @@ const NavigationSearch: FC = () => {
         if (queryResult instanceof Error) {
             setError(queryResult.message);
             setIsLoading(false);
-        } else if (queryResult) {
+        } else if (queryResult && searchQuery) {
             setPodcasts(queryResult);
             setIsLoading(false);
             setError(null);
         } else {
-            setIsLoading(true);
+            setPodcasts([]);
+            setIsLoading(false);
         }
-    }, [queryResult]);
+    }, [queryResult, searchQuery]);
 
     const openDialog = () => {
         setIsDialogOpen(true);
@@ -43,11 +45,8 @@ const NavigationSearch: FC = () => {
 
     const closeDialog = () => {
         setIsDialogOpen(false);
-    };
-
-    const handleSearch = () => {
-        setIsLoading(true);
-        setError(null);
+        setSearchQuery('');
+        setPodcasts([]);
     };
 
     return (
@@ -59,7 +58,7 @@ const NavigationSearch: FC = () => {
                 onClick={openDialog}
             />
             {isDialogOpen && (
-                <Dialog open={isDialogOpen}>
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogContent>
                         <DialogClose onClick={closeDialog} />
                         <DialogTitle>
@@ -72,16 +71,15 @@ const NavigationSearch: FC = () => {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
-                            <Button className='mt-5' onClick={handleSearch}>Search</Button>
                         </DialogDescription>
                         <DialogDescription className='mt-10'>
-                            {isLoading && <p>Loading...</p>}
-                            {error && <p>Error: {error}</p>}
-                            {podcasts && (
+                            {isLoading && <Loader2 className='animate-spin w-5 h-5' />}
+                            {error && <p className='font-bold text-red-600 mt-3 prose prose-p:'>Error: {error}</p>}
+                            {podcasts.length > 0 && (
                                 <ul>
                                     {podcasts.map((podcast) => (
                                         <li key={podcast._id}>
-                                            {podcast.podcastTitle}
+                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{podcast.podcastTitle}<Button className='float-right' size={"sm"}>Detail</Button></span>
                                         </li>
                                     ))}
                                 </ul>
