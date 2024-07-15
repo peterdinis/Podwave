@@ -28,3 +28,15 @@ export interface ILongTextProps {
     text: string;
     maxLength: number;
 }
+
+export interface ITooltipHelperProps {
+    icon: ReactNode;
+    linkH: string;
+    tooltipText: string;
+}
+
+export interface ISidebarLinkProps {
+    icon: ReactNode;
+    linkHref: string;
+    linkText: string;
+}
