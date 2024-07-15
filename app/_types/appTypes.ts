@@ -40,3 +40,11 @@ export interface ISidebarLinkProps {
     linkHref: string;
     linkText: string;
 }
+
+export interface ISuspenseWrapperProps {
+    children?: ReactNode;
+}
+
+export interface IDefaultLayoutProps {
+    children?: ReactNode;
+}

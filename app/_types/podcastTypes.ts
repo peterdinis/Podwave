@@ -48,3 +48,7 @@ export interface PodcastPaginationProps {
 export interface PodcastCardProps {
     podcast: PodcastType;
 }
+
+export interface PodcastReviewProps {
+    podcastId: string;
+}

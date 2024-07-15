@@ -17,10 +17,7 @@ import { useUser } from '@clerk/nextjs';
 import { format } from 'date-fns';
 import { Id } from '@/convex/_generated/dataModel';
 import Header from '../../shared/Header';
-
-interface PodcastReviewProps {
-    podcastId: string;
-}
+import { PodcastReviewProps } from '@/app/_types/podcastTypes';
 
 const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     const [reviewText, setReviewText] = useState<string>('');
