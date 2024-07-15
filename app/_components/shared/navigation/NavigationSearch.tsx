@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { NavigationPodcast } from '@/app/_types/podcastTypes';
-import { Loader2 } from 'lucide-react';
+import { Ghost, Loader2 } from 'lucide-react';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -75,14 +75,21 @@ const NavigationSearch: FC = () => {
                         <DialogDescription className='mt-10'>
                             {isLoading && <Loader2 className='animate-spin w-5 h-5' />}
                             {error && <p className='font-bold text-red-600 mt-3 prose prose-p:'>Error: {error}</p>}
-                            {podcasts.length > 0 && (
+                            {podcasts.length > 0 ? (
                                 <ul>
                                     {podcasts.map((podcast) => (
                                         <li key={podcast._id}>
-                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{podcast.podcastTitle}<Button className='float-right' size={"sm"}>Detail</Button></span>
+                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>
+                                                {podcast.podcastTitle}
+                                                <Button className='float-right' size={"sm"}>Detail</Button>
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
+                            ) : (
+                                searchQuery && !isLoading && !error && (
+                                    <p className='font-bold mt-3 prose prose-p: dark:text-blue-50'><Ghost className='animate-bounce w-8 h-8' />No podcasts found.</p>
+                                )
                             )}
                         </DialogDescription>
                     </DialogContent>
