@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { FC, Key, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import {
     Dialog,
@@ -13,19 +13,29 @@ import Header from '../Header';
 import { Button } from '@/components/ui/button';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import { NavigationPodcast } from '@/app/_types/podcastTypes';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [podcasts, setPodcasts] = useState<NavigationPodcast[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    /* const { data: podcasts, isLoading, error, refetch } = useQuery(
-        api.podcasts.getPodcastBySearch,
-        { search: searchQuery }
-    ); */
+    const queryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
 
-    const {data, isLoading, error, refetch} = useQuery(api.podcasts.getPodcastBySearch, {
-        search: searchQuery
-    })
+    useEffect(() => {
+        if (queryResult instanceof Error) {
+            setError(queryResult.message);
+            setIsLoading(false);
+        } else if (queryResult) {
+            setPodcasts(queryResult);
+            setIsLoading(false);
+            setError(null);
+        } else {
+            setIsLoading(true);
+        }
+    }, [queryResult]);
 
     const openDialog = () => {
         setIsDialogOpen(true);
@@ -35,8 +45,9 @@ const NavigationSearch: FC = () => {
         setIsDialogOpen(false);
     };
 
-    const handleSearch = async () => {
-        refetch({ search: searchQuery });
+    const handleSearch = () => {
+        setIsLoading(true);
+        setError(null);
     };
 
     return (
@@ -61,15 +72,15 @@ const NavigationSearch: FC = () => {
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
-                            <Button onClick={handleSearch}>Search</Button>
+                            <Button className='mt-5' onClick={handleSearch}>Search</Button>
                         </DialogDescription>
                         <DialogDescription className='mt-10'>
                             {isLoading && <p>Loading...</p>}
-                            {error && <p>Error: {error.message}</p>}
+                            {error && <p>Error: {error}</p>}
                             {podcasts && (
                                 <ul>
-                                    {podcasts.map((podcast: { id: Key; podcastTitle: string }) => (
-                                        <li key={podcast.id}>
+                                    {podcasts.map((podcast) => (
+                                        <li key={podcast._id}>
                                             {podcast.podcastTitle}
                                         </li>
                                     ))}
