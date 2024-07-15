@@ -105,9 +105,9 @@ const GenerateThumbnail = ({
                 </Button>
                 <Button
                     type='button'
-                    variant='destructive'
+                    variant='secondary'
                     onClick={() => setIsAiThumbnail(false)}
-                    className={cn('mt-5 bg-orange-600', {
+                    className={cn('mt-5 bg-orange-600 ml-4', {
                         'bg-secondary': !isAiThumbnail,
                     })}
                 >
