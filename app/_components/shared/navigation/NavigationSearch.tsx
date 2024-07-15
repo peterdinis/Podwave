@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { FC, Key, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import {
     Dialog,
@@ -10,9 +10,22 @@ import {
     DialogDescription,
 } from '@/components/ui/dialog';
 import Header from '../Header';
+import { Button } from '@/components/ui/button';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
-const NavigationSearch = () => {
+const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    /* const { data: podcasts, isLoading, error, refetch } = useQuery(
+        api.podcasts.getPodcastBySearch,
+        { search: searchQuery }
+    ); */
+
+    const {data, isLoading, error, refetch} = useQuery(api.podcasts.getPodcastBySearch, {
+        search: searchQuery
+    })
 
     const openDialog = () => {
         setIsDialogOpen(true);
@@ -20,6 +33,10 @@ const NavigationSearch = () => {
 
     const closeDialog = () => {
         setIsDialogOpen(false);
+    };
+
+    const handleSearch = async () => {
+        refetch({ search: searchQuery });
     };
 
     return (
@@ -38,10 +55,26 @@ const NavigationSearch = () => {
                             <Header text='Search for podcast or category' />
                         </DialogTitle>
                         <DialogDescription className='mt-5'>
-                            <Input type='text' placeholder='Search' />
+                            <Input
+                                type='text'
+                                placeholder='Search'
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                            <Button onClick={handleSearch}>Search</Button>
                         </DialogDescription>
                         <DialogDescription className='mt-10'>
-                            TODO: Map for items here
+                            {isLoading && <p>Loading...</p>}
+                            {error && <p>Error: {error.message}</p>}
+                            {podcasts && (
+                                <ul>
+                                    {podcasts.map((podcast: { id: Key; podcastTitle: string }) => (
+                                        <li key={podcast.id}>
+                                            {podcast.podcastTitle}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </DialogDescription>
                     </DialogContent>
                 </Dialog>
