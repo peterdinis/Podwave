@@ -15,6 +15,7 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { NavigationPodcast } from '@/app/_types/podcastTypes';
 import { Loader2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -22,7 +23,7 @@ const NavigationSearch: FC = () => {
     const [podcasts, setPodcasts] = useState<NavigationPodcast[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
+    const router = useRouter();
     const queryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
 
     useEffect(() => {
@@ -79,7 +80,9 @@ const NavigationSearch: FC = () => {
                                 <ul>
                                     {podcasts.map((podcast) => (
                                         <li key={podcast._id}>
-                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{podcast.podcastTitle}<Button className='float-right' size={"sm"}>Detail</Button></span>
+                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{podcast.podcastTitle}<Button onClick={() => {
+                                                router.push(`/podcasts/${podcast._id}`)
+                                            }} className='float-right' size={"sm"}>Detail</Button></span>
                                         </li>
                                     ))}
                                 </ul>
