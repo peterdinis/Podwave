@@ -35,3 +35,16 @@ interface Podcast {
 }
 
 export type PodcastType = Partial<Podcast>;
+
+
+export interface PodcastPaginationProps {
+    onNextPage: () => void;
+    onPreviousPage: () => void;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    currentPage: number;
+}
+
+export interface PodcastCardProps {
+    podcast: PodcastType;
+}

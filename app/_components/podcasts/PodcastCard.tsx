@@ -9,11 +9,7 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PodcastType } from '@/app/_types/podcastTypes';
-
-interface PodcastCardProps {
-    podcast: PodcastType;
-}
+import { PodcastCardProps, PodcastType } from '@/app/_types/podcastTypes';
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
     return (

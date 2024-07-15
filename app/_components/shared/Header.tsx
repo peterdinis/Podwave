@@ -1,8 +1,5 @@
+import { IHeaderProps } from '@/app/_types/appTypes';
 import { FC } from 'react';
-
-interface IHeaderProps {
-    text: string;
-}
 
 const Header: FC<IHeaderProps> = ({ text }: IHeaderProps) => {
     return (
