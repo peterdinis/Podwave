@@ -13,22 +13,23 @@ import Header from '../Header';
 import { Button } from '@/components/ui/button';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
-import { NavigationPodcast } from '@/app/_types/podcastTypes';
-import { Ghost, Loader2 } from 'lucide-react';
+import { NavigationPodcast} from '@/app/_types/podcastTypes';
+import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { NavigationCategory } from '@/app/_types/categoryTypes';
 
 const NavigationSearch: FC = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
     const [podcasts, setPodcasts] = useState<NavigationPodcast[]>([]);
-    const [categories, setCategories] = useState<any>([]);
+    const [categories, setCategories] = useState<NavigationCategory[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const router = useRouter();
     const podcastQueryResult = useQuery(api.podcasts.getPodcastBySearch, { search: searchQuery });
     const categoryQueryResult = useQuery(api.categories.getCategoryBySearch, { search: searchQuery });
 
-     useEffect(() => {
+    useEffect(() => {
         setIsLoading(true);
         if (podcastQueryResult instanceof Error || categoryQueryResult instanceof Error) {
             setIsLoading(false);
@@ -81,28 +82,27 @@ const NavigationSearch: FC = () => {
                         <DialogDescription className='mt-10'>
                             {isLoading && <Loader2 className='animate-spin w-5 h-5' />}
                             {error && <p className='font-bold text-red-600 mt-3 prose prose-p:'>Error: {error}</p>}
-                            {podcasts.length > 0 ? (
-                                <ul>
-                                    {podcasts.map((podcast) => (
-                                        <li key={podcast._id}>
-                                            <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>
-                                                {podcast.podcastTitle}
-                                                <Button className='float-right' size={"sm"}>Detail</Button>
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                searchQuery && !isLoading && !error && (
-                                    <p className='font-bold mt-3 prose prose-p: dark:text-blue-50'><Ghost className='animate-bounce w-8 h-8' />No podcasts found.</p>
-                                )
+                            {podcasts.length > 0 && (
+                                <div>
+                                    <h2 className='font-bold text-lg'>Podcasts</h2>
+                                    <ul>
+                                        {podcasts.map((podcast) => (
+                                            <li key={podcast._id}>
+                                                <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{podcast.podcastTitle}
+                                                    <Button onClick={() => {
+                                                        router.push(`/podcasts/${podcast._id}`)
+                                                    }} className='float-right' size={"sm"}>Detail</Button>
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             )}
-
-{categories.length > 0 && (
+                            {categories.length > 0 && (
                                 <div className='mt-5'>
                                     <h2 className='font-bold text-lg'>Categories</h2>
                                     <ul>
-                                        {categories.map((category: any) => (
+                                        {categories.map((category) => (
                                             <li key={category._id}>
                                                 <span className='mt-5 font-bold prose prose:span dark:text-blue-50'>{category.categoryName}
                                                     <Button onClick={() => {
