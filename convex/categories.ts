@@ -93,3 +93,33 @@ export const deleteCategory = mutation({
         return await ctx.db.delete(args.categoryId);
     },
 });
+
+
+export const getCategoryBySearch = query({
+    args: {
+        search: v.string(),
+    },
+    handler: async (ctx, args) => {
+        if (args.search === '') {
+            return await ctx.db.query('categories').order('desc').collect();
+        }
+
+        const nameSearch = await ctx.db
+            .query('categories')
+            .withSearchIndex('search_category_name', (q) =>
+                q.search('categoryName', args.search),
+            )
+            .take(10);
+
+        if (nameSearch.length > 0) {
+            return nameSearch;
+        }
+
+        return await ctx.db
+            .query('categories')
+            .withSearchIndex('search_category_description', (q) =>
+                q.search('categoryDescription', args.search),
+            )
+            .take(10);
+    },
+});

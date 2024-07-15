@@ -34,7 +34,8 @@ export default defineSchema({
     categories: defineTable({
         categoryName: v.string(),
         categoryDescription: v.optional(v.string()),
-    }),
+    }).searchIndex('search_category_name', { searchField: 'categoryName' })
+    .searchIndex('search_category_description', { searchField: 'categoryDescription' }),
 
     reviews: defineTable({
         podcastId: v.id('podcasts'), // Reference to podcasts table
