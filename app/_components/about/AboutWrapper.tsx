@@ -13,11 +13,6 @@ const AboutWrapper: FC = () => {
                     intuitive tools to record, edit, and publish podcasts
                     effortlessly.
                 </p>
-                <p className='mt-2 text-lg leading-7 text-gray-600 dark:text-blue-50 [&:not(:first-child)]:mt-6'>
-                    Built with Tailwind CSS for responsive and sleek designs,
-                    and leveraging Shadcn UI for consistent user interface
-                    components across the application.
-                </p>
                 <div className='mt-4'>
                     <h1 className='mb-2 text-xl font-semibold dark:text-blue-200'>
                         Create Your Own Podcasts with AI Assistance

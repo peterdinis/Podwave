@@ -2,11 +2,11 @@
 
 import { AudioContextType, AudioProps } from '@/app/_types/audioTypes';
 import { usePathname } from 'next/navigation';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react';
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
-const AudioProvider = ({ children }: { children: React.ReactNode }) => {
+const AudioProvider = ({ children }: { children: ReactNode }) => {
     const [audio, setAudio] = useState<AudioProps | undefined>();
     const pathname = usePathname();
 
