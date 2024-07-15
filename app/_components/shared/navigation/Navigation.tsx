@@ -52,7 +52,7 @@ const Navigation: FC = () => {
                         ) : (
                             <Button variant={'ghost'} size={'lg'}>
                                 <Link className='text-lg' href='/sign-up'>
-                                    Register
+                                    Sign Up
                                 </Link>
                             </Button>
                         )}
