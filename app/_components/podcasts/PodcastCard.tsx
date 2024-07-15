@@ -27,7 +27,7 @@ const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
                     {podcast.podcastTitle}
                 </CardTitle>
             </CardHeader>
-            <CardDescription className='prose-p: prose mt-6 break-all p-3 text-lg font-bold'>
+            <CardDescription className='prose-p: prose break-all p-3 text-lg font-bold'>
                 {podcast.podcastDescription}
             </CardDescription>
             <CardContent className='text-center'>
