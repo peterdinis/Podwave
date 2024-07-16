@@ -6,11 +6,14 @@ import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CardTitle, CardDescription } from '@/components/ui/card';
+import { CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 const CategoriesLists: FC = () => {
-    let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const data = useQuery(api.categories.getAllCategories);
+    const router = useRouter();
 
     return (
         <div
@@ -52,6 +55,9 @@ const CategoriesLists: FC = () => {
                                 <CardDescription className='p-2 text-xl font-bold'>
                                     {item.categoryDescription}
                                 </CardDescription>
+                                <Button onClick={() => {
+                                    router.push(`/podcasts/categories/${item._id}`)
+                                }} className='mt-5'>Detail</Button>
                             </Card>
                         </div>
                     );
