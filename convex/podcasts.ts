@@ -276,3 +276,31 @@ export const addToFavorites = mutation({
         });
     },
 });
+
+export const getFavoritePodcasts = query({
+    handler: async (ctx) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new ConvexError('User not authenticated');
+        }
+
+        const user = await ctx.db
+            .query('users')
+            .filter((q) => q.eq(q.field('email'), identity.email))
+            .first();
+
+        if (!user) {
+            throw new ConvexError('User not found');
+        }
+
+        const favorites = await ctx.db
+            .query('favorites')
+            .filter((q) => q.eq(q.field('userId'), user._id))
+            .collect();
+
+        const podcastIds = favorites.map(favorite => favorite.podcastId) as any; // TODO: Update this later
+        
+        return await ctx.db.get(podcastIds);
+    },
+});
