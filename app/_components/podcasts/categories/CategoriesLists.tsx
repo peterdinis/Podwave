@@ -56,7 +56,7 @@ const CategoriesLists: FC = () => {
                                     {item.categoryDescription}
                                 </CardDescription>
                                 <Button onClick={() => {
-                                    router.push(`/categories/${item._id}`)
+                                    router.push(`/podcasts/categories/${item._id}`)
                                 }} className='mt-5'>Detail</Button>
                             </Card>
                         </div>
