@@ -11,7 +11,7 @@ export interface GeneratePodcastProps {
     setAudioDuration: Dispatch<SetStateAction<number>>;
 }
 
-interface Podcast {
+export interface Podcast {
     isOwner: boolean | string;
     audioDuration: number;
     audioStorageId: string;

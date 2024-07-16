@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { Table, MoreHorizontal } from "lucide-react";
+import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "@/components/ui/table";
 import { FC } from "react";
 import ProfilePodcastsPagination from "../profile/ProfilePodcastsPagination";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -11,8 +10,14 @@ import Image from "next/image";
 import {format} from "date-fns";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { MoreHorizontal } from "lucide-react";
+import { Podcast } from "@/app/_types/podcastTypes";
 
-const CategoryPodcastTable: FC = () => {
+interface ICategoryPodcastTableProps {
+    podcastData: Podcast;
+}
+
+const CategoryPodcastTable: FC<ICategoryPodcastTableProps> = ({podcastData}: ICategoryPodcastTableProps) => {
     return (
         <>
         <ScrollArea>
