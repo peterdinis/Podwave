@@ -14,6 +14,7 @@ import PodcastDetailPlayer from './PodacastDetailPlayer';
 import DefaultLayout from '../../shared/layouts/DefaultLayout';
 import PodcastReview from '../reviews/PodcastReview';
 import Header from '../../shared/Header';
+import AddToFavorite from '../favorite/AddToFavorite';
 
 const PodcastDetailWrapper: FC = () => {
     const { id } = useParams();
@@ -34,7 +35,9 @@ const PodcastDetailWrapper: FC = () => {
         <DefaultLayout>
             <Header text='Podcast Info' />
             <PodcastReview podcastId={id[0] as unknown as Id<'podcasts'>} />
-            <section className='flex w-full flex-col'>
+            <AddToFavorite />
+            {/* TODO: Update later */}
+            {/* <section className='flex w-full flex-col'>
                 <header className='mt-9 flex items-center justify-between'>
                     <h1 className='text-20 text-white-1 font-bold'>
                         Currenty Playing
@@ -114,7 +117,7 @@ const PodcastDetailWrapper: FC = () => {
                         </>
                     )}
                 </section>
-            </section>
+            </section> */}
         </DefaultLayout>
     );
 };
