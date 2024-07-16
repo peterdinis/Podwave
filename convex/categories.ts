@@ -40,7 +40,12 @@ export const getCategoryById = query({
             throw new ConvexError('Category not found');
         }
 
-        return category;
+        const podcasts = await ctx.db
+            .query('podcasts')
+            .filter(q => q.eq(q.field('categoryId'), args.categoryId))
+            .collect();
+
+        return { category, podcasts };
     },
 });
 
