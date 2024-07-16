@@ -232,3 +232,47 @@ export const deletePodcast = mutation({
         return await ctx.db.delete(args.podcastId);
     },
 });
+
+
+export const addToFavorites = mutation({
+    args: {
+        podcastId: v.id('podcasts'),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new ConvexError('User not authenticated');
+        }
+
+        const user = await ctx.db
+            .query('users')
+            .filter((q) => q.eq(q.field('email'), identity.email))
+            .collect();
+
+        if (user.length === 0) {
+            throw new ConvexError('User not found');
+        }
+
+        const userId = user[0]._id;
+
+        const favoriteExists = await ctx.db
+            .query('favorites')
+            .filter((q) => 
+                q.and(
+                    q.eq(q.field('userId'), userId),
+                    q.eq(q.field('podcastId'), args.podcastId)
+                )
+            )
+            .collect();
+
+        if (favoriteExists.length > 0) {
+            throw new ConvexError('Podcast already in favorites');
+        }
+
+        return await ctx.db.insert('favorites', {
+            userId: userId,
+            podcastId: args.podcastId,
+        });
+    },
+});
