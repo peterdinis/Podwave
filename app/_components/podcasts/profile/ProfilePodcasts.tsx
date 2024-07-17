@@ -28,9 +28,13 @@ import { Podcast } from '@/app/_types/podcastTypes';
 import { api } from '@/convex/_generated/api';
 import { useQuery } from 'convex/react';
 
+const isPodcast = (item: any): item is Podcast => {
+    return item && item.podcastTitle !== undefined;
+};
+
 const ProfilePodcasts: FC = () => {
     const { toast } = useToast();
-    const {data: favoritePodcasts} = useQuery(api.podcasts.getFavoritePodcasts);
+    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts);
 
     const removePodcast = () => {
         toast({
@@ -62,7 +66,7 @@ const ProfilePodcasts: FC = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {favoritePodcasts && favoritePodcasts!.map((podcast: Podcast) => (
+                                        {favoritePodcasts && favoritePodcasts.filter(isPodcast).map((podcast: Podcast) => (
                                             <TableRow key={podcast._id}>
                                                 <TableCell className='hidden sm:table-cell'>
                                                     <Image

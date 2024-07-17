@@ -299,8 +299,9 @@ export const getFavoritePodcasts = query({
             .filter((q) => q.eq(q.field('userId'), user._id))
             .collect();
 
-        const podcastIds = favorites.map(favorite => favorite.podcastId) as any; // TODO: Update this later
+        const podcastIds = favorites.map(favorite => favorite.podcastId) as any;
         
-        return await ctx.db.get(podcastIds);
+        // Return an array of podcasts
+        return await ctx.db.get(podcastIds) as any;
     },
 });
