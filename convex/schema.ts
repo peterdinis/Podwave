@@ -44,4 +44,9 @@ export default defineSchema({
         rating: v.number(),
         reviewDate: v.string(),
     }),
+
+    favorites: defineTable({
+        userId: v.id('users'),
+        podcastId: v.id('podcasts'),
+      }),
 });

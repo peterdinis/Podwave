@@ -232,3 +232,81 @@ export const deletePodcast = mutation({
         return await ctx.db.delete(args.podcastId);
     },
 });
+
+
+export const addToFavorites = mutation({
+    args: {
+        podcastId: v.id('podcasts'),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new ConvexError('User not authenticated');
+        }
+
+        const user = await ctx.db
+            .query('users')
+            .filter((q) => q.eq(q.field('email'), identity.email))
+            .collect();
+
+        if (user.length === 0) {
+            throw new ConvexError('User not found');
+        }
+
+        const userId = user[0]._id;
+
+        const favoriteExists = await ctx.db
+            .query('favorites')
+            .filter((q) => 
+                q.and(
+                    q.eq(q.field('userId'), userId),
+                    q.eq(q.field('podcastId'), args.podcastId)
+                )
+            )
+            .collect();
+
+        if (favoriteExists.length > 0) {
+            throw new ConvexError('Podcast already in favorites');
+        }
+
+        return await ctx.db.insert('favorites', {
+            userId: userId,
+            podcastId: args.podcastId,
+        });
+    },
+});
+
+export const getFavoritePodcasts = query({
+    handler: async (ctx) => {
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new ConvexError('User not authenticated');
+        }
+
+        const user = await ctx.db
+            .query('users')
+            .filter((q) => q.eq(q.field('email'), identity.email))
+            .first();
+
+        if (!user) {
+            throw new ConvexError('User not found');
+        }
+
+        const favorites = await ctx.db
+            .query('favorites')
+            .filter((q) => q.eq(q.field('userId'), user._id))
+            .collect();
+
+        const podcastIds = favorites.map(favorite => favorite.podcastId);
+        
+        // Ensure podcastIds is an array of strings
+        if (podcastIds.length === 0) {
+            return []; // Return empty array if no favorites found
+        }
+
+        // Return an array of podcasts
+        return await ctx.db.get(podcastIds as any);
+    },
+});

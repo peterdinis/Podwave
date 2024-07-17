@@ -32,6 +32,7 @@ export interface Podcast {
     _creationTime: number;
     podcastId: Id<'podcasts'>;
     _id: Id<'podcasts'>;
+    createdAt?: Date | string;
 }
 
 export type PodcastType = Partial<Podcast>;

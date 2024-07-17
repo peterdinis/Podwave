@@ -86,6 +86,9 @@ dependencies:
   next-themes:
     specifier: ^0.3.0
     version: 0.3.0(react-dom@18.3.1)(react@18.3.1)
+  openai:
+    specifier: ^4.52.7
+    version: 4.52.7
   pure-react-carousel:
     specifier: ^1.30.1
     version: 1.30.1(react-dom@18.3.1)(react@18.3.1)
@@ -726,7 +729,7 @@ packages:
       '@orama/orama': 2.0.21
       '@paralleldrive/cuid2': 2.2.2
       lodash: 4.17.21
-      openai: 4.52.0
+      openai: 4.52.7
       react: 18.3.1
       vue: 3.4.30(typescript@5.5.2)
     transitivePeerDependencies:
@@ -3798,8 +3801,8 @@ packages:
       wrappy: 1.0.2
     dev: true
 
-  /openai@4.52.0:
-    resolution: {integrity: sha512-xmiNcdA9QJ5wffHpZDpIsge6AsPTETJ6h5iqDNuFQ7qGSNtonHn8Qe0VHy4UwLE8rBWiSqh4j+iSvuYZSeKkPg==}
+  /openai@4.52.7:
+    resolution: {integrity: sha512-dgxA6UZHary6NXUHEDj5TWt8ogv0+ibH+b4pT5RrWMjiRZVylNwLcw/2ubDrX5n0oUmHX/ZgudMJeemxzOvz7A==}
     hasBin: true
     dependencies:
       '@types/node': 18.19.39
