@@ -34,7 +34,7 @@ const isPodcast = (item: any): item is Podcast => {
 
 const ProfilePodcasts: FC = () => {
     const { toast } = useToast();
-    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts) as Podcast[]; // Type assertion
+    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts) as Podcast[];
 
     const removePodcast = () => {
         toast({
