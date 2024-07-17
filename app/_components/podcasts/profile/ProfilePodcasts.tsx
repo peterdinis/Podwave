@@ -34,7 +34,7 @@ const isPodcast = (item: any): item is Podcast => {
 
 const ProfilePodcasts: FC = () => {
     const { toast } = useToast();
-    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts);
+    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts) as Podcast[]; // Type assertion
 
     const removePodcast = () => {
         toast({
@@ -66,7 +66,7 @@ const ProfilePodcasts: FC = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {favoritePodcasts && favoritePodcasts.filter(isPodcast).map((podcast: Podcast) => (
+                                        {favoritePodcasts.filter(isPodcast).map((podcast) => (
                                             <TableRow key={podcast._id}>
                                                 <TableCell className='hidden sm:table-cell'>
                                                     <Image
@@ -91,9 +91,7 @@ const ProfilePodcasts: FC = () => {
                                                 </TableCell>
                                                 <TableCell>
                                                     <DropdownMenu>
-                                                        <DropdownMenuTrigger
-                                                            asChild
-                                                        >
+                                                        <DropdownMenuTrigger asChild>
                                                             <Button
                                                                 aria-haspopup='true'
                                                                 size='icon'
@@ -108,14 +106,11 @@ const ProfilePodcasts: FC = () => {
                                                         <DropdownMenuContent align='end'>
                                                             <DropdownMenuItem>
                                                                 <Button
-                                                                    onClick={
-                                                                        removePodcast
-                                                                    }
+                                                                    onClick={removePodcast}
                                                                     className='bg-transparent text-red-600 hover:text-red-800'
-                                                                    variant={'link'}
+                                                                    variant='link'
                                                                 >
-                                                                    Remove from
-                                                                    favorites
+                                                                    Remove from favorites
                                                                 </Button>
                                                             </DropdownMenuItem>
                                                         </DropdownMenuContent>
@@ -136,5 +131,6 @@ const ProfilePodcasts: FC = () => {
         </ScrollArea>
     );
 };
+
 
 export default ProfilePodcasts;
