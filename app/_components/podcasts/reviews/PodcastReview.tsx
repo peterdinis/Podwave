@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, useState, FormEvent } from 'react';
+import { Star } from 'lucide-react';
 import {
     Dialog,
     DialogContent,
@@ -76,18 +77,18 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                         />
 
                         <div className="mt-6">
-                        <Label className='ml-2 mt-3 text-lg font-bold'>
-                            Hodnotenie
+                        <Label className='text-lg font-bold'>
+                            Stars
                         </Label>
                         <select
-                            className='ml-4 mt-2 p-2'
+                            className='mt-2 p-2 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1'
                             value={rating}
                             onChange={(e) =>
                                 setRating(parseInt(e.target.value))
                             }
                             required
                         >
-                            <option value={0}>-- Vyberte hodnotenie --</option>
+                            <option>How many stars<Star /></option>
                             <option value={1}>1</option>
                             <option value={2}>2</option>
                             <option value={3}>3</option>
