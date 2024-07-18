@@ -4,6 +4,7 @@ import StarRating from './StarRating';
 const ReviewsWrapper: FC = () => {
     return (
         <>
+            <h3 className='mt-5 prose prose-h3: text-lg font-bold dark:text-blue-100'>Reviews</h3>
             <div className='flex flex-col justify-between lg:flex-row'>
                 <div className='w-full lg:w-1/3'>
                     <div className='mb-6 flex'>

@@ -11,6 +11,7 @@ const StarRating = ({ totalStars = 5 }) => {
     <div className="flex">
       {Array.from({ length: totalStars }, (_, index) => (
         <Button
+          variant={"ghost"}
           key={index}
           type="button"
           onClick={() => setRating(index + 1)}
