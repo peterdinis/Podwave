@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import DefaultLayout from '../shared/layouts/DefaultLayout';
-import Header from '../shared/Header';
-import CategoriesLists from './categories/CategoriesLists';
+import DefaultLayout from '../../shared/layouts/DefaultLayout';
+import Header from '../../shared/Header';
+import CategoriesLists from './CategoriesLists';
 
 const PodcastCategoriesWrapper: FC = () => {
     return (
