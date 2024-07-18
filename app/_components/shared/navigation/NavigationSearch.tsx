@@ -39,6 +39,7 @@ const NavigationSearch: FC = () => {
             podcastQueryResult instanceof Error ||
             categoryQueryResult instanceof Error
         ) {
+            setError('An error occurred while fetching data.');
             setIsLoading(false);
         } else if (podcastQueryResult && categoryQueryResult && searchQuery) {
             setPodcasts(podcastQueryResult);
@@ -49,6 +50,7 @@ const NavigationSearch: FC = () => {
             setPodcasts([]);
             setCategories([]);
             setIsLoading(false);
+            setError(null);
         }
     }, [podcastQueryResult, categoryQueryResult, searchQuery]);
 
@@ -90,20 +92,20 @@ const NavigationSearch: FC = () => {
                             {isLoading && (
                                 <Loader2 className='h-5 w-5 animate-spin' />
                             )}
-                            {error && (
-                                <p className='prose-p: prose mt-3 font-bold text-red-600'>
-                                    Error: {error}
-                                </p>
-                            )}
                             {!isLoading &&
-                                !error &&
                                 podcasts.length === 0 &&
-                                categories.length === 0 && (
+                                categories.length === 0 &&
+                                searchQuery && (
                                     <p className='prose-p: prose mt-3 font-bold dark:text-blue-50'>
                                         <Ghost className='h-6 w-6 animate-bounce' />
                                         No podcasts or categories found.
                                     </p>
                                 )}
+                            {error && (
+                                <p className='prose-p: prose mt-3 font-bold text-red-600'>
+                                    Error: {error}
+                                </p>
+                            )}
                             {podcasts.length > 0 && (
                                 <div>
                                     <h2 className='text-lg font-bold'>
