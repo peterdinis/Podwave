@@ -34,7 +34,7 @@ const isPodcast = (item: any): item is Podcast => {
 
 const ProfilePodcasts: FC = () => {
     const { toast } = useToast();
-    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts) as Podcast[];
+    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts) || [];
 
     const removePodcast = () => {
         toast({
@@ -66,7 +66,7 @@ const ProfilePodcasts: FC = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {favoritePodcasts.filter(isPodcast).map((podcast) => (
+                                        {favoritePodcasts.filter(isPodcast).map((podcast: any) => (
                                             <TableRow key={podcast._id}>
                                                 <TableCell className='hidden sm:table-cell'>
                                                     <Image
@@ -131,6 +131,5 @@ const ProfilePodcasts: FC = () => {
         </ScrollArea>
     );
 };
-
 
 export default ProfilePodcasts;

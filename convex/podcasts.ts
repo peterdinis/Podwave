@@ -300,13 +300,23 @@ export const getFavoritePodcasts = query({
             .collect();
 
         const podcastIds = favorites.map(favorite => favorite.podcastId);
-        
-        // Ensure podcastIds is an array of strings
+
         if (podcastIds.length === 0) {
             return []; // Return empty array if no favorites found
         }
 
-        // Return an array of podcasts
-        return await ctx.db.get(podcastIds as any);
+        // Fetch all favorite podcasts
+        const favoritePodcasts = [];
+        for (const podcastId of podcastIds) {
+            const podcast = await ctx.db
+                .query('podcasts')
+                .filter((q) => q.eq(q.field('_id'), podcastId))
+                .first();
+            if (podcast) {
+                favoritePodcasts.push(podcast);
+            }
+        }
+
+        return favoritePodcasts;
     },
 });
