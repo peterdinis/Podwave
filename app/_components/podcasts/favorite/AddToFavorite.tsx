@@ -33,7 +33,7 @@ const AddToFavorite: FC<IAddToFavoriteProps> = ({ podcastId }: IAddToFavoritePro
   return (
     <>
       <Button onClick={addToFavorite} variant={"secondary"} className="ml-5">
-        Add to Favorite
+        Add to favorite
       </Button>
     </>
   );
