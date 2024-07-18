@@ -1,4 +1,3 @@
-import { ThumbsDown, ThumbsUp } from 'lucide-react';
 import { FC } from 'react';
 import StarRating from './StarRating';
 
@@ -20,16 +19,6 @@ const ReviewsWrapper: FC = () => {
                     <p className='mb-6 text-sm leading-normal opacity-75'>
                         rrrrrrrrrrrrrrr
                     </p>
-                    <div className='flex justify-end'>
-                        <button className='mr-6 inline-flex items-center justify-center rounded px-3 py-2 duration-300 hover:bg-gray-200 hover:text-blue-600 dark:hover:bg-slate-700'>
-                            <ThumbsUp className='mr-2 text-lg' />
-                            Like 65
-                        </button>
-                        <button className='inline-flex items-center justify-center rounded px-3 py-2 duration-300 hover:bg-gray-200 hover:text-blue-600 dark:hover:bg-slate-700'>
-                            <ThumbsDown className='mr-2 text-lg' />
-                            Dislike 4
-                        </button>
-                    </div>
                 </div>
             </div>
         </>

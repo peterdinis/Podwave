@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Star = ({ filled }: any) => {
+interface IStarProps {
+    filled: boolean;
+}
+
+const Star = ({ filled }: IStarProps) => {
   return (
     <svg
       className={`w-6 h-6 ${filled ? 'text-yellow-500' : 'text-gray-400'}`}

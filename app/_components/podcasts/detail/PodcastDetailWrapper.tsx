@@ -34,7 +34,9 @@ const PodcastDetailWrapper: FC = () => {
             <PodcastReview podcastId={id[0] as unknown as Id<'podcasts'>} />
             <AddToFavorite podcastId={id[0] as unknown as Id<'podcasts'>} />
 
+            <div className='mt-6'>
             <ReviewsWrapper />
+            </div>
         </DefaultLayout>
     );
 };

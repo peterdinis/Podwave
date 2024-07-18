@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Star from './Star';
+import { Button } from '@/components/ui/button';
 
 const StarRating = ({ totalStars = 5 }) => {
   const [rating, setRating] = useState(0);
@@ -9,7 +10,7 @@ const StarRating = ({ totalStars = 5 }) => {
   return (
     <div className="flex">
       {Array.from({ length: totalStars }, (_, index) => (
-        <button
+        <Button
           key={index}
           type="button"
           onClick={() => setRating(index + 1)}
@@ -17,7 +18,7 @@ const StarRating = ({ totalStars = 5 }) => {
           onMouseLeave={() => setRating(0)}
         >
           <Star filled={index < rating} />
-        </button>
+        </Button>
       ))}
     </div>
   );
