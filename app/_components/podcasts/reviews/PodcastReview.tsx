@@ -55,17 +55,17 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         <Dialog>
             <DialogTrigger>
                 <Button className='mt-5' variant={'default'}>
-                    Pridať recenziu k podcastu
+                   Add a reference to the podcast
                 </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>
-                        <Header text='Pridať recenziu' />
+                        <Header text='Add a reference to the podcast' />
                     </DialogTitle>
                     <form onSubmit={handleReviewSubmit} className='mt-4'>
                         <Label className='ml-2 text-lg font-bold'>
-                            Tvoj komentár
+                            Your comment
                         </Label>
                         <Textarea
                             className='mt-2'
@@ -75,6 +75,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                             required
                         />
 
+                        <div className="mt-6">
                         <Label className='ml-2 mt-3 text-lg font-bold'>
                             Hodnotenie
                         </Label>
@@ -93,13 +94,14 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                             <option value={4}>4</option>
                             <option value={5}>5</option>
                         </select>
+                        </div>
                         <br />
                         <Button
                             className='mt-4'
                             variant={'secondary'}
                             type='submit'
                         >
-                            Pridať recenziu
+                            Add a reference to the podcast
                         </Button>
                     </form>
                 </DialogHeader>
