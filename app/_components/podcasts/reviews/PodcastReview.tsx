@@ -30,6 +30,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         e.preventDefault();
 
         try {
+            /* TODO: Update this later */
             await createReview('string' as any, {
                 podcastId: podcastId as unknown as Id<'podcasts'>,
                 userId: user?.id as unknown as Id<'users'>,
