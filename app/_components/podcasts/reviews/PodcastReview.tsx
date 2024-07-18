@@ -57,13 +57,13 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         <Dialog>
             <DialogTrigger>
                 <Button className='mt-5' variant={'default'}>
-                   Add a reference to the podcast
+                   Add a review to the podcast
                 </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>
-                        <Header text='Add a reference to the podcast' />
+                        <Header text='Add a review to the podcast' />
                     </DialogTitle>
                     <form onSubmit={handleReviewSubmit} className='mt-4'>
                         <Label className='ml-2 text-lg font-bold'>
