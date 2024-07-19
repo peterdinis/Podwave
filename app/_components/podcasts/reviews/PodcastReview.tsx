@@ -73,7 +73,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                             className='mt-2'
                             value={reviewText}
                             onChange={(e) => setReviewText(e.target.value)}
-                            placeholder='Napíšte sem váš komentár...'
+                            placeholder='Write comment'
                             required
                         />
 
