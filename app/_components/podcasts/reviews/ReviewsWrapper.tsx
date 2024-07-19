@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import StarRating from './StarRating';
+import {format} from "date-fns";
 
 const ReviewsWrapper: FC = () => {
     return (
@@ -12,7 +13,7 @@ const ReviewsWrapper: FC = () => {
                             <h5 className='my-1 font-medium'>rrrr</h5>
                             <StarRating />
                             <p className='text-sm opacity-50'>Comment At</p>
-                            <p className='mb-0 font-bold'>222.555</p>
+                            <p className='mb-0 font-bold'>{format(new Date(), 'yyyy-MM-dd')}</p>
                         </div>
                     </div>
                 </div>
