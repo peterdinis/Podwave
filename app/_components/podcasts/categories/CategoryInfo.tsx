@@ -36,6 +36,7 @@ const CategoryInfo: FC = () => {
     return (
         <DefaultLayout>
             <Header text={data?.category?.categoryName as unknown as string} />
+            <div className='mt-8 font-bold text-xl prose prose-p: text-white'>{data?.category?.categoryDescription}</div>
             <hr className='mt-4' />
             <div className='mt-5 text-xl font-bold'>
                 Podcasts from this category
