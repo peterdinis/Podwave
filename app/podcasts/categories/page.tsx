@@ -1,4 +1,4 @@
-import PodcastCategoriesWrapper from '@/app/_components/podcasts/PodcastCategoriesWrapper';
+import PodcastCategoriesWrapper from '@/app/_components/podcasts/categories/PodcastCategoriesWrapper';
 import { NextPage } from 'next';
 
 const PodcastsCategoriesPage: NextPage = () => {
