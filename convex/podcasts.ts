@@ -85,6 +85,19 @@ export const getPodcastByVoiceType = query({
 });
 
 export const getAllPodcasts = query({
+    handler: async(ctx, args) =>{
+        const allPodcasts = await ctx.db
+            .query('podcasts')
+            .order('desc')
+            .collect();
+
+        return {
+            podcast: allPodcasts
+        }
+    }
+})
+
+export const getAllPaginatedPodcasts = query({
     args: {
         cursor: v.optional(v.string()), // Optional cursor parameter
         limit: v.number(), // Number of items to fetch per page
