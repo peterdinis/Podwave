@@ -11,7 +11,6 @@ import PodcastReview from '../reviews/PodcastReview';
 import Header from '../../shared/Header';
 import AddToFavorite from '../favorite/AddToFavorite';
 import { Separator } from '@/components/ui/separator';
-import { Card, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import ReviewsWrapper from '../reviews/ReviewsWrapper';
 
