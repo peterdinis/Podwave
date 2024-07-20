@@ -13,6 +13,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useUser } from '@clerk/nextjs';
+import Link from 'next/link';
 
 const MyCreatedPodcastsWrapper: FC = () => {
     const { user } = useUser();
@@ -43,13 +44,13 @@ const MyCreatedPodcastsWrapper: FC = () => {
                                         {podcast.podcastDescription}
                                     </TableCell>
                                     <TableCell>
-                                        <a
-                                            href={podcast.audioUrl}
+                                        <Link
+                                            href={podcast.audioUrl as unknown as URL}
                                             target='_blank'
                                             rel='noopener noreferrer'
                                         >
                                             Listen
-                                        </a>
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
