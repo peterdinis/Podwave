@@ -53,16 +53,7 @@ const PodcastDetailWrapper: FC = () => {
                                 </div>
                             </div>
                             <p className='prose-p: prose text-muted-foreground dark:text-white'>
-                                {data.podcastDescription}
-                            </p>
-                            <p className='text-sm text-muted-foreground'>
-                                <strong>Voice Prompt:</strong> {data.voicePrompt}
-                            </p>
-                            <p className='text-sm text-muted-foreground'>
-                                <strong>Voice Type:</strong> {data.voiceType}
-                            </p>
-                            <p className='text-sm text-muted-foreground'>
-                                <strong>Audio Duration:</strong> {data.audioDuration} seconds
+                                Description: {data.podcastDescription}
                             </p>
                             <p className='text-sm text-muted-foreground'>
                                 <strong>Views:</strong> {data.views}
@@ -73,14 +64,8 @@ const PodcastDetailWrapper: FC = () => {
                     <ReviewsWrapper avatar={data.authorImageUrl} />
                 </div>
                 <div className='mt-8 space-y-6'>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Play now</CardTitle>
-                        </CardHeader>
-                        <CardFooter>
-                        <video controls src={data.audioUrl} className='mt-4' /> 
-                        </CardFooter>
-                    </Card>
+                    <h2 className='font-bold text-xl prose prose-h2: dark:text-blue-50'>Play now</h2> 
+                    <video controls src={data.audioUrl} /> 
                 </div>
             </section>
         </DefaultLayout>
