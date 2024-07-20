@@ -14,6 +14,7 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const MyCreatedPodcastsWrapper: FC = () => {
     const { user } = useUser();
@@ -49,7 +50,9 @@ const MyCreatedPodcastsWrapper: FC = () => {
                                             target='_blank'
                                             rel='noopener noreferrer'
                                         >
+                                            <Button variant={"link"}>
                                             Listen
+                                            </Button>
                                         </Link>
                                     </TableCell>
                                 </TableRow>
