@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/accordion';
 import { format } from 'date-fns';
 import ProfilePodcasts from '../podcasts/profile/ProfilePodcasts';
+import MyCreatedPodcastsWrapper from '../podcasts/profile/MyCreatedPodcastsWrapper';
 
 const ProfileWrapper: FC = () => {
     const { user } = useUser();
@@ -53,6 +54,12 @@ const ProfileWrapper: FC = () => {
                     <AccordionTrigger>Favorite podcasts</AccordionTrigger>
                     <AccordionContent>
                         <ProfilePodcasts />
+                    </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value='item-3'>
+                    <AccordionTrigger>My created podcasts</AccordionTrigger>
+                    <AccordionContent>
+                        <MyCreatedPodcastsWrapper />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>

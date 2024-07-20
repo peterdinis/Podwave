@@ -14,7 +14,7 @@ const PodcastsLists: FC = () => {
     const [prevCursors, setPrevCursors] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const data = useQuery(api.podcasts.getAllPodcasts, { cursor, limit });
+    const data = useQuery(api.podcasts.getAllPaginatedPodcasts, { cursor, limit });
 
     const handleNextPage = () => {
         if (data?.nextCursor) {
