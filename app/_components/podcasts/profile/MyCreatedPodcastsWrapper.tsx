@@ -1,3 +1,5 @@
+'use client';
+
 import { FC } from 'react';
 import {
     Table,
@@ -7,85 +9,54 @@ import {
     TableBody,
     TableCell,
 } from '@/components/ui/table';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+import { useUser } from '@clerk/nextjs';
 
 const MyCreatedPodcastsWrapper: FC = () => {
+    const { user } = useUser();
+    const data = useQuery(api.podcasts.getAllPodcasts, {});
+
+    const podcasts =
+        data?.podcast.filter((podcast) => podcast.authorId === user?.id) || [];
+
     return (
-        <div className='w-full max-w-4xl rounded-lg border'>
-            <div className='relative max-h-[400px] w-full overflow-auto'>
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Podcast</TableHead>
-                            <TableHead>Host</TableHead>
-                            <TableHead className='text-right'>
-                                Episodes
-                            </TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                The Joe Rogan Experience
-                            </TableCell>
-                            <TableCell>Joe Rogan</TableCell>
-                            <TableCell className='text-right'>1,800+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                The Daily
-                            </TableCell>
-                            <TableCell>Michael Barbaro</TableCell>
-                            <TableCell className='text-right'>2,000+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                My Favorite Murder
-                            </TableCell>
-                            <TableCell>
-                                Karen Kilgariff, Georgia Hardstark
-                            </TableCell>
-                            <TableCell className='text-right'>300+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                The Tim Ferriss Show
-                            </TableCell>
-                            <TableCell>Tim Ferriss</TableCell>
-                            <TableCell className='text-right'>600+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                Armchair Expert
-                            </TableCell>
-                            <TableCell>Dax Shepard</TableCell>
-                            <TableCell className='text-right'>400+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                The Ezra Klein Show
-                            </TableCell>
-                            <TableCell>Ezra Klein</TableCell>
-                            <TableCell className='text-right'>500+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                Stuff You Should Know
-                            </TableCell>
-                            <TableCell>Josh Clark, Chuck Bryant</TableCell>
-                            <TableCell className='text-right'>1,500+</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell className='font-medium'>
-                                The Breakfast Club
-                            </TableCell>
-                            <TableCell>
-                                Charlamagne Tha God, DJ Envy, Angela Yee
-                            </TableCell>
-                            <TableCell className='text-right'>2,000+</TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </div>
+        <div className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
+            <ScrollArea>
+                <div className='relative max-h-[400px] w-full overflow-auto'>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Podcast</TableHead>
+                                <TableHead>Title</TableHead>
+                                <TableHead>Audio URL</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {podcasts.map((podcast) => (
+                                <TableRow key={podcast._id}>
+                                    <TableCell>
+                                        {podcast.podcastTitle}
+                                    </TableCell>
+                                    <TableCell>
+                                        {podcast.podcastDescription}
+                                    </TableCell>
+                                    <TableCell>
+                                        <a
+                                            href={podcast.audioUrl}
+                                            target='_blank'
+                                            rel='noopener noreferrer'
+                                        >
+                                            Listen
+                                        </a>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+            </ScrollArea>
         </div>
     );
 };
