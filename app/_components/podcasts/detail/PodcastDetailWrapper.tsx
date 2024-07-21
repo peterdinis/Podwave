@@ -60,7 +60,7 @@ const PodcastDetailWrapper: FC = () => {
                         </div>
                         <Separator />
                     </div>
-                    <ReviewsWrapper avatar={data.authorImageUrl} />
+                    <ReviewsWrapper  />
                 </div>
                 <div className='mt-8 space-y-6'>
                     <h2 className='font-bold text-xl prose prose-h2: dark:text-blue-50'>Play now</h2> 
