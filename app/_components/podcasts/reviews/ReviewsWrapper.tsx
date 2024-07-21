@@ -7,12 +7,17 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { useQuery } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
 interface IReviewsWrapperProps {
     avatar: string;
 }
 
 const ReviewsWrapper: FC<IReviewsWrapperProps> = ({avatar}: IReviewsWrapperProps) => {
+    const data = useQuery(api.reviews.getAllReviews);
+
+    console.log("D", data);
     return (
         <>
             <Accordion type='single' collapsible>
