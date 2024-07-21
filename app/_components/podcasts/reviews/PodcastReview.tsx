@@ -12,13 +12,14 @@ import {
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { createReview } from '@/convex/reviews';
 import { useToast } from '@/components/ui/use-toast';
 import { useUser } from '@clerk/nextjs';
 import { format } from 'date-fns';
 import { Id } from '@/convex/_generated/dataModel';
 import Header from '../../shared/Header';
 import { PodcastReviewProps } from '@/app/_types/podcastTypes';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
 
 const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     const [reviewText, setReviewText] = useState<string>('');
@@ -26,16 +27,26 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     const { toast } = useToast();
     const { user } = useUser();
 
+    const addReview = useMutation(api.reviews.createReview);
+
     const handleReviewSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
+        if (!user) {
+            toast({
+                title: 'You must be logged in to submit a review',
+                className: 'bg-red-600 text-white font-bold',
+                duration: 2000,
+            });
+            return;
+        }
+
         try {
-            /* TODO: Update this later */
-            await createReview('string' as any, {
-                podcastId: podcastId as unknown as Id<'podcasts'>,
-                userId: user?.id as unknown as Id<'users'>,
-                reviewText: reviewText,
-                rating: rating,
+            await addReview({
+                podcastId: podcastId as Id<'podcasts'>,
+                userId: user.id as Id<'users'>,
+                reviewText,
+                rating,
                 reviewDate: format(new Date(), 'yyyy-MM-dd'),
             });
             toast({
@@ -43,10 +54,11 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                 className: 'bg-green-600 text-white font-bold',
                 duration: 2000,
             });
-        } catch (error: any) {
-            console.log('Errror', error);
+            setReviewText('');
+            setRating(0);
+        } catch (error) {
             toast({
-                title: 'Failed to created review',
+                title: 'Failed to create review',
                 className: 'bg-red-600 text-white font-bold',
                 duration: 2000,
             });
@@ -57,7 +69,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         <Dialog>
             <DialogTrigger>
                 <Button className='mt-5' variant={'default'}>
-                   Add a review to the podcast
+                    Add a review to the podcast
                 </Button>
             </DialogTrigger>
             <DialogContent>
@@ -77,33 +89,61 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                             required
                         />
 
-                        <div className="mt-6">
-                        <Label className='text-lg font-bold'>
-                            Stars
-                        </Label>
-                        <select
-                            className='mt-2 p-2 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1'
-                            value={rating}
-                            onChange={(e) =>
-                                setRating(parseInt(e.target.value))
-                            }
-                            required
-                        >
-                            <option>How many stars<Star /></option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
+                        <div className='mt-6'>
+                            <Label className='text-lg font-bold'>Stars</Label>
+                            <select
+                                className='mt-2 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background p-2 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+                                value={rating}
+                                onChange={(e) =>
+                                    setRating(parseInt(e.target.value))
+                                }
+                                required
+                            >
+                                <option
+                                    className='prose-p: prose text-lg'
+                                    value={0}
+                                    disabled
+                                >
+                                    How many stars <Star />
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg'
+                                    value={1}
+                                >
+                                    1
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg'
+                                    value={2}
+                                >
+                                    2
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg'
+                                    value={3}
+                                >
+                                    3
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg'
+                                    value={4}
+                                >
+                                    4
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg'
+                                    value={5}
+                                >
+                                    5
+                                </option>
+                            </select>
                         </div>
-                        <br />
                         <Button
                             className='mt-4'
                             variant={'secondary'}
                             type='submit'
                         >
-                            Add a reference to the podcast
+                            Add a review to the podcast
                         </Button>
                     </form>
                 </DialogHeader>
