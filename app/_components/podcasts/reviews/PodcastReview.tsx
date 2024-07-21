@@ -42,14 +42,13 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         }
 
         try {
-
             addReview({
                 podcastId: podcastId as Id<'podcasts'>,
                 userId: user.id as Id<'users'>,
                 reviewText,
                 rating,
                 reviewDate: format(new Date(), 'yyyy-MM-dd'),
-            })
+            });
             toast({
                 title: 'New review was created',
                 className: 'bg-green-600 text-white font-bold',
@@ -70,7 +69,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         <Dialog>
             <DialogTrigger>
                 <Button className='mt-5' variant={'default'}>
-                   Add a review to the podcast
+                    Add a review to the podcast
                 </Button>
             </DialogTrigger>
             <DialogContent>
@@ -90,27 +89,54 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                             required
                         />
 
-                        <div className="mt-6">
-                        <Label className='text-lg font-bold'>
-                            Stars
-                        </Label>
-                        <select
-                            className='mt-2 p-2 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                            value={rating}
-                            onChange={(e) =>
-                                setRating(parseInt(e.target.value))
-                            }
-                            required
-                        >
-                            <option value={0} disabled>
-                                How many stars <Star />
-                            </option>
-                            <option value={1}>1</option>
-                            <option value={2}>2</option>
-                            <option value={3}>3</option>
-                            <option value={4}>4</option>
-                            <option value={5}>5</option>
-                        </select>
+                        <div className='mt-6'>
+                            <Label className='text-lg font-bold'>Stars</Label>
+                            <select
+                                className='mt-2 flex h-10 w-full items-center justify-between rounded-md border border-input bg-background p-2 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+                                value={rating}
+                                onChange={(e) =>
+                                    setRating(parseInt(e.target.value))
+                                }
+                                required
+                            >
+                                <option
+                                    className='prose-p: prose text-lg dark:text-white'
+                                    value={0}
+                                    disabled
+                                >
+                                    How many stars <Star />
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg dark:text-white'
+                                    value={1}
+                                >
+                                    1
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg dark:text-white'
+                                    value={2}
+                                >
+                                    2
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg dark:text-white'
+                                    value={3}
+                                >
+                                    3
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg dark:text-white'
+                                    value={4}
+                                >
+                                    4
+                                </option>
+                                <option
+                                    className='prose-p: prose text-lg dark:text-white'
+                                    value={5}
+                                >
+                                    5
+                                </option>
+                            </select>
                         </div>
                         <Button
                             className='mt-4'
