@@ -42,7 +42,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
         }
 
         try {
-            addReview({
+            await addReview({
                 podcastId: podcastId as Id<'podcasts'>,
                 userId: user.id as Id<'users'>,
                 reviewText,
@@ -100,38 +100,38 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
                                 required
                             >
                                 <option
-                                    className='prose-p: prose text-lg dark:text-white'
+                                    className='prose-p: prose text-lg'
                                     value={0}
                                     disabled
                                 >
                                     How many stars <Star />
                                 </option>
                                 <option
-                                    className='prose-p: prose text-lg dark:text-white'
+                                    className='prose-p: prose text-lg'
                                     value={1}
                                 >
                                     1
                                 </option>
                                 <option
-                                    className='prose-p: prose text-lg dark:text-white'
+                                    className='prose-p: prose text-lg'
                                     value={2}
                                 >
                                     2
                                 </option>
                                 <option
-                                    className='prose-p: prose text-lg dark:text-white'
+                                    className='prose-p: prose text-lg'
                                     value={3}
                                 >
                                     3
                                 </option>
                                 <option
-                                    className='prose-p: prose text-lg dark:text-white'
+                                    className='prose-p: prose text-lg'
                                     value={4}
                                 >
                                     4
                                 </option>
                                 <option
-                                    className='prose-p: prose text-lg dark:text-white'
+                                    className='prose-p: prose text-lg'
                                     value={5}
                                 >
                                     5
