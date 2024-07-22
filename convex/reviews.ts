@@ -1,10 +1,19 @@
 import { ConvexError, v } from 'convex/values';
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
+
+export const getAllReviews = query({
+    handler: async (ctx) => {
+        const allReviews = await ctx.db.query("reviews").order('desc').collect();
+        return {
+            reviews: allReviews
+        }
+    }
+})
 
 export const createReview = mutation({
     args: {
         podcastId: v.id('podcasts'),
-        userId: v.id('users'),
+        userId: v.string(),
         reviewText: v.string(),
         rating: v.number(),
         reviewDate: v.string(),
@@ -13,22 +22,26 @@ export const createReview = mutation({
         const identity = await ctx.auth.getUserIdentity();
 
         if (!identity) {
-            throw new ConvexError('Používateľ nie je prihlásený');
+            throw new ConvexError('User is not logged');
         }
 
-        const user = await ctx.db.get(args.userId);
-        if (!user) {
-            throw new ConvexError('Používateľ neexistuje');
+        const user = await ctx.db
+            .query('users')
+            .filter((q) => q.eq(q.field('email'), identity.email))
+            .collect();
+
+        if (user.length === 0) {
+            throw new ConvexError('User not found');
         }
 
         const podcast = await ctx.db.get(args.podcastId);
         if (!podcast) {
-            throw new ConvexError('Podcast neexistuje');
+            throw new ConvexError('Podcast does not exists');
         }
 
         return await ctx.db.insert('reviews', {
             podcastId: args.podcastId,
-            userId: args.userId,
+            userId: user[0]._id,
             reviewText: args.reviewText,
             rating: args.rating,
             reviewDate: args.reviewDate,

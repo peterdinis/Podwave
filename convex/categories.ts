@@ -1,7 +1,6 @@
 import { ConvexError, v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 
-// Create a new category
 export const createCategory = mutation({
     args: {
         categoryName: v.string(),
@@ -21,14 +20,12 @@ export const createCategory = mutation({
     },
 });
 
-// Get all categories
 export const getAllCategories = query({
     handler: async (ctx) => {
         return await ctx.db.query('categories').collect();
     },
 });
 
-// Get a category by ID
 export const getCategoryById = query({
     args: {
         categoryId: v.id('categories'),
@@ -49,7 +46,6 @@ export const getCategoryById = query({
     },
 });
 
-// Update a category
 export const updateCategory = mutation({
     args: {
         categoryId: v.id('categories'),
@@ -71,7 +67,6 @@ export const updateCategory = mutation({
     },
 });
 
-// Delete a category
 export const deleteCategory = mutation({
     args: {
         categoryId: v.id('categories'),
@@ -82,8 +77,7 @@ export const deleteCategory = mutation({
         if (!category) {
             throw new ConvexError('Category not found');
         }
-
-        // Optionally, you might want to check if there are any podcasts using this category
+        
         const associatedPodcasts = await ctx.db
             .query('podcasts')
             .filter((q) => q.eq(q.field('categoryId'), args.categoryId))
