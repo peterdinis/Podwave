@@ -18,7 +18,7 @@ export default defineSchema({
         voiceType: v.string(),
         audioDuration: v.number(),
         views: v.number(),
-        categoryId: v.id('categories'), // Reference to categories table
+        categoryId: v.id('categories'),
     })
         .searchIndex('search_author', { searchField: 'author' })
         .searchIndex('search_title', { searchField: 'podcastTitle' })
@@ -38,8 +38,8 @@ export default defineSchema({
     .searchIndex('search_category_description', { searchField: 'categoryDescription' }),
 
     reviews: defineTable({
-        podcastId: v.id('podcasts'), // Reference to podcasts table
-        userId: v.id('users'), // Reference to users table
+        podcastId: v.id('podcasts'),
+        userId: v.id('users'),
         reviewText: v.string(),
         rating: v.number(),
         reviewDate: v.string(),

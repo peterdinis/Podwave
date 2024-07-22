@@ -304,13 +304,11 @@ export const getFavoritePodcasts = query({
             .collect();
 
         const podcastIds = favorites.map(favorite => favorite.podcastId);
-        
-        // Ensure podcastIds is an array of strings
-        if (podcastIds.length === 0) {
-            return []; // Return empty array if no favorites found
-        }
 
-        // Return an array of podcasts
+        if (podcastIds.length === 0) {
+            return [];
+        }
+        
         return await ctx.db.get(podcastIds as any);
     },
 });
