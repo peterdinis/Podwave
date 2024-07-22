@@ -13,7 +13,7 @@ export const getAllReviews = query({
 export const createReview = mutation({
     args: {
         podcastId: v.id('podcasts'),
-        userId: v.id('users'),
+        userId: v.string(),
         reviewText: v.string(),
         rating: v.number(),
         reviewDate: v.string(),
