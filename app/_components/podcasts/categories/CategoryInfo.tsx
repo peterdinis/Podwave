@@ -24,6 +24,7 @@ import { format } from 'date-fns';
 import ProfilePodcastsPagination from '../profile/ProfilePodcastsPagination';
 import { PodcastType } from '@/app/_types/podcastTypes';
 import { Ghost } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const CategoryInfo: FC = () => {
     const { id } = useParams();
@@ -39,10 +40,10 @@ const CategoryInfo: FC = () => {
             <div className='prose-p: prose mt-8 text-xl font-bold text-white'>
                 {data?.category?.categoryDescription}
             </div>
-            <hr className='mt-4' />
-            <div className='mt-5 text-xl font-bold'>
+            <Separator />
+            <h2 className='prose-h2: prose mt-5 text-xl font-bold dark:text-white'>
                 Podcasts from this category
-            </div>
+            </h2>
             <div className='mt-3'>
                 <ScrollArea>
                     <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
