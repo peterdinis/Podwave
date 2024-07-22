@@ -26,7 +26,6 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     const [rating, setRating] = useState<number>(0);
     const { toast } = useToast();
     const { user } = useUser();
-
     const addReview = useMutation(api.reviews.createReview);
 
     const handleReviewSubmit = async (e: FormEvent) => {
