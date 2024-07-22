@@ -1,7 +1,6 @@
 import { ConvexError, v } from 'convex/values';
 import { mutation, query } from './_generated/server';
 
-// create podcast mutation
 export const createPodcast = mutation({
     args: {
         audioStorageId: v.id('_storage'),
@@ -54,7 +53,6 @@ export const createPodcast = mutation({
     },
 });
 
-// Mutation to generate URL after uploading file to the storage.
 export const getUrl = mutation({
     args: {
         storageId: v.id('_storage'),
@@ -64,7 +62,6 @@ export const getUrl = mutation({
     },
 });
 
-// Query to get podcasts based on voice type for Similar Podcasts section.
 export const getPodcastByVoiceType = query({
     args: {
         podcastId: v.id('podcasts'),
@@ -99,8 +96,8 @@ export const getAllPodcasts = query({
 
 export const getAllPaginatedPodcasts = query({
     args: {
-        cursor: v.optional(v.string()), // Optional cursor parameter
-        limit: v.number(), // Number of items to fetch per page
+        cursor: v.optional(v.string()),
+        limit: v.number(),
     },
     handler: async (ctx, args) => {
         const allPodcasts = await ctx.db
@@ -119,7 +116,7 @@ export const getAllPaginatedPodcasts = query({
             startIndex + args.limit,
         );
         const lastItem = paginatedPodcasts[paginatedPodcasts.length - 1];
-        const nextCursor = lastItem ? lastItem._id.toString() : null; // Set the cursor for the next page
+        const nextCursor = lastItem ? lastItem._id.toString() : null;
 
         return {
             podcasts: paginatedPodcasts,
@@ -128,7 +125,6 @@ export const getAllPaginatedPodcasts = query({
     },
 });
 
-// Query to get a podcast by its ID.
 export const getPodcastById = query({
     args: {
         podcastId: v.id('podcasts'),
@@ -138,7 +134,6 @@ export const getPodcastById = query({
     },
 });
 
-// Query to get trending podcasts based on views.
 export const getTrendingPodcasts = query({
     handler: async (ctx) => {
         const podcast = await ctx.db.query('podcasts').collect();
@@ -147,7 +142,6 @@ export const getTrendingPodcasts = query({
     },
 });
 
-// Query to get podcasts by author ID.
 export const getPodcastByAuthorId = query({
     args: {
         authorId: v.string(),
@@ -167,7 +161,6 @@ export const getPodcastByAuthorId = query({
     },
 });
 
-// Query to get podcasts by search query.
 export const getPodcastBySearch = query({
     args: {
         search: v.string(),
@@ -208,7 +201,6 @@ export const getPodcastBySearch = query({
     },
 });
 
-// Mutation to update the views of a podcast.
 export const updatePodcastViews = mutation({
     args: {
         podcastId: v.id('podcasts'),
@@ -226,7 +218,6 @@ export const updatePodcastViews = mutation({
     },
 });
 
-// Mutation to delete a podcast.
 export const deletePodcast = mutation({
     args: {
         podcastId: v.id('podcasts'),
@@ -280,7 +271,7 @@ export const addToFavorites = mutation({
             .collect();
 
         if (favoriteExists.length > 0) {
-            throw new ConvexError('Podcast already in favorites');
+            throw new ConvexError('Podcast is already in favorites');
         }
 
         return await ctx.db.insert('favorites', {
@@ -313,13 +304,11 @@ export const getFavoritePodcasts = query({
             .collect();
 
         const podcastIds = favorites.map(favorite => favorite.podcastId);
-        
-        // Ensure podcastIds is an array of strings
-        if (podcastIds.length === 0) {
-            return []; // Return empty array if no favorites found
-        }
 
-        // Return an array of podcasts
+        if (podcastIds.length === 0) {
+            return [];
+        }
+        
         return await ctx.db.get(podcastIds as any);
     },
 });
