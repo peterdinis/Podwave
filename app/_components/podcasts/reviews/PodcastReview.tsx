@@ -24,6 +24,7 @@ import { api } from '@/convex/_generated/api';
 const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     const [reviewText, setReviewText] = useState<string>('');
     const [rating, setRating] = useState<number>(0);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
     const { toast } = useToast();
     const { user } = useUser();
     const addReview = useMutation(api.reviews.createReview);
@@ -55,6 +56,7 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
             });
             setReviewText('');
             setRating(0);
+            setIsOpen(false);
         } catch (error) {
             toast({
                 title: 'Failed to create review',
@@ -65,9 +67,9 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     };
 
     return (
-        <Dialog>
-            <DialogTrigger>
-                <Button className='mt-5' variant={'default'}>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <DialogTrigger asChild>
+                <Button className='mt-5' variant={'default'} onClick={() => setIsOpen(true)}>
                     Add a review to the podcast
                 </Button>
             </DialogTrigger>
