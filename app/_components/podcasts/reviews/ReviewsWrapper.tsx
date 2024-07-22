@@ -1,7 +1,7 @@
 "use client"
 
-import { FC } from 'react';
-import { Star } from 'lucide-react';
+import { FC, Key } from 'react';
+import { Loader2, Star } from 'lucide-react';
 import {
     AccordionItem,
     Accordion,
@@ -11,7 +11,9 @@ import {
 import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { format } from 'date-fns';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useUser } from '@clerk/nextjs';
+import { ReviewType } from '@/app/_types/reviewTypes';
 
 const ReviewsWrapper: FC = () => {
     const data = useQuery(api.reviews.getAllReviews);
@@ -35,30 +37,32 @@ const ReviewsWrapper: FC = () => {
     );
 };
 
-const ReviewItem: FC<{ review: any }> = ({ review }) => {
-    const userQuery = useQuery(api.users.getUserById, { clerkId: review.userId });
+const ReviewItem: FC<{ review: ReviewType }> = ({ review }) => {
+    const user = useUser();
+    const userQuery = useQuery(api.users.getUserById, { clerkId: user.user!.id });
 
     if (!userQuery) {
-        return <div>Loading...</div>;
+        return <Loader2 className='animate-spin w-8 h-8' />;
     }
 
-    const user = userQuery;
+    const appUser = userQuery;
 
     return (
         <div className='flex flex-col gap-4'>
             <div className='flex items-center gap-4'>
                 <Avatar>
-                    <AvatarImage src={user.imageUrl || 'https://placehold.co/400x400'}/>
+                    <AvatarImage src={appUser.imageUrl} />
+                    <AvatarFallback>{user.user!.fullName}</AvatarFallback>
                 </Avatar>
                 <div>
                     <h4 className='font-medium'>
-                        {user.name || 'Anonymous'}
+                        {appUser.name}
                     </h4>
                     <div className='flex items-center gap-1 text-sm text-muted-foreground'>
-                        {[...Array(5)].map((_, index) => (
+                        {[...Array(5)].map((_: unknown, index: Key | null | undefined) => (
                             <Star
                                 key={index}
-                                className={`h-4 w-4 ${index < review.rating ? 'fill-primary' : 'fill-muted stroke-muted-foreground'}`}
+                                className={`h-4 w-4 ${index! < review.rating ? 'fill-primary' : 'fill-muted stroke-muted-foreground'}`}
                             />
                         ))}
                     </div>
