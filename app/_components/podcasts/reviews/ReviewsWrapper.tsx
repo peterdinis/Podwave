@@ -1,7 +1,7 @@
 "use client"
 
 import { FC } from 'react';
-import { Star } from 'lucide-react';
+import { Loader2, Star } from 'lucide-react';
 import {
     AccordionItem,
     Accordion,
@@ -41,7 +41,7 @@ const ReviewItem: FC<{ review: any }> = ({ review }) => {
     const userQuery = useQuery(api.users.getUserById, { clerkId: user.user!.id });
 
     if (!userQuery) {
-        return <div>Loading...</div>;
+        return <Loader2 className='animate-spin w-8 h-8' />;
     }
 
     const appUser = userQuery;
