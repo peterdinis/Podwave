@@ -137,7 +137,7 @@ const CreatePodcastForm: FC = () => {
                                     <FormControl>
                                         <Input
                                             className='input-class focus-visible:ring-offset-primary'
-                                            placeholder='JSM Pro Podcast'
+                                            placeholder='Podcast Title'
                                             {...field}
                                         />
                                     </FormControl>
@@ -277,7 +277,7 @@ const CreatePodcastForm: FC = () => {
                                         />
                                     </>
                                 ) : (
-                                    'Submit & Publish Podcast'
+                                    'Submit and Publish podcast'
                                 )}
                             </Button>
                         </div>
