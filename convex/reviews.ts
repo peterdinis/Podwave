@@ -22,7 +22,7 @@ export const createReview = mutation({
         const identity = await ctx.auth.getUserIdentity();
 
         if (!identity) {
-            throw new ConvexError('Používateľ nie je prihlásený');
+            throw new ConvexError('User is not logged');
         }
 
         const user = await ctx.db
@@ -36,7 +36,7 @@ export const createReview = mutation({
 
         const podcast = await ctx.db.get(args.podcastId);
         if (!podcast) {
-            throw new ConvexError('Podcast neexistuje');
+            throw new ConvexError('Podcast does not exists');
         }
 
         return await ctx.db.insert('reviews', {
