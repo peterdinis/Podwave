@@ -12,6 +12,7 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { format } from 'date-fns';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { useUser } from '@clerk/nextjs';
 
 const ReviewsWrapper: FC = () => {
     const data = useQuery(api.reviews.getAllReviews);
@@ -36,23 +37,24 @@ const ReviewsWrapper: FC = () => {
 };
 
 const ReviewItem: FC<{ review: any }> = ({ review }) => {
-    const userQuery = useQuery(api.users.getUserById, { clerkId: review.userId });
+    const user = useUser();
+    const userQuery = useQuery(api.users.getUserById, { clerkId: user.user!.id });
 
     if (!userQuery) {
         return <div>Loading...</div>;
     }
 
-    const user = userQuery;
+    const appUser = userQuery;
 
     return (
         <div className='flex flex-col gap-4'>
             <div className='flex items-center gap-4'>
                 <Avatar>
-                    <AvatarImage src={user.imageUrl || 'https://placehold.co/400x400'}/>
+                    <AvatarImage src={appUser.imageUrl || 'https://placehold.co/400x400'}/>
                 </Avatar>
                 <div>
                     <h4 className='font-medium'>
-                        {user.name || 'Anonymous'}
+                        {appUser.name || 'Anonymous'}
                     </h4>
                     <div className='flex items-center gap-1 text-sm text-muted-foreground'>
                         {[...Array(5)].map((_, index) => (
