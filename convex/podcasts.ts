@@ -82,17 +82,17 @@ export const getPodcastByVoiceType = query({
 });
 
 export const getAllPodcasts = query({
-    handler: async(ctx, args) =>{
+    handler: async (ctx, args) => {
         const allPodcasts = await ctx.db
             .query('podcasts')
             .order('desc')
             .collect();
 
         return {
-            podcast: allPodcasts
-        }
-    }
-})
+            podcast: allPodcasts,
+        };
+    },
+});
 
 export const getAllPaginatedPodcasts = query({
     args: {
@@ -237,7 +237,6 @@ export const deletePodcast = mutation({
     },
 });
 
-
 export const addToFavorites = mutation({
     args: {
         podcastId: v.id('podcasts'),
@@ -262,11 +261,11 @@ export const addToFavorites = mutation({
 
         const favoriteExists = await ctx.db
             .query('favorites')
-            .filter((q) => 
+            .filter((q) =>
                 q.and(
                     q.eq(q.field('userId'), userId),
-                    q.eq(q.field('podcastId'), args.podcastId)
-                )
+                    q.eq(q.field('podcastId'), args.podcastId),
+                ),
             )
             .collect();
 
@@ -303,12 +302,12 @@ export const getFavoritePodcasts = query({
             .filter((q) => q.eq(q.field('userId'), user._id))
             .collect();
 
-        const podcastIds = favorites.map(favorite => favorite.podcastId);
+        const podcastIds = favorites.map((favorite) => favorite.podcastId);
 
         if (podcastIds.length === 0) {
             return [];
         }
-        
+
         return await ctx.db.get(podcastIds as any);
     },
 });

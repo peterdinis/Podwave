@@ -3,12 +3,15 @@ import { mutation, query } from './_generated/server';
 
 export const getAllReviews = query({
     handler: async (ctx) => {
-        const allReviews = await ctx.db.query("reviews").order('desc').collect();
+        const allReviews = await ctx.db
+            .query('reviews')
+            .order('desc')
+            .collect();
         return {
-            reviews: allReviews
-        }
-    }
-})
+            reviews: allReviews,
+        };
+    },
+});
 
 export const createReview = mutation({
     args: {

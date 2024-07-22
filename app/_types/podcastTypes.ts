@@ -37,7 +37,6 @@ export interface Podcast {
 
 export type PodcastType = Partial<Podcast>;
 
-
 export interface PodcastPaginationProps {
     onNextPage: () => void;
     onPreviousPage: () => void;

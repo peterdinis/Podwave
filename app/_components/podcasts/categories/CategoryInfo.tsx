@@ -36,7 +36,9 @@ const CategoryInfo: FC = () => {
     return (
         <DefaultLayout>
             <Header text={data?.category?.categoryName as unknown as string} />
-            <div className='mt-8 font-bold text-xl prose prose-p: text-white'>{data?.category?.categoryDescription}</div>
+            <div className='prose-p: prose mt-8 text-xl font-bold text-white'>
+                {data?.category?.categoryDescription}
+            </div>
             <hr className='mt-4' />
             <div className='mt-5 text-xl font-bold'>
                 Podcasts from this category
@@ -48,14 +50,17 @@ const CategoryInfo: FC = () => {
                             <TabsContent value='all'>
                                 <Card x-chunk='dashboard-06-chunk-0'>
                                     <CardContent>
-                                        {data?.podcasts && data.podcasts.length > 0 ? (
+                                        {data?.podcasts &&
+                                        data.podcasts.length > 0 ? (
                                             <Table>
                                                 <TableHeader>
                                                     <TableRow>
                                                         <TableHead className='hidden w-[100px] sm:table-cell'>
                                                             Image
                                                         </TableHead>
-                                                        <TableHead>Name</TableHead>
+                                                        <TableHead>
+                                                            Name
+                                                        </TableHead>
                                                         <TableHead>
                                                             Description
                                                         </TableHead>
@@ -68,49 +73,68 @@ const CategoryInfo: FC = () => {
                                                     </TableRow>
                                                 </TableHeader>
                                                 <TableBody>
-                                                    {data.podcasts.map((item: PodcastType) => (
-                                                        <TableRow key={item._id}>
-                                                            <TableCell className='hidden sm:table-cell'>
-                                                                <Image
-                                                                    alt={item.podcastTitle as unknown as string}
-                                                                    className='aspect-square rounded-md object-cover'
-                                                                    height='64'
-                                                                    src={item.imageUrl as unknown as string}
-                                                                    width='64'
-                                                                />
-                                                            </TableCell>
-                                                            <TableCell className='font-medium'>
-                                                                {item.podcastTitle}
-                                                            </TableCell>
-                                                            <TableCell className='hidden md:table-cell'>
-                                                                {item.podcastDescription}
-                                                            </TableCell>
-                                                            <TableCell className='hidden md:table-cell'>
-                                                                {format(new Date(), 'yyyy-MM-dd')}
-                                                            </TableCell>
-                                                            <TableCell>
-                                                                <Button
-                                                                    onClick={() => {
-                                                                        router.push(`/podcasts/${item._id}`);
-                                                                    }}
-                                                                >
-                                                                    Detail
-                                                                </Button>
-                                                            </TableCell>
-                                                        </TableRow>
-                                                    ))}
+                                                    {data.podcasts.map(
+                                                        (item: PodcastType) => (
+                                                            <TableRow
+                                                                key={item._id}
+                                                            >
+                                                                <TableCell className='hidden sm:table-cell'>
+                                                                    <Image
+                                                                        alt={
+                                                                            item.podcastTitle as unknown as string
+                                                                        }
+                                                                        className='aspect-square rounded-md object-cover'
+                                                                        height='64'
+                                                                        src={
+                                                                            item.imageUrl as unknown as string
+                                                                        }
+                                                                        width='64'
+                                                                    />
+                                                                </TableCell>
+                                                                <TableCell className='font-medium'>
+                                                                    {
+                                                                        item.podcastTitle
+                                                                    }
+                                                                </TableCell>
+                                                                <TableCell className='hidden md:table-cell'>
+                                                                    {
+                                                                        item.podcastDescription
+                                                                    }
+                                                                </TableCell>
+                                                                <TableCell className='hidden md:table-cell'>
+                                                                    {format(
+                                                                        new Date(),
+                                                                        'yyyy-MM-dd',
+                                                                    )}
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <Button
+                                                                        onClick={() => {
+                                                                            router.push(
+                                                                                `/podcasts/${item._id}`,
+                                                                            );
+                                                                        }}
+                                                                    >
+                                                                        Detail
+                                                                    </Button>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                        ),
+                                                    )}
                                                 </TableBody>
                                             </Table>
                                         ) : (
                                             <div className='text-center text-lg font-semibold'>
-                                                <Ghost className='animate-bounce w-8 h-8' /> Category has no podcasts
+                                                <Ghost className='h-8 w-8 animate-bounce' />{' '}
+                                                Category has no podcasts
                                             </div>
                                         )}
                                     </CardContent>
                                     <CardFooter>
-                                        {data?.podcasts && data.podcasts.length > 0 && (
-                                            <ProfilePodcastsPagination />
-                                        )}
+                                        {data?.podcasts &&
+                                            data.podcasts.length > 0 && (
+                                                <ProfilePodcastsPagination />
+                                            )}
                                     </CardFooter>
                                 </Card>
                             </TabsContent>

@@ -156,7 +156,7 @@ const CreatePodcastForm: FC = () => {
                             >
                                 <SelectTrigger
                                     className={cn(
-                                        'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800',
+                                        'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800 dark:text-white',
                                     )}
                                 >
                                     <SelectValue
@@ -217,7 +217,7 @@ const CreatePodcastForm: FC = () => {
                                         <Select onValueChange={field.onChange}>
                                             <SelectTrigger
                                                 className={cn(
-                                                    'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800',
+                                                    'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800 dark:text-white',
                                                 )}
                                             >
                                                 <SelectValue
