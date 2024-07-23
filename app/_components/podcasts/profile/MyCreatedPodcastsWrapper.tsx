@@ -46,12 +46,14 @@ const MyCreatedPodcastsWrapper: FC = () => {
                                     </TableCell>
                                     <TableCell>
                                         <Link
-                                            href={podcast.audioUrl as unknown as URL}
+                                            href={
+                                                podcast.audioUrl as unknown as URL
+                                            }
                                             target='_blank'
                                             rel='noopener noreferrer'
                                         >
-                                            <Button variant={"link"}>
-                                            Listen
+                                            <Button variant={'link'}>
+                                                Listen
                                             </Button>
                                         </Link>
                                     </TableCell>

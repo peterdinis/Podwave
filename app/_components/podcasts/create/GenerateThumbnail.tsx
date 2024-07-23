@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Loader } from 'lucide-react';
+import { Loader, Upload } from 'lucide-react';
 import Image from 'next/image';
 import { useAction, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -51,7 +51,6 @@ const GenerateThumbnail = ({
                 title: 'Thumbnail generated successfully',
             });
         } catch (error) {
-            console.log(error);
             toast({
                 title: 'Error generating thumbnail',
                 variant: 'destructive',
@@ -67,14 +66,13 @@ const GenerateThumbnail = ({
             const blob = new Blob([response], { type: 'image/png' });
             handleImage(blob, `thumbnail-${uuidv4()}`);
         } catch (error) {
-            console.log(error);
             toast({
                 title: 'Error generating thumbnail',
                 variant: 'destructive',
             });
         }
     };
-    const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         try {
@@ -85,7 +83,6 @@ const GenerateThumbnail = ({
 
             handleImage(blob, file.name);
         } catch (error) {
-            console.log(error);
             toast({ title: 'Error uploading image', variant: 'destructive' });
         }
     };
@@ -107,7 +104,7 @@ const GenerateThumbnail = ({
                     type='button'
                     variant='secondary'
                     onClick={() => setIsAiThumbnail(false)}
-                    className={cn('mt-5 bg-orange-600 ml-4', {
+                    className={cn('ml-4 mt-5 bg-gray-600', {
                         'bg-secondary': !isAiThumbnail,
                     })}
                 >
@@ -131,7 +128,7 @@ const GenerateThumbnail = ({
                     <div className='w-full max-w-[200px]'>
                         <Button
                             type='submit'
-                            className='text-16 bg-orange-600 py-4 font-bold text-white'
+                            className='text-16 bg-primary py-4 font-bold text-white'
                             onClick={generateImage}
                         >
                             {isImageLoading ? (
@@ -160,20 +157,18 @@ const GenerateThumbnail = ({
                         onChange={(e) => uploadImage(e)}
                     />
                     {!isImageLoading ? (
-                        <Image
-                            src='/icons/upload-image.svg'
-                            width={40}
-                            height={40}
-                            alt='upload'
+                        <Upload 
+                            className='mt-5'
+                            size={40}
                         />
                     ) : (
-                        <div className='text-16 flex-center text-white-1 font-medium'>
+                        <div className='text-16 flex-center text-white font-medium'>
                             Uploading
                             <Loader size={20} className='ml-2 animate-spin' />
                         </div>
                     )}
                     <div className='flex flex-col items-center gap-1'>
-                        <h2 className='text-12 text-orange-1 font-bold'>
+                        <h2 className='text-12 text-black font-bold'>
                             Click to upload
                         </h2>
                         <p className='text-12 text-gray-1 font-normal'>

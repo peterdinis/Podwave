@@ -14,7 +14,10 @@ const PodcastsLists: FC = () => {
     const [prevCursors, setPrevCursors] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
 
-    const data = useQuery(api.podcasts.getAllPaginatedPodcasts, { cursor, limit });
+    const data = useQuery(api.podcasts.getAllPaginatedPodcasts, {
+        cursor,
+        limit,
+    });
 
     const handleNextPage = () => {
         if (data?.nextCursor) {
@@ -35,7 +38,7 @@ const PodcastsLists: FC = () => {
     };
 
     if (!data) {
-        return <Loader2 className="animate-spin w-8 h-8" />
+        return <Loader2 className='h-8 w-8 animate-spin' />;
     }
 
     return (

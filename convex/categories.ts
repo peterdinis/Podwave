@@ -39,7 +39,7 @@ export const getCategoryById = query({
 
         const podcasts = await ctx.db
             .query('podcasts')
-            .filter(q => q.eq(q.field('categoryId'), args.categoryId))
+            .filter((q) => q.eq(q.field('categoryId'), args.categoryId))
             .collect();
 
         return { category, podcasts };
@@ -77,7 +77,7 @@ export const deleteCategory = mutation({
         if (!category) {
             throw new ConvexError('Category not found');
         }
-        
+
         const associatedPodcasts = await ctx.db
             .query('podcasts')
             .filter((q) => q.eq(q.field('categoryId'), args.categoryId))

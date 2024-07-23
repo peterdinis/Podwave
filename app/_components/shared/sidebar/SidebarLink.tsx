@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { FC} from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import { ISidebarLinkProps } from '@/app/_types/appTypes';
 

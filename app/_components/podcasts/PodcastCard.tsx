@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PodcastCardProps} from '@/app/_types/podcastTypes';
+import { PodcastCardProps } from '@/app/_types/podcastTypes';
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
     return (
@@ -27,7 +27,7 @@ const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
                     {podcast.podcastTitle}
                 </CardTitle>
             </CardHeader>
-            <CardDescription className='prose-p: prose break-all p-3 text-lg font-bold'>
+            <CardDescription className='prose-p: prose p-3 text-lg font-bold break-all card-description'>
                 {podcast.podcastDescription}
             </CardDescription>
             <CardContent className='text-center'>

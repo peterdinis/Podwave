@@ -69,7 +69,11 @@ const PodcastReview: FC<PodcastReviewProps> = ({ podcastId }) => {
     return (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
-                <Button className='mt-5' variant={'default'} onClick={() => setIsOpen(true)}>
+                <Button
+                    className='mt-5'
+                    variant={'default'}
+                    onClick={() => setIsOpen(true)}
+                >
                     Add a review to the podcast
                 </Button>
             </DialogTrigger>
