@@ -22,7 +22,7 @@ const ThemeButton: FC = () => {
     return (
         <div
             onClick={toggleTheme}
-            className={`relative flex h-8 w-16 ml-4 cursor-pointer items-center rounded-full bg-yellow-500 p-1 dark:bg-gray-700`}
+            className={`relative ml-4 flex h-8 w-16 cursor-pointer items-center rounded-full bg-yellow-500 p-1 dark:bg-gray-700`}
         >
             <Moon className='h-[17px] w-[17px] fill-white'></Moon>
             <div

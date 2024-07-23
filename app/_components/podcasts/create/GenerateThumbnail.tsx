@@ -157,18 +157,15 @@ const GenerateThumbnail = ({
                         onChange={(e) => uploadImage(e)}
                     />
                     {!isImageLoading ? (
-                        <Upload 
-                            className='mt-5'
-                            size={40}
-                        />
+                        <Upload className='mt-5' size={40} />
                     ) : (
-                        <div className='text-16 flex-center text-white font-medium'>
+                        <div className='text-16 flex-center font-medium text-white'>
                             Uploading
                             <Loader size={20} className='ml-2 animate-spin' />
                         </div>
                     )}
                     <div className='flex flex-col items-center gap-1'>
-                        <h2 className='text-12 text-black font-bold'>
+                        <h2 className='text-12 font-bold text-black'>
                             Click to upload
                         </h2>
                         <p className='text-12 text-gray-1 font-normal'>
