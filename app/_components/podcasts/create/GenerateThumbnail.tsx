@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Loader } from 'lucide-react';
+import { Loader, Upload } from 'lucide-react';
 import Image from 'next/image';
 import { useAction, useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
@@ -74,7 +74,7 @@ const GenerateThumbnail = ({
             });
         }
     };
-    const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const uploadImage = async (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
 
         try {
@@ -107,7 +107,7 @@ const GenerateThumbnail = ({
                     type='button'
                     variant='secondary'
                     onClick={() => setIsAiThumbnail(false)}
-                    className={cn('ml-4 mt-5 bg-orange-600', {
+                    className={cn('ml-4 mt-5 bg-gray-600', {
                         'bg-secondary': !isAiThumbnail,
                     })}
                 >
@@ -131,7 +131,7 @@ const GenerateThumbnail = ({
                     <div className='w-full max-w-[200px]'>
                         <Button
                             type='submit'
-                            className='text-16 bg-orange-600 py-4 font-bold text-white'
+                            className='text-16 bg-primary py-4 font-bold text-white'
                             onClick={generateImage}
                         >
                             {isImageLoading ? (
@@ -160,11 +160,9 @@ const GenerateThumbnail = ({
                         onChange={(e) => uploadImage(e)}
                     />
                     {!isImageLoading ? (
-                        <Image
-                            src='/icons/upload-image.svg'
-                            width={40}
-                            height={40}
-                            alt='upload'
+                        <Upload 
+                            className='mt-5'
+                            size={40}
                         />
                     ) : (
                         <div className='text-16 flex-center text-white-1 font-medium'>

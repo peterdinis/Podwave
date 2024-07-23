@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -24,7 +23,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader } from 'lucide-react';
 import { Id } from '@/convex/_generated/dataModel';
