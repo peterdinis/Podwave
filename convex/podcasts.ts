@@ -82,7 +82,7 @@ export const getPodcastByVoiceType = query({
 });
 
 export const getAllPodcasts = query({
-    handler: async (ctx, args) => {
+    handler: async (ctx) => {
         const allPodcasts = await ctx.db
             .query('podcasts')
             .order('desc')
