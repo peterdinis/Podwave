@@ -4,8 +4,6 @@ import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { type FC, useEffect, useState } from 'react';
 
-/* Theme button for switching dark / light mode */
-
 const ThemeButton: FC = () => {
     const [mounted, setMounted] = useState(false);
     const [isActive, setIsActive] = useState(false);
@@ -27,7 +25,7 @@ const ThemeButton: FC = () => {
     return (
         <div
             onClick={toggleTheme}
-            className={`relative flex h-8 w-16 cursor-pointer items-center rounded-full bg-yellow-500 p-1 dark:bg-gray-700`}
+            className={`relative flex h-8 w-16 ml-4 cursor-pointer items-center rounded-full bg-yellow-500 p-1 dark:bg-gray-700`}
         >
             <Moon className='h-[17px] w-[17px] fill-white'></Moon>
             <div
