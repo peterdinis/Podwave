@@ -34,7 +34,9 @@ const isPodcast = (item: any): item is Podcast => {
 
 const ProfilePodcasts: FC = () => {
     const { toast } = useToast();
-    const favoritePodcasts = useQuery(api.podcasts.getFavoritePodcasts) as Podcast[];
+    const favoritePodcasts = useQuery(
+        api.podcasts.getFavoritePodcasts,
+    ) as Podcast[];
 
     const removePodcast = () => {
         toast({
@@ -66,58 +68,73 @@ const ProfilePodcasts: FC = () => {
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
-                                        {favoritePodcasts.filter(isPodcast).map((podcast) => (
-                                            <TableRow key={podcast._id}>
-                                                <TableCell className='hidden sm:table-cell'>
-                                                    <Image
-                                                        alt='Podcast image'
-                                                        className='aspect-square rounded-md object-cover'
-                                                        height='64'
-                                                        src={podcast.imageUrl}
-                                                        width='64'
-                                                    />
-                                                </TableCell>
-                                                <TableCell className='font-medium'>
-                                                    {podcast.podcastTitle}
-                                                </TableCell>
-                                                <TableCell className='hidden md:table-cell'>
-                                                    {podcast.podcastDescription}
-                                                </TableCell>
-                                                <TableCell className='hidden md:table-cell'>
-                                                    {format(
-                                                        new Date(podcast.createdAt as unknown as Date),
-                                                        'yyyy-MM-dd',
-                                                    )}
-                                                </TableCell>
-                                                <TableCell>
-                                                    <DropdownMenu>
-                                                        <DropdownMenuTrigger asChild>
-                                                            <Button
-                                                                aria-haspopup='true'
-                                                                size='icon'
-                                                                variant='ghost'
+                                        {favoritePodcasts
+                                            .filter(isPodcast)
+                                            .map((podcast) => (
+                                                <TableRow key={podcast._id}>
+                                                    <TableCell className='hidden sm:table-cell'>
+                                                        <Image
+                                                            alt='Podcast image'
+                                                            className='aspect-square rounded-md object-cover'
+                                                            height='64'
+                                                            src={
+                                                                podcast.imageUrl
+                                                            }
+                                                            width='64'
+                                                        />
+                                                    </TableCell>
+                                                    <TableCell className='font-medium'>
+                                                        {podcast.podcastTitle}
+                                                    </TableCell>
+                                                    <TableCell className='hidden md:table-cell'>
+                                                        {
+                                                            podcast.podcastDescription
+                                                        }
+                                                    </TableCell>
+                                                    <TableCell className='hidden md:table-cell'>
+                                                        {format(
+                                                            new Date(
+                                                                podcast.createdAt as unknown as Date,
+                                                            ),
+                                                            'yyyy-MM-dd',
+                                                        )}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <DropdownMenu>
+                                                            <DropdownMenuTrigger
+                                                                asChild
                                                             >
-                                                                <MoreHorizontal className='h-4 w-4' />
-                                                                <span className='sr-only'>
-                                                                    Toggle menu
-                                                                </span>
-                                                            </Button>
-                                                        </DropdownMenuTrigger>
-                                                        <DropdownMenuContent align='end'>
-                                                            <DropdownMenuItem>
                                                                 <Button
-                                                                    onClick={removePodcast}
-                                                                    className='bg-transparent text-red-600 hover:text-red-800'
-                                                                    variant='link'
+                                                                    aria-haspopup='true'
+                                                                    size='icon'
+                                                                    variant='ghost'
                                                                 >
-                                                                    Remove from favorites
+                                                                    <MoreHorizontal className='h-4 w-4' />
+                                                                    <span className='sr-only'>
+                                                                        Toggle
+                                                                        menu
+                                                                    </span>
                                                                 </Button>
-                                                            </DropdownMenuItem>
-                                                        </DropdownMenuContent>
-                                                    </DropdownMenu>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))}
+                                                            </DropdownMenuTrigger>
+                                                            <DropdownMenuContent align='end'>
+                                                                <DropdownMenuItem>
+                                                                    <Button
+                                                                        onClick={
+                                                                            removePodcast
+                                                                        }
+                                                                        className='bg-transparent text-red-600 hover:text-red-800'
+                                                                        variant='link'
+                                                                    >
+                                                                        Remove
+                                                                        from
+                                                                        favorites
+                                                                    </Button>
+                                                                </DropdownMenuItem>
+                                                            </DropdownMenuContent>
+                                                        </DropdownMenu>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
                                     </TableBody>
                                 </Table>
                             </CardContent>
@@ -131,6 +148,5 @@ const ProfilePodcasts: FC = () => {
         </ScrollArea>
     );
 };
-
 
 export default ProfilePodcasts;

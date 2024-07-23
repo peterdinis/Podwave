@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -24,7 +23,7 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { Textarea } from '@/components/ui/textarea';
 import { Loader } from 'lucide-react';
 import { Id } from '@/convex/_generated/dataModel';
@@ -74,7 +73,6 @@ const CreatePodcastForm: FC = () => {
         },
     });
 
-    // Fetch categories from the backend
     const categories = useQuery(api.categories.getAllCategories) || [];
 
     async function onSubmit(data: z.infer<typeof formSchema>) {
@@ -107,11 +105,6 @@ const CreatePodcastForm: FC = () => {
             setIsSubmitting(false);
             router.push('/');
         } catch (error) {
-            console.log(error);
-            toast({
-                title: 'Error',
-                variant: 'destructive',
-            });
             setIsSubmitting(false);
         }
     }
@@ -137,7 +130,7 @@ const CreatePodcastForm: FC = () => {
                                     <FormControl>
                                         <Input
                                             className='input-class focus-visible:ring-offset-primary'
-                                            placeholder='JSM Pro Podcast'
+                                            placeholder='Podcast Title'
                                             {...field}
                                         />
                                     </FormControl>
@@ -156,7 +149,7 @@ const CreatePodcastForm: FC = () => {
                             >
                                 <SelectTrigger
                                     className={cn(
-                                        'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800',
+                                        'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800 dark:text-white',
                                     )}
                                 >
                                     <SelectValue
@@ -217,7 +210,7 @@ const CreatePodcastForm: FC = () => {
                                         <Select onValueChange={field.onChange}>
                                             <SelectTrigger
                                                 className={cn(
-                                                    'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800',
+                                                    'text-16 w-full border-none bg-zinc-200 text-gray-500 focus-visible:ring-offset-primary dark:bg-zinc-800 dark:text-white',
                                                 )}
                                             >
                                                 <SelectValue
@@ -277,7 +270,7 @@ const CreatePodcastForm: FC = () => {
                                         />
                                     </>
                                 ) : (
-                                    'Submit & Publish Podcast'
+                                    'Submit and Publish podcast'
                                 )}
                             </Button>
                         </div>

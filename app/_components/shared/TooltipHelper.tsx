@@ -9,7 +9,7 @@ import {
     TooltipTrigger,
 } from '@/components/ui/tooltip';
 import Link from 'next/link';
-import { FC} from 'react';
+import { FC } from 'react';
 
 const TooltipHelper: FC<ITooltipHelperProps> = ({
     icon,

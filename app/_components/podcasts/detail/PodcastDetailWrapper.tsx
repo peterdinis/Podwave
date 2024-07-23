@@ -19,7 +19,9 @@ const PodcastDetailWrapper: FC = () => {
     const podcastId = id[0] as unknown as Id<'podcasts'>;
 
     const data = useQuery(api.podcasts.getPodcastById, { podcastId });
-    const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, { podcastId });
+    const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, {
+        podcastId,
+    });
 
     if (!data || !similarPodcasts) {
         return <Loader2 className='h-8 w-8 animate-spin' />;
@@ -44,7 +46,9 @@ const PodcastDetailWrapper: FC = () => {
                                 </div>
                                 <div className='flex items-center gap-2'>
                                     <Avatar>
-                                        <AvatarImage src={data?.authorImageUrl} />
+                                        <AvatarImage
+                                            src={data?.authorImageUrl}
+                                        />
                                     </Avatar>
                                     <span className='font-medium'>
                                         {data?.author}
@@ -60,11 +64,13 @@ const PodcastDetailWrapper: FC = () => {
                         </div>
                         <Separator />
                     </div>
-                    <ReviewsWrapper  />
+                    <ReviewsWrapper />
                 </div>
                 <div className='mt-8 space-y-6'>
-                    <h2 className='font-bold text-xl prose prose-h2: dark:text-blue-50'>Play now</h2> 
-                    <video controls src={data.audioUrl} /> 
+                    <h2 className='prose-h2: prose text-xl font-bold dark:text-blue-50'>
+                        Play now
+                    </h2>
+                    <video controls src={data.audioUrl} />
                 </div>
             </section>
         </DefaultLayout>

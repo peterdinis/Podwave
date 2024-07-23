@@ -34,8 +34,11 @@ export default defineSchema({
     categories: defineTable({
         categoryName: v.string(),
         categoryDescription: v.optional(v.string()),
-    }) .searchIndex('search_category_name', { searchField: 'categoryName' })
-    .searchIndex('search_category_description', { searchField: 'categoryDescription' }),
+    })
+        .searchIndex('search_category_name', { searchField: 'categoryName' })
+        .searchIndex('search_category_description', {
+            searchField: 'categoryDescription',
+        }),
 
     reviews: defineTable({
         podcastId: v.id('podcasts'),
@@ -48,5 +51,5 @@ export default defineSchema({
     favorites: defineTable({
         userId: v.id('users'),
         podcastId: v.id('podcasts'),
-      }),
+    }),
 });

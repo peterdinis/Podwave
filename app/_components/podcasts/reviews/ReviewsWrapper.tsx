@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { FC, Key } from 'react';
 import { Loader2, Star } from 'lucide-react';
@@ -39,10 +39,12 @@ const ReviewsWrapper: FC = () => {
 
 const ReviewItem: FC<{ review: ReviewType }> = ({ review }) => {
     const user = useUser();
-    const userQuery = useQuery(api.users.getUserById, { clerkId: user.user!.id });
+    const userQuery = useQuery(api.users.getUserById, {
+        clerkId: user.user!.id,
+    });
 
     if (!userQuery) {
-        return <Loader2 className='animate-spin w-8 h-8' />;
+        return <Loader2 className='h-8 w-8 animate-spin' />;
     }
 
     const appUser = userQuery;
@@ -55,16 +57,16 @@ const ReviewItem: FC<{ review: ReviewType }> = ({ review }) => {
                     <AvatarFallback>{user.user!.fullName}</AvatarFallback>
                 </Avatar>
                 <div>
-                    <h4 className='font-medium'>
-                        {appUser.name}
-                    </h4>
+                    <h4 className='font-medium'>{appUser.name}</h4>
                     <div className='flex items-center gap-1 text-sm text-muted-foreground'>
-                        {[...Array(5)].map((_: unknown, index: Key | null | undefined) => (
-                            <Star
-                                key={index}
-                                className={`h-4 w-4 ${index! < review.rating ? 'fill-primary' : 'fill-muted stroke-muted-foreground'}`}
-                            />
-                        ))}
+                        {[...Array(5)].map(
+                            (_: unknown, index: Key | null | undefined) => (
+                                <Star
+                                    key={index}
+                                    className={`h-4 w-4 ${index! < review.rating ? 'fill-primary' : 'fill-muted stroke-muted-foreground'}`}
+                                />
+                            ),
+                        )}
                     </div>
                 </div>
             </div>

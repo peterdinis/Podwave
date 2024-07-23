@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PodcastCardProps} from '@/app/_types/podcastTypes';
+import { PodcastCardProps } from '@/app/_types/podcastTypes';
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
     return (
