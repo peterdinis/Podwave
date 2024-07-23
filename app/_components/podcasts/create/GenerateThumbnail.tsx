@@ -165,13 +165,13 @@ const GenerateThumbnail = ({
                             size={40}
                         />
                     ) : (
-                        <div className='text-16 flex-center text-white-1 font-medium'>
+                        <div className='text-16 flex-center text-white font-medium'>
                             Uploading
                             <Loader size={20} className='ml-2 animate-spin' />
                         </div>
                     )}
                     <div className='flex flex-col items-center gap-1'>
-                        <h2 className='text-12 text-orange-1 font-bold'>
+                        <h2 className='text-12 text-black font-bold'>
                             Click to upload
                         </h2>
                         <p className='text-12 text-gray-1 font-normal'>
