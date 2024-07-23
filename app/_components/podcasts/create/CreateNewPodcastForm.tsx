@@ -73,7 +73,6 @@ const CreatePodcastForm: FC = () => {
         },
     });
 
-    // Fetch categories from the backend
     const categories = useQuery(api.categories.getAllCategories) || [];
 
     async function onSubmit(data: z.infer<typeof formSchema>) {
@@ -106,11 +105,6 @@ const CreatePodcastForm: FC = () => {
             setIsSubmitting(false);
             router.push('/');
         } catch (error) {
-            console.log(error);
-            toast({
-                title: 'Error',
-                variant: 'destructive',
-            });
             setIsSubmitting(false);
         }
     }
