@@ -100,7 +100,6 @@ const CreatePodcastForm: FC = () => {
                 imageStorageId: imageStorageId!,
                 categoryId: data.categoryId as unknown as Id<'categories'>,
             });
-            console.log('New podcast', podcast);
             toast({ title: 'Podcast created' });
             setIsSubmitting(false);
             router.push('/');
