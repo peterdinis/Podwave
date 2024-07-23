@@ -1,22 +1,19 @@
 'use client';
 
+import useMounted from '@/app/_hooks/useMounted';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { type FC, useEffect, useState } from 'react';
+import { type FC, useState } from 'react';
 
 const ThemeButton: FC = () => {
-    const [mounted, setMounted] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const { resolvedTheme, setTheme } = useTheme();
+    const mounted = useMounted();
 
     const toggleTheme = () => {
         setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
         setIsActive(!isActive);
     };
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     if (!mounted) {
         return null;
