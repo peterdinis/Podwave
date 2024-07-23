@@ -50,12 +50,6 @@ const ProfileWrapper: FC = () => {
                         <br />
                     </AccordionContent>
                 </AccordionItem>
-                <AccordionItem value='item-2'>
-                    <AccordionTrigger>Favorite podcasts</AccordionTrigger>
-                    <AccordionContent>
-                        <ProfilePodcasts />
-                    </AccordionContent>
-                </AccordionItem>
                 <AccordionItem value='item-3'>
                     <AccordionTrigger>My created podcasts</AccordionTrigger>
                     <AccordionContent>

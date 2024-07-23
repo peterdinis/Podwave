@@ -31,7 +31,6 @@ const PodcastDetailWrapper: FC = () => {
         <DefaultLayout>
             <Header text={data.podcastTitle} />
             <PodcastReview podcastId={podcastId} />
-            <AddToFavorite podcastId={podcastId} />
 
             <section className='container mx-auto px-4 py-8 md:px-6 md:py-12 lg:py-16'>
                 <div className='grid gap-8 lg:grid-cols-[2fr_1fr]'>
