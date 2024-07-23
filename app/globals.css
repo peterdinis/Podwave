@@ -127,3 +127,14 @@ html::-webkit-scrollbar-thumb {
         @apply bg-background text-foreground;
     }
 }
+
+.card-description {
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 6.5em;
+  }
