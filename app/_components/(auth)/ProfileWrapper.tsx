@@ -12,7 +12,6 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import { format } from 'date-fns';
-import ProfilePodcasts from '../podcasts/profile/ProfilePodcasts';
 import MyCreatedPodcastsWrapper from '../podcasts/profile/MyCreatedPodcastsWrapper';
 
 const ProfileWrapper: FC = () => {

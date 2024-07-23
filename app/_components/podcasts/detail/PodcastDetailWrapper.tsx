@@ -9,8 +9,6 @@ import { FC } from 'react';
 import DefaultLayout from '../../shared/layouts/DefaultLayout';
 import PodcastReview from '../reviews/PodcastReview';
 import Header from '../../shared/Header';
-import AddToFavorite from '../favorite/AddToFavorite';
-import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import ReviewsWrapper from '../reviews/ReviewsWrapper';
 
