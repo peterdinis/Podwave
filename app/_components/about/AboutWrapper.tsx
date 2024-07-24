@@ -20,7 +20,7 @@ const AboutWrapper: FC = () => {
                     <p className='text-lg text-gray-600 dark:text-blue-50'>
                         Podware integrates advanced AI capabilities to assist
                         creators in generating high-quality podcasts. Whether
-                        you're scripting, editing, or enhancing audio, our AI
+                        you are scripting, editing, or enhancing audio, our AI
                         tools streamline the process, making podcast creation
                         efficient and accessible.
                     </p>
@@ -33,7 +33,7 @@ const AboutWrapper: FC = () => {
                         Explore a vast library of podcasts within Podware.
                         Listen to your favorite shows, discover new content, and
                         leave reviews to share your thoughts with the community.
-                        Podware's intuitive interface ensures a seamless
+                        Podware is intuitive interface ensures a seamless
                         experience for both listeners and creators.
                     </p>
                 </div>
