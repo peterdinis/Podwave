@@ -8,7 +8,7 @@ const noop = () => void 0;
 /**
  * Suppress the warning when using useLayoutEffect with SSR. (https://reactjs.org/link/uselayouteffect-ssr)
  * Make use of useInsertionEffect if available.
- */
+ */ 
 const useInsertionEffect_ =
     typeof window !== 'undefined'
         ? // useInsertionEffect is available in React 18+
