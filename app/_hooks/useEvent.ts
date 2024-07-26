@@ -5,7 +5,7 @@ import { useInsertionEffect, useLayoutEffect, useRef } from 'react';
 import { useNoop } from './useNoop';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyFunction = (...args: any[]) => any;
+type AnyFunction = (...args: unknown[]) => any;
 
 /**
  * Suppress the warning when using useLayoutEffect with SSR. (https://reactjs.org/link/uselayouteffect-ssr)
