@@ -1,11 +1,11 @@
+"use client"
+
 // Ripped from https://github.com/scottrippey/react-use-event-hook
 import { useInsertionEffect, useLayoutEffect, useRef } from 'react';
+import { useNoop } from './useNoop';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyFunction = (...args: any[]) => any;
-const noop = () => {
-    return "DO NOTHING";
-}
 
 /**
  * Suppress the warning when using useLayoutEffect with SSR. (https://reactjs.org/link/uselayouteffect-ssr)
@@ -15,7 +15,7 @@ const useInsertionEffect_ =
     typeof window !== 'undefined'
         ? // useInsertionEffect is available in React 18+
           useInsertionEffect || useLayoutEffect
-        : noop;
+        : useNoop;
 
 /**
  * Similar to useCallback, with a few subtle differences:
