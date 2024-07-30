@@ -20,7 +20,7 @@ export const useUploadFiles = (
     const uploadProgress = useRef(0);
     const fileProgress = useRef<Map<string, number>>(new Map());
 
-    const startUpload = useEvent(async (files: File[]) => {
+    const startUpload = useEvent(async (files: any) => {
         setUploading(true);
 
         try {
