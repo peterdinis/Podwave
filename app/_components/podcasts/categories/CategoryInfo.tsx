@@ -21,7 +21,6 @@ import Image from 'next/image';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { format } from 'date-fns';
-import ProfilePodcastsPagination from '../profile/ProfilePodcastsPagination';
 import { PodcastType } from '@/app/_types/podcastTypes';
 import { Ghost } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
@@ -131,12 +130,6 @@ const CategoryInfo: FC = () => {
                                             </div>
                                         )}
                                     </CardContent>
-                                    <CardFooter>
-                                        {data?.podcasts &&
-                                            data.podcasts.length > 0 && (
-                                                <ProfilePodcastsPagination />
-                                            )}
-                                    </CardFooter>
                                 </Card>
                             </TabsContent>
                         </Tabs>
