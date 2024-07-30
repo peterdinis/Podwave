@@ -8,7 +8,7 @@ import { Id } from '@/convex/_generated/dataModel';
 import DefaultLayout from '../../shared/layouts/DefaultLayout';
 import Header from '../../shared/Header';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import {
     Table,
     TableBody,
@@ -46,7 +46,7 @@ const CategoryInfo: FC = () => {
             <div className='mt-3'>
                 <ScrollArea>
                     <main className='grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8'>
-                        <Tabs defaultValue='all'>
+                        <Tabs defaultValue='all'> 
                             <TabsContent value='all'>
                                 <Card x-chunk='dashboard-06-chunk-0'>
                                     <CardContent>
