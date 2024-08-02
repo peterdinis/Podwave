@@ -24,11 +24,6 @@ export interface IHeaderProps {
     text: string;
 }
 
-export interface ILongTextProps {
-    text: string;
-    maxLength: number;
-}
-
 export interface ITooltipHelperProps {
     icon: ReactNode;
     linkH: string;
